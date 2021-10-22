@@ -21,7 +21,7 @@
 	<div class="container">
 		<h2>글쓰기</h2>
 		
-		<form action="" class="mt-5 mb-5">
+		<form action="/write" method="get" enctype="multipart/form-data" class="mt-5 mb-5">
 			<div class="writeForm mt-5">
 			<div class="writeSelect">
 				<h4>여행 날짜</h4>
@@ -69,8 +69,8 @@
 					<option value="sejong">세종특별자치시</option>
 					<option value="gyeonggi">경기도</option>
 					<option value="gangwon">강원도</option>
-					<option value="chungbuk">충천북도</option>
-					<option value="chungnam">충천남도</option>
+					<option value="chungbuk">충청북도</option>
+					<option value="chungnam">충청남도</option>
 					<option value="jeonbuk">전라북도</option>
 					<option value="jeonnam">전라남도</option>
 					<option value="gyeongbuk">경상북도</option>
@@ -82,14 +82,13 @@
 						<label for="input-file" class="btn btn-outline-secondary imgBtn2">
 							<span class="imgText">대표사진 등록하기</span>
 						</label>
-						<input type="file" id="input-file" style="display:none"/>
+						<input type="file" id="input-file" style="display:none" name="file1" />
 						
-						<label for="input-file" class="btn btn-outline-secondary imgBtn2">
+						<label for="input-file2" class="btn btn-outline-secondary imgBtn2">
 							<span class="imgText">추가사진 등록하기</span>
 						</label>
-						<input type="file" id="input-file" style="display:none"/>
+						<input type="file" id="input-file2" style="display:none" name="file2" />
 				</div>
-				
 				<textarea class="form-control mt-5 " placeholder="내용을 입력해주세요.  (1000자 이내)" name="content" id="writeContent"></textarea>
 				<textarea class="form-control mt-5 mb-5" placeholder="#태그를 입력해주세요.  (태그 형식으로 10자 이내)" name="tag" ></textarea>
 				
