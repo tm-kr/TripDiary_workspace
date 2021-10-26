@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -42,7 +42,9 @@
 							23
 						</div>
 						<div class="col-4">
-							<img class="icon" src="resources/img/pick_cnt.png" style="width: 100%;"><br><br>
+							<a href="/pick">
+								<img class="icon" src="resources/img/pick_cnt.png" style="width: 100%;"><br><br>
+							</a>
 							12
 						</div>
 					</div>
@@ -67,7 +69,7 @@
 						</div>
 							<!-- pick 이미지 -->
 						<div style="float:right; display:inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="" style="width: 40px; height: 40px; object-fit: cover;">	
+							<img alt="" src="resources/img/pick_cnt.png" class="pick-img" style="width: 40px; height: 40px; object-fit: cover;">	
 						</div>
 					</div>
 					<!-- 썸네일 이미지 -->
@@ -84,7 +86,7 @@
 							좋아요 8개
 						</div>
 						<div>
-							#첫게시물 #여행가기좋은날 #시작! #첫게시물 #여행가기좋은날 #시작! #첫게시물 #여행가기좋은날 #시작!
+							#첫게시물 #여행가기좋은날 #시작! #첫게시물 #여행가기좋은날 #시작! #첫게시물 #여행가기좋은날 #시작!	#첫게시물 #여행가기좋은날 #시작! #첫게시물 #여행가기좋은날 #시작! #첫게시물 #여행가기좋은날 #시작!
 						</div>
 					</div>
 				</div>
@@ -100,7 +102,7 @@
 						</div>
 							<!-- pick 이미지 -->
 						<div style="float:right; display:inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="" style="width: 40px; height: 40px; object-fit: cover;">	
+							<img alt="" src="resources/img/pick_cnt.png" class="pick-img" style="width: 40px; height: 40px; object-fit: cover;">	
 						</div>
 					</div>
 					<!-- 썸네일 이미지 -->
@@ -133,7 +135,7 @@
 						</div>
 							<!-- pick 이미지 -->
 						<div style="float:right; display:inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="" style="width: 40px; height: 40px; object-fit: cover;">	
+							<img alt="" src="resources/img/pick_cnt.png" class="pick-img" style="width: 40px; height: 40px; object-fit: cover;">	
 						</div>
 					</div>
 					<!-- 썸네일 이미지 -->
@@ -166,7 +168,7 @@
 						</div>
 							<!-- pick 이미지 -->
 						<div style="float:right; display:inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="" style="width: 40px; height: 40px; object-fit: cover;">	
+							<img alt="" src="resources/img/pick_cnt.png" class="pick-img" style="width: 40px; height: 40px; object-fit: cover;">	
 						</div>
 					</div>
 					<!-- 썸네일 이미지 -->
@@ -199,7 +201,7 @@
 						</div>
 							<!-- pick 이미지 -->
 						<div style="float:right; display:inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="" style="width: 40px; height: 40px; object-fit: cover;">	
+							<img alt="" src="resources/img/pick_cnt.png" class="pick-img" style="width: 40px; height: 40px; object-fit: cover;">	
 						</div>
 					</div>
 					<!-- 썸네일 이미지 -->
@@ -232,7 +234,7 @@
 						</div>
 							<!-- pick 이미지 -->
 						<div style="float:right; display:inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="" style="width: 40px; height: 40px; object-fit: cover;">	
+							<img alt="" src="resources/img/pick_cnt.png" class="pick-img" style="width: 40px; height: 40px; object-fit: cover;">	
 						</div>
 					</div>
 					<!-- 썸네일 이미지 -->

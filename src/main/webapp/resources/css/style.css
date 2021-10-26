@@ -1,5 +1,5 @@
 .header {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -139,6 +139,13 @@
 	height: 240px; 
 	object-fit: cover;
 }
+.image-thumbnail2{
+	width: 150px;
+	height: 150px; 
+	object-fit: cover;
+}
+
+/* 게시물 보여주는 css */
 .board-bottom{
 	text-align: left;	
 }
@@ -157,7 +164,10 @@
 .icon2:hover {
 	transform: scale(1.05);
 }
-
+.pick-img{
+	margin-top: 4px;
+}
+/* 여기 까지 */
 
 @media screen and (max-width: 1400px) {
 	.writeForm {

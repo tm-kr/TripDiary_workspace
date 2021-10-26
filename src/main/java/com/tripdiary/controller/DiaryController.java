@@ -1,6 +1,9 @@
 package com.tripdiary.controller;
 
 import java.util.Locale;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +23,6 @@ public class DiaryController {
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main(Model model) {
 		return "main";
-	}
-	
-	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String writeForm() {
-		return "write";
 	}
 	
 	@RequestMapping(value = "/diary", method = RequestMethod.GET)
@@ -48,8 +46,16 @@ public class DiaryController {
 	}
 	
 	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
-	public String signIn() {
+	public String signIn(HttpSession session) {
+		session.setAttribute("id", "tester");
+		session.setAttribute("member_num", 10);
 		return "signIn";
+	}
+	
+	@RequestMapping(value = "/signOut", method = RequestMethod.GET)
+	public String signOut(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
 	}
 	
 	@RequestMapping(value = "myPage", method = RequestMethod.GET)

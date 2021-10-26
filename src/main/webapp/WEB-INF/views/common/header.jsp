@@ -18,7 +18,7 @@
 				<li class="nav-item active">
 					<a class="nav-link" href="/main">Main</a>
 				</li>
-				<c:if test="${empty sessionScope.id }">
+				<c:if test="${not empty sessionScope.id }">
 					<li class="nav-item active">
 						<a class="nav-link" href="/diary">MyDiary</a>
 					</li>
