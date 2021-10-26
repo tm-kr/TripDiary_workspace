@@ -23,7 +23,7 @@
 	<div class="container">
 		<h2>글쓰기</h2>
 		
-		<form action="/write" method="POST" enctype="multipart/form-data" class="mt-5 mb-5">
+		<form action="/write" method="post" enctype="multipart/form-data" class="mt-5 mb-5">
 			<div class="writeForm mt-5">
 			<div class="writeSelect">
 				<h4>여행 날짜</h4>

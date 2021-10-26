@@ -6,30 +6,36 @@ import java.sql.Timestamp;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BoardVo {
+public class WriteCmd {
 	private int board_num;
 	private int member_num;
 	private String place;
 	private String content;
 	private Timestamp regdate;
-	private Date tripdate;
+	private int year;
+	private int month;
+	private int day;
 	private int td_like_cnt;
 	
-	public BoardVo() {
+	public WriteCmd() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public BoardVo(int board_num, int member_num, String place, String content, Timestamp regdate, Date tripdate,
-			int td_like_cnt) {
+
+	public WriteCmd(int board_num, int member_num, String place, String content, Timestamp regdate, int year, int month,
+			int day, int td_like_cnt) {
 		super();
 		this.board_num = board_num;
 		this.member_num = member_num;
 		this.place = place;
 		this.content = content;
 		this.regdate = regdate;
-		this.tripdate = tripdate;
+		this.year = year;
+		this.month = month;
+		this.day = day;
 		this.td_like_cnt = td_like_cnt;
 	}
+
+
 
 	public int getBoard_num() {
 		return board_num;
@@ -71,20 +77,36 @@ public class BoardVo {
 		this.regdate = regdate;
 	}
 
-	public Date getTripdate() {
-		return tripdate;
-	}
-
-	public void setTripdate(Date tripdate) {
-		this.tripdate = tripdate;
-	}
-
 	public int getTd_like_cnt() {
 		return td_like_cnt;
 	}
 
 	public void setTd_like_cnt(int td_like_cnt) {
 		this.td_like_cnt = td_like_cnt;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
 	}
 	
 	
