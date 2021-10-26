@@ -12,17 +12,18 @@ public class WriteCmd {
 	private String place;
 	private String content;
 	private Timestamp regdate;
-	private int year;
-	private int month;
-	private int day;
+	private String year;
+	private String month;
+	private String day;
+	private String tripdate;
 	private int td_like_cnt;
 	
 	public WriteCmd() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public WriteCmd(int board_num, int member_num, String place, String content, Timestamp regdate, int year, int month,
-			int day, int td_like_cnt) {
+	public WriteCmd(int board_num, int member_num, String place, String content, Timestamp regdate, String year, String month,
+			String day, String tripdate, int td_like_cnt) {
 		super();
 		this.board_num = board_num;
 		this.member_num = member_num;
@@ -32,6 +33,7 @@ public class WriteCmd {
 		this.year = year;
 		this.month = month;
 		this.day = day;
+		this.tripdate = tripdate;
 		this.td_like_cnt = td_like_cnt;
 	}
 
@@ -85,28 +87,36 @@ public class WriteCmd {
 		this.td_like_cnt = td_like_cnt;
 	}
 
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
-	public int getMonth() {
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(int month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
 
-	public int getDay() {
+	public String getDay() {
 		return day;
 	}
 
-	public void setDay(int day) {
+	public void setDay(String day) {
 		this.day = day;
+	}
+
+	public String getTripdate() {
+		return tripdate;
+	}
+
+	public void setTripdate(String tripdate) {
+		this.tripdate = tripdate;
 	}
 	
 	

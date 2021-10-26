@@ -60,8 +60,7 @@
 				</div>
 					
 				 <select name="place" id="select_place" class="form-select">
-					<option selected disabled hidden >지역선택</option>
-					<option value="seoul">서울특별시</option>
+					<option value="seoul" selected>서울특별시</option>
 					<option value="busan">부산광역시</option>
 					<option value="daegu">대구광역시</option>
 					<option value="incheon">인천광역시</option>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="boardDAO">
+ 		<insert id="write" parameterType="writeCmd"
+		useGeneratedKeys="true" keyProperty="num">
+		<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
+			SELECT
+			BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		insert into "BOARD"
+		(board_num, member_num, place, content, regdate, tripdate, td_like_cnt)
+		values
+		(#{board_num}, #{member_num}, #{place}, #{content}, SYSDATE, #{tripdate}, 0)
+	</insert>
+ </mapper>
