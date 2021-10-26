@@ -57,7 +57,7 @@
 		<!-- 전체 게시물 부분  -->
 		<div class="diary-mid row mt-5 mb-5">
 			<!-- 게시물 1개 부분 이 주석 밑부분 부터 반복문 실행-->
-			<div class="col-sm-4 diary-board-container">
+			<div class="col-lg-4 diary-board-container">
 				<div class="border border-secondary p-3 icon2">
 					<div class="board-top">
 						<div style="float:left;">
@@ -90,7 +90,7 @@
 				</div>
 			</div>
 			
-			<div class="col-sm-4 diary-board-container">
+			<div class="col-lg-4 diary-board-container">
 				<div class="border border-secondary p-3 icon2">
 					<div class="board-top">
 						<div style="float:left;">
@@ -123,7 +123,7 @@
 				</div>
 			</div>
 			
-			<div class="col-sm-4 diary-board-container">
+			<div class="col-lg-4 diary-board-container">
 				<div class="border border-secondary p-3 icon2">
 					<div class="board-top">
 						<div style="float:left;">
@@ -156,7 +156,7 @@
 				</div>
 			</div>
 			
-			<div class="col-sm-4 diary-board-container">
+			<div class="col-lg-4 diary-board-container">
 				<div class="border border-secondary p-3 icon2">
 					<div class="board-top">
 						<div style="float:left;">
@@ -189,7 +189,7 @@
 				</div>
 			</div>
 			
-			<div class="col-sm-4 diary-board-container">
+			<div class="col-lg-4 diary-board-container">
 				<div class="border border-secondary p-3 icon2">
 					<div class="board-top">
 						<div style="float:left;">
@@ -222,7 +222,7 @@
 				</div>
 			</div>
 			
-			<div class="col-sm-4 diary-board-container">
+			<div class="col-lg-4 diary-board-container">
 				<div class="border border-secondary p-3 icon2">
 					<div class="board-top">
 						<div style="float:left;">
