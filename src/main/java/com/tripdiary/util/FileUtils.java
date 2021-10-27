@@ -2,7 +2,6 @@ package com.tripdiary.util;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -15,7 +14,7 @@ import com.tripdiary.vo.WriteCmd;
 
 @Component
 public class FileUtils {
-	private static final String filePath = "C:\\mp\\file\\"; // 파일이 저장될 위치
+	private static final String filePath = "C:\\mp\\board_img\\"; // 파일이 저장될 위치
 	
 	public List<Map<String, Object>> parseInsertFileInfo(WriteCmd writeCmd, 
 			MultipartHttpServletRequest mpRequest) throws Exception{
@@ -25,8 +24,8 @@ public class FileUtils {
 			List나 배열은 순차적으로 데이터의 접근이 가능하지만, Map등의 클래스들은 순차적으로 접근할 수가 없습니다.
 			Iterator을 이용하여 Map에 있는 데이터들을 while문을 이용하여 순차적으로 접근합니다.
 		*/
-		
-		Iterator<String> iterator = mpRequest.getFileNames();
+		//Iterator<String> iterator = mpRequest.getFileNames();
+		List<MultipartFile> fileList = mpRequest.getFiles("file");
 		
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
@@ -43,23 +42,49 @@ public class FileUtils {
 			file.mkdirs();
 		}
 		
-		while(iterator.hasNext()) {
+		for(int i=0; i<fileList.size(); i++) {
+			multipartFile = fileList.get(i);
+			// 원본 이름
+			originalFileName = multipartFile.getOriginalFilename();
+			// 파일 확장자
+			originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+			// 저장될 파일 이름
+			storedFileName = getRandomString() + originalFileExtension;
+			file = new File(filePath + storedFileName);
+			multipartFile.transferTo(file);
+			listMap = new HashMap<String, Object>();
+			listMap.put("board_num", num);
+			listMap.put("org_file_name", originalFileName);
+			listMap.put("store_file_name", storedFileName);
+			listMap.put("file_size", multipartFile.getSize());
+			listMap.put("file_type", originalFileExtension);
+			listMap.put("main_img", 0);
+			list.add(listMap);
+		}
+		
+/*		while(iterator.hasNext()) {
 			multipartFile = mpRequest.getFile(iterator.next());
-			if(multipartFile.isEmpty() == false) {
+			if(!multipartFile.isEmpty()) {
+				// 원본 이름
 				originalFileName = multipartFile.getOriginalFilename();
+				// 파일 확장자
 				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+				// 저장될 파일 이름
 				storedFileName = getRandomString() + originalFileExtension;
-				
 				file = new File(filePath + storedFileName);
 				multipartFile.transferTo(file);
 				listMap = new HashMap<String, Object>();
-				listMap.put("BNO", num);
-				listMap.put("ORG_FILE_NAME", originalFileName);
-				listMap.put("STORED_FILE_NAME", storedFileName);
-				listMap.put("FILE_SIZE", multipartFile.getSize());
+				listMap.put("board_num", num);
+				listMap.put("org_file_name", originalFileName);
+				listMap.put("store_file_name", storedFileName);
+				listMap.put("file_size", multipartFile.getSize());
+				listMap.put("file_type", originalFileExtension);
 				list.add(listMap);
+				System.out.println("??");
 			}
-		}
+		}*/
+		
+		
 		return list;
 	}
 	

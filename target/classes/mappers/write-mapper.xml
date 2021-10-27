@@ -2,16 +2,40 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="boardDAO">
- 		<insert id="write" parameterType="writeCmd"
-		useGeneratedKeys="true" keyProperty="num">
+ <mapper namespace="writeDao">
+ 
+ 	<insert id="write" parameterType="writeCmd"
+		useGeneratedKeys="true" keyProperty="board_num">
 		<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
-			SELECT
-			BOARD_SEQ.NEXTVAL FROM DUAL
+			select
+			board_seq.nextval from dual
 		</selectKey>
 		insert into "BOARD"
 		(board_num, member_num, place, content, regdate, tripdate, td_like_cnt)
 		values
 		(#{board_num}, #{member_num}, #{place}, #{content}, SYSDATE, #{tripdate}, 0)
 	</insert>
+	
+		<!-- 첨부파일 DB 저장 -->
+	<insert id="insertFile" parameterType="hashMap">
+		insert into board_img(
+		board_img_num,
+		board_num,
+		org_file_name,
+		store_file_name,
+		file_size,
+		file_type,
+		main_img
+		)
+		values(
+		board_img_seq.nextval,
+		#{board_num},
+		#{org_file_name},
+		#{store_file_name},
+		#{file_size},
+		#{file_type},
+		#{main_img}
+		)
+	</insert>
+	
  </mapper>

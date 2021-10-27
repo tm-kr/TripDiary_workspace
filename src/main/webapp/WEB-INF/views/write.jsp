@@ -90,14 +90,18 @@
 						</label>
 						<input type="file" id="input-file2" style="display:none" name="file2" multiple />
 				</div> -->
-				
 				<label for="input-file" class="btn btn-outline-secondary mt-5" id="image_container">
-							<span class="imgText">사진 업로드하기</span>
+							<span class="imgText">대표사진 업로드</span>
 				</label>
-				<input name="file" type="file" id="input-file" accept="image/*" onchange="setThumbnail(event);" style="display:none" multiple/>
-				<h6 class="mt-3" style="color: red;"> * 사진을 한번에 업로드 하여 주십시오.<br>* 버튼을 재클릭시 이전에 업로드 내용은 사라집니다.<br>* 맨 처음 사진이 썸네일로 들어갑니다!</h6>
+				<input name="thumbnail" type="file" id="input-file" accept="image/*" onchange="setThumbnail(event);" style="display:none"/>
 				 <div class="mt-5" id="image_container"></div>
 				 
+				<label for="input-file2" class="btn btn-outline-secondary mt-5" id="image_container">
+							<span class="imgText">추가사진 업로드</span>
+				</label>
+				<input name="file" type="file" id="input-file2" accept="image/*" onchange="setFile(event);" style="display:none" multiple="multiple"/>
+				 <div class="mt-5" id="image_container2"></div>
+				 <h6 class="mt-3" style="color: red;"> * 사진을 한번에 업로드 하여 주십시오.<br>* 버튼을 재클릭시 이전에 업로드 내용은 사라집니다.</h6>
 				<!-- 수정사항 업로드시 이미지 관련해서 좀 더 편하게 할 수 있도록 하자! -->
 
 
@@ -130,15 +134,28 @@
 			$("#select_place").removeAttr("disabled", "disabled");
 		}
 		
-		// 이미지 미리보기
+		// 대표사진 미리보기
 		function setThumbnail(event) {
 			for (var image of event.target.files) {
 				var reader = new FileReader(); 
 				reader.onload = function(event) {
 					var img = document.createElement("img"); 
 					img.setAttribute("src", event.target.result);
-					img.setAttribute("class", "image-thumbnail2 border border-secondary"); 
+					img.setAttribute("class", "board-thumbnail border border-secondary"); 
 					document.querySelector("div#image_container").appendChild(img); 
+				}; 
+			console.log(image); reader.readAsDataURL(image); 
+			} 
+		}
+		// 추가사진 미리보기
+		function setFile(event) {
+			for (var image of event.target.files) {
+				var reader = new FileReader(); 
+				reader.onload = function(event) {
+					var img = document.createElement("img"); 
+					img.setAttribute("src", event.target.result);
+					img.setAttribute("class", "board-file border border-secondary"); 
+					document.querySelector("div#image_container2").appendChild(img); 
 				}; 
 			console.log(image); reader.readAsDataURL(image); 
 			} 
