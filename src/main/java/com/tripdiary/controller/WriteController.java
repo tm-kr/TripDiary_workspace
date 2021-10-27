@@ -28,12 +28,8 @@ public class WriteController {
 	
     @RequestMapping(value="/write", method=RequestMethod.POST) 
     public String write(WriteCmd writeCmd,TagCmd tagCmd, MultipartHttpServletRequest mpRequest) throws Exception {
-    	
-    	for(int i=0; i<tagCmd.getTag().size(); i++) {
-    		System.out.println(tagCmd.getTag().get(i));
-    	}
-    	writeService.write(writeCmd, mpRequest);
-       return "/write";
+    	writeService.write(writeCmd,tagCmd, mpRequest);
+    	return "/write";
     }
     
 }

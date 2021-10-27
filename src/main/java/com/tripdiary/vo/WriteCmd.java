@@ -1,9 +1,6 @@
 package com.tripdiary.vo;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-
-import org.springframework.stereotype.Component;
 
 public class WriteCmd {
 	private int board_num;

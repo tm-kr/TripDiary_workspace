@@ -94,14 +94,14 @@
 							<span class="imgText">대표사진 업로드</span>
 				</label>
 				<input name="thumbnail" type="file" id="input-file" accept="image/*" onchange="setThumbnail(event);" style="display:none"/>
-				 <div class="mt-5" id="image_container"></div>
+				 <div class="mt-3" id="image_container"></div>
 				 
-				<label for="input-file2" class="btn btn-outline-secondary mt-5" id="image_container">
+				<label for="input-file2" class="btn btn-outline-secondary mt-3" id="image_container">
 							<span class="imgText">추가사진 업로드</span>
 				</label>
 				<input name="file" type="file" id="input-file2" accept="image/*" onchange="setFile(event);" style="display:none" multiple="multiple"/>
 				 <div class="mt-5" id="image_container2"></div>
-				 <h6 class="mt-3" style="color: red;"> * 사진을 한번에 업로드 하여 주십시오.<br>* 버튼을 재클릭시 이전에 업로드 내용은 사라집니다.</h6>
+				 <h6 class="mt-5" style="color: red;"> * 사진을 한번에 업로드 하여 주십시오.<br>* 버튼을 재클릭시 이전에 업로드 내용은 사라집니다.</h6>
 				<!-- 수정사항 업로드시 이미지 관련해서 좀 더 편하게 할 수 있도록 하자! -->
 
 

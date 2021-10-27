@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="writeDao">
- 
+ 	<!-- 게시글 DB 저장 -->
  	<insert id="write" parameterType="writeCmd"
 		useGeneratedKeys="true" keyProperty="board_num">
 		<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
@@ -16,7 +16,7 @@
 		(#{board_num}, #{member_num}, #{place}, #{content}, SYSDATE, #{tripdate}, 0)
 	</insert>
 	
-		<!-- 첨부파일 DB 저장 -->
+	<!-- 첨부파일 DB 저장 -->
 	<insert id="insertFile" parameterType="hashMap">
 		insert into board_img(
 		board_img_num,
@@ -35,6 +35,20 @@
 		#{file_size},
 		#{file_type},
 		#{main_img}
+		)
+	</insert>
+	
+	<!-- 태그 DB저장 -->
+	<insert id="insertTag" parameterType="hashMap">
+		insert into tag(
+		tag_num,
+		board_num,
+		tag
+		)
+		values(
+		tag_seq.nextval,
+		#{board_num},
+		#{tag}
 		)
 	</insert>
 	
