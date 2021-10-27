@@ -28,4 +28,9 @@ public class WriteDao {
 	public void insertFile(Map<String, Object> map) throws Exception {
 		sqlSessionTemplate.insert("insertFile", map);
 	}
+
+	public void insertTag(Map<String,Object> tag) {
+		System.out.println("½ÇÇà");
+		sqlSessionTemplate.insert("insertTag",tag);
+	}
 }

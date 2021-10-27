@@ -139,11 +139,17 @@
 	height: 240px; 
 	object-fit: cover;
 }
-.image-thumbnail2{
+.board-thumbnail{
+	width: 300px;
+	height: 300px; 
+	object-fit: cover;
+}
+.board-file{
 	width: 150px;
 	height: 150px; 
 	object-fit: cover;
 }
+
 
 /* 게시물 보여주는 css */
 .board-bottom{
