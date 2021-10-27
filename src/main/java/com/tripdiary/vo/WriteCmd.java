@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class WriteCmd {
 	private int board_num;
 	private int member_num;
+	private String placeCheck;
 	private String place;
 	private String content;
 	private Timestamp regdate;
@@ -18,11 +19,12 @@ public class WriteCmd {
 		// TODO Auto-generated constructor stub
 	}
 
-	public WriteCmd(int board_num, int member_num, String place, String content, Timestamp regdate, String year, String month,
+	public WriteCmd(int board_num, int member_num,String placeCheck, String place, String content, Timestamp regdate, String year, String month,
 			String day, String tripdate, int td_like_cnt) {
 		super();
 		this.board_num = board_num;
 		this.member_num = member_num;
+		this.placeCheck = placeCheck;
 		this.place = place;
 		this.content = content;
 		this.regdate = regdate;
@@ -34,6 +36,14 @@ public class WriteCmd {
 	}
 
 
+
+	public String getPlaceCheck() {
+		return placeCheck;
+	}
+
+	public void setPlaceCheck(String placeCheck) {
+		this.placeCheck = placeCheck;
+	}
 
 	public int getBoard_num() {
 		return board_num;

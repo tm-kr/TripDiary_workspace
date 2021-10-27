@@ -42,6 +42,7 @@ public class ThumbnailUtils {
 
 		// 원본 이름
 		originalFileName = multipartFile.getOriginalFilename();
+		System.out.println(originalFileName);
 		// 파일 확장자
 		originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 		// 저장될 파일 이름

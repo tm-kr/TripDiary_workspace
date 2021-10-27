@@ -29,22 +29,22 @@
 				<h4>여행 날짜</h4>
 				<c:set var="year" value="2021" />
 				<select name="year" class="form-select">
-					<option selected disabled hidden>년</option>
-					<c:forEach var="i" begin="0" end="70">
+					<option value="${year}" selected >${year}</option>
+					<c:forEach var="i" begin="1" end="70">
 						<option value="<c:out value="${year-i}" />"><c:out
 								value="${year-i}" />
 						</option>
 					</c:forEach>
 
 				</select> <select name="month" class="form-select">
-					<option selected disabled hidden>월</option>
-					<c:forEach var="i" begin="1" end="12">
+					<option value="1" selected>1</option>
+					<c:forEach var="i" begin="2" end="12">
 						<option value="${i}">${i}</option>
 					</c:forEach>
 
 				</select> <select name="day" class="form-select">
-					<option selected disabled hidden>일</option>
-					<c:forEach var="i" begin="1" end="31">
+					<option value="1" selected >1</option>
+					<c:forEach var="i" begin="2" end="31">
 						<option value="${i}">${i}</option>
 					</c:forEach>
 				</select>
@@ -90,18 +90,18 @@
 						</label>
 						<input type="file" id="input-file2" style="display:none" name="file2" multiple />
 				</div> -->
-				<label for="input-file" class="btn btn-outline-secondary mt-5" id="image_container">
-							<span class="imgText">대표사진 업로드</span>
+				<label for="thumbnail" class="btn btn-outline-secondary mt-5" id="image_container">
+							<span class="imgText">대표사진 업로드 (최대 1장)</span>
 				</label>
-				<input name="thumbnail" type="file" id="input-file" accept="image/*" onchange="setThumbnail(event);" style="display:none"/>
+				<input name="thumbnail" type="file" id="thumbnail" accept="image/*" onchange="setThumbnail(event);" style="display:none"/>
 				 <div class="mt-3" id="image_container"></div>
 				 
-				<label for="input-file2" class="btn btn-outline-secondary mt-3" id="image_container">
-							<span class="imgText">추가사진 업로드</span>
+				<label for="input-file" class="btn btn-outline-secondary mt-3" id="image_container">
+							<span class="imgText">추가사진 업로드 (최대 10장)</span>
 				</label>
-				<input name="file" type="file" id="input-file2" accept="image/*" onchange="setFile(event);" style="display:none" multiple="multiple"/>
+				<input name="file" type="file" id="input-file" accept="image/*" onchange="setFile(event);" style="display:none" multiple="multiple"/>
 				 <div class="mt-5" id="image_container2"></div>
-				 <h6 class="mt-5" style="color: red;"> * 사진을 한번에 업로드 하여 주십시오.<br>* 버튼을 재클릭시 이전에 업로드 내용은 사라집니다.</h6>
+				 <h6 class="mt-5" style="color: red;">* 등록할 사진을 한번에 클릭해 업로드 해주십시오.<br>* 버튼을 재클릭시 이전에 업로드한 사진은 등록되지 않습니다.</h6>
 				<!-- 수정사항 업로드시 이미지 관련해서 좀 더 편하게 할 수 있도록 하자! -->
 
 
@@ -179,14 +179,6 @@
 	                return word !== "";
 	            });
 	        }
-	    
-	        // 서버에 넘기기
-	        $("#tag-form").on("submit", function (e) {
-	            var value = marginTag(); // return array
-	            $("#rdTag").val(value); 
-
-	            $(this).submit();
-	        });
 
 	        $("#tag").on("keypress", function (e) {
 	            var self = $(this);

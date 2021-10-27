@@ -30,7 +30,6 @@ public class WriteDao {
 	}
 
 	public void insertTag(Map<String,Object> tag) {
-		System.out.println("½ÇÇà");
 		sqlSessionTemplate.insert("insertTag",tag);
 	}
 }

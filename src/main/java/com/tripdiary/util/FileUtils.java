@@ -42,24 +42,26 @@ public class FileUtils {
 			file.mkdirs();
 		}
 		
-		for(int i=0; i<fileList.size(); i++) {
-			multipartFile = fileList.get(i);
-			// 원본 이름
-			originalFileName = multipartFile.getOriginalFilename();
-			// 파일 확장자
-			originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-			// 저장될 파일 이름
-			storedFileName = getRandomString() + originalFileExtension;
-			file = new File(filePath + storedFileName);
-			multipartFile.transferTo(file);
-			listMap = new HashMap<String, Object>();
-			listMap.put("board_num", num);
-			listMap.put("org_file_name", originalFileName);
-			listMap.put("store_file_name", storedFileName);
-			listMap.put("file_size", multipartFile.getSize());
-			listMap.put("file_type", originalFileExtension);
-			listMap.put("main_img", 0);
-			list.add(listMap);
+		if(fileList != null) {
+			for(int i=0; i<fileList.size(); i++) {
+				multipartFile = fileList.get(i);
+				// 원본 이름
+				originalFileName = multipartFile.getOriginalFilename();
+				// 파일 확장자
+				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+				// 저장될 파일 이름
+				storedFileName = getRandomString() + originalFileExtension;
+				file = new File(filePath + storedFileName);
+				multipartFile.transferTo(file);
+				listMap = new HashMap<String, Object>();
+				listMap.put("board_num", num);
+				listMap.put("org_file_name", originalFileName);
+				listMap.put("store_file_name", storedFileName);
+				listMap.put("file_size", multipartFile.getSize());
+				listMap.put("file_type", originalFileExtension);
+				listMap.put("main_img", 0);
+				list.add(listMap);
+			}
 		}
 		
 /*		while(iterator.hasNext()) {
