@@ -48,7 +48,7 @@ public class WriteController {
     	}
     	writeService.write(writeCmd,tagCmd, mpRequest);
     	model.addAttribute("msg", "새로운 일기를 작성하였습니다.");
-		model.addAttribute("url", "/myDiary");
+		model.addAttribute("url", "/diary");
 		return "/common/alert";
     }
     

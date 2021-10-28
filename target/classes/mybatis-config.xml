@@ -16,7 +16,9 @@
 		<typeAlias alias="loginCommand" type="com.board.dto.LoginCommand"/>
 		<typeAlias alias="pageVO" type="com.board.dto.PageVO"/> -->
 		<typeAlias alias="writeCmd" type="com.tripdiary.vo.WriteCmd"/>
-		
+		<typeAlias alias="emblemCmd" type="com.tripdiary.vo.EmblemCmd"/>
+		<typeAlias alias="emblemGetCmd" type="com.tripdiary.vo.EmblemGetCmd"/>
+		<typeAlias alias="memberActCmd" type="com.tripdiary.vo.MemberActCmd"/>
 	</typeAliases>
  	
 </configuration>

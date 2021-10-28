@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="emblemDao">
+ 
+ 	<select id="emblemSelect" resultType="emblemCmd">
+         select 
+         *
+         from emblem
+	</select>
+	
+	<select id="emblemGet" parameterType="int" resultType="emblemGetCmd">
+         select 
+         member_num,
+         emblem_num
+         from emblem_get where member_num = #{memberNum}
+	</select>
+	
+	<select id="getActCnt" parameterType="int" resultType="memberActCmd">
+         select 
+        td_like_press_cnt,
+        pick_press_cnt,
+        board_write_cnt,
+        reply_write_cnt,
+        td_like_receive_cnt
+         from member_act_cnt where member_num = #{memberNum}
+	</select>
+	
+ </mapper>

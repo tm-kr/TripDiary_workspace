@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -196,7 +197,7 @@
 					<div class="board-top">
 						<div style="float:left;">
 							<!-- 프로필 이미지와 닉네임 -->
-							<img alt="" src="resources/img/sample.png" class="border rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
+							<img alt="" src="/resources/img/sample.png" class="border rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
 							닉네임
 						</div>
 							<!-- pick 이미지 -->
@@ -270,6 +271,7 @@
 	</div>
 	
 	
+	
 	<!-- 모달 jsp -->
 	<div class="modal fade" id="profileUpdateModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
@@ -303,6 +305,8 @@
 		</div>
 	</div>
 	
+	
+	<!-- 엠블럼 모달 -->
 	<div class="modal fade" id="emblemModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -312,11 +316,18 @@
 						<span aria-hidden="true"></span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div >
-						<img alt="" src="resources/img/emblem_sample.png" style="width: 100%">
-					</div>
+				
+				<div class="modal-body row" style="text-align: center">
+					<c:forEach var="emblem" items="${emblem}" varStatus="loop">
+						<div class="col-4">
+							<a data-toggle="modal" href="#Emblem${emblem.emblemNum }">
+								<img alt="" src="resources/img/none.png" style="width: 100%">
+							</a>
+							${emblem.emblemName }
+						</div>
+					</c:forEach>
 				</div>
+				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin: auto;">닫기</button>
 				</div>
@@ -324,6 +335,553 @@
 		</div>
 	</div>
 	
+	<c:if test="${sessionScope.memberNum eq memberNum }">
+	<!-- 획득한 엠블럼 모달 -->
+	<c:forEach var="emblem" items="${emblem}" varStatus="loop">
+		<div class="modal fade" id="getEmblem${emblem.emblemNum }" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">이미 획득한 엠블럼</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						" ${emblem.emblemName } "<br>
+						${emblem.emblemExplain }
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal" style="margin: auto;">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
+	
+		<c:forEach var="emblem" items="${emblem}" varStatus="loop">
+		<div class="modal fade" id="Emblem${emblem.emblemNum }" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						" ${emblem.emblemName } "<br>
+						${emblem.emblemExplain }<br>
+						<c:choose>
+							<c:when test="${emblem.emblemNum eq 1 }">
+								( ${actCnt.tdLikePressCnt } / 1 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 2 }">
+								( ${actCnt.tdLikePressCnt } / 10 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 3 }">
+								( ${actCnt.tdLikePressCnt } / 100 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 4 }">
+								( ${actCnt.pickPressCnt } / 1 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 5 }">
+								( ${actCnt.pickPressCnt } / 10 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 6 }">
+								( ${actCnt.pickPressCnt } / 100 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 7 }">
+								( ${actCnt.boardWriteCnt } / 1 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 8 }">
+								( ${actCnt.boardWriteCnt } / 10 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 9 }">
+								( ${actCnt.boardWriteCnt } / 100 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 10 }">
+								( ${actCnt.replyWriteCnt } / 1 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 11 }">
+								( ${actCnt.replyWriteCnt } / 10 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 12 }">
+								( ${actCnt.replyWriteCnt } / 100 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 13 }">
+								( ${actCnt.tdLikeReceiveCnt } / 1 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 14 }">
+								( ${actCnt.tdLikeReceiveCnt } / 10 )
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 15 }">
+								( ${actCnt.tdLikeReceiveCnt } / 100 )
+							</c:when>
+							
+						</c:choose>
+					</div>
+					<div class="modal-footer">
+					<div  style="margin: auto;">
+					
+				
+						<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
+						<c:choose>
+							<c:when test="${emblem.emblemNum eq 1 }">
+								<c:if test="${actCnt.tdLikePressCnt gt 0}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 2 }">
+								<c:if test="${actCnt.tdLikePressCnt gt 9}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 3 }">
+								<c:if test="${actCnt.tdLikePressCnt gt 99}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 4 }">
+								<c:if test="${actCnt.pickPressCnt gt 0}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 5 }">
+								<c:if test="${actCnt.pickPressCnt gt 9}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 6 }">
+								<c:if test="${actCnt.pickPressCnt gt 99}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 7 }">
+								<c:if test="${actCnt.boardWriteCnt gt 0}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 8 }">
+								<c:if test="${actCnt.boardWriteCnt gt 9}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 9 }">
+								<c:if test="${actCnt.boardWriteCnt gt 99}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 10 }">
+								<c:if test="${actCnt.replyWriteCnt gt 0}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 11 }">
+								<c:if test="${actCnt.replyWriteCnt gt 9}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 12 }">
+								<c:if test="${actCnt.replyWriteCnt gt 99}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 13 }">
+								<c:if test="${actCnt.tdLikeReceiveCnt gt 0}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 14 }">
+								<c:if test="${actCnt.tdLikeReceiveCnt gt 9}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							<c:when test="${emblem.emblemNum eq 15 }">
+								<c:if test="${actCnt.tdLikeReceiveCnt gt 99}">
+									<button type="button" class="btn btn-warning" onclick="location.href='/getEmblem?emblemNum=${emblem.emblemNum}'" >획득하기</button>
+								</c:if>
+							</c:when>
+							
+						</c:choose>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
+	</c:if>
+	
+	<!-- 획득하지 못한 엠블럼 -->
+<!-- 	<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						" 좋아요 한 스푼 "<br>
+						좋아요 1번 누르기
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+			<div class="modal fade" id="Emblem2" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						취향 존중!<br>
+						좋아요 10번 누르기
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem3" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						" 만인의 연인 "<br>
+						좋아요 100번 누르기
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="modal fade" id="Emblem1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog modal-sm mt-5">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">엠블럼 획득 조건</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div class="modal-body" style="text-align: center">
+						
+					</div>
+					<div class="modal-footer">
+						<div style="margin: auto;">
+							<button type="button" class="btn btn-primary" data-dismiss="modal" >닫기</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal" >획득하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	 -->	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	<div class="modal fade" id="boardModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -344,7 +902,6 @@
 			</div>
 		</div>
 	</div>
-	
 	
 	<jsp:include page="common/sidebar.jsp" flush="false" />
 		

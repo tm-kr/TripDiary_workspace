@@ -12,7 +12,7 @@
 				</li>
 				<c:if test="${not empty sessionScope.id }">
 					<li class="nav-item active">
-						<a class="nav-link" href="/diary">MyDiary</a>
+						<a class="nav-link" href="/diary?memberNum=${sessionScope.memberNum }">MyDiary</a>
 					</li>
 				</c:if>
 				<c:if test="${not empty sessionScope.id }">
