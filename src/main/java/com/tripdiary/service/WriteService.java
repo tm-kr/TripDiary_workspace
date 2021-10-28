@@ -72,9 +72,5 @@ public class WriteService {
 	    
 	    //회원 활동 글작성 카운트 +1
 	    writeDao.cntUp(writeCmd.getMember_num());
-
-    	
-		
 	}
-		
 }

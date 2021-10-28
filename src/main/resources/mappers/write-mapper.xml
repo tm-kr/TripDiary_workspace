@@ -52,4 +52,11 @@
 		)
 	</insert>
 	
+	<!-- 회원 활동 글작성 카운트 +1 -->
+	<update id="cntUp" parameterType="int">
+		update member_act_cnt 
+		set board_write_cnt = board_write_cnt+ 1 
+		where member_num = #{memberNum}
+	</update>
+	
  </mapper>
