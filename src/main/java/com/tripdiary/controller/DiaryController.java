@@ -1,37 +1,31 @@
 package com.tripdiary.controller;
 
-import java.util.HashMap;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.tripdiary.service.EmblemService;
+import com.tripdiary.service.DiaryService;
 import com.tripdiary.vo.GetEmblem;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class DiaryController {
 	
-	private EmblemService emblemService;
+	private DiaryService emblemService;
 	
 	@Autowired
-	public DiaryController(EmblemService emblemService) {
+	public DiaryController(DiaryService emblemService) {
 		this.emblemService = emblemService;
 	}
 
 	
 	@RequestMapping(value = "/diary", method = RequestMethod.GET)
 	public String diary(Model model, int memberNum) {
-		emblemService.emblemGet(memberNum);
+		// 나중에 memblemNum 값을 포함한 나른 cmd 를 보낸다면 지우고 모달 jsp 수정하기!
 		model.addAttribute("memberNum", memberNum);
-		model.addAttribute("emblem", emblemService.emblemSelect());
+		model.addAttribute("haveEmblem", emblemService.haveEmblem(memberNum));
+		model.addAttribute("emblem", emblemService.selectEmblem());
 		model.addAttribute("actCnt", emblemService.getActCnt(memberNum));
 		return "/diary";
 	}

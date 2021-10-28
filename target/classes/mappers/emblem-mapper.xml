@@ -4,13 +4,13 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="emblemDao">
  
- 	<select id="emblemSelect" resultType="emblemCmd">
+ 	<select id="selectEmblem" resultType="emblemCmd">
          select 
          *
          from emblem
 	</select>
 	
-	<select id="emblemGet" parameterType="int" resultType="emblemGetCmd">
+	<select id="haveEmblem" parameterType="int" resultType="haveEmblemCmd">
          select 
          member_num,
          emblem_num

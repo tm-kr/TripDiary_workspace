@@ -1,14 +1,14 @@
 package com.tripdiary.vo;
 
-public class EmblemGetCmd {
+public class HaveEmblemCmd {
 	private int emblemNum;
 	private int memberNum;
 	
-	public EmblemGetCmd() {
+	public HaveEmblemCmd() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public EmblemGetCmd(int emblemNum, int memberNum) {
+	public HaveEmblemCmd(int emblemNum, int memberNum) {
 		super();
 		this.emblemNum = emblemNum;
 		this.memberNum = memberNum;

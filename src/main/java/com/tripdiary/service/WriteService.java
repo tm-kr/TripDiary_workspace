@@ -69,6 +69,9 @@ public class WriteService {
 				writeDao.insertFile(list.get(i)); 
 			}
 	    }
+	    
+	    //회원 활동 글작성 카운트 +1
+	    writeDao.cntUp(writeCmd.getMember_num());
 
     	
 		

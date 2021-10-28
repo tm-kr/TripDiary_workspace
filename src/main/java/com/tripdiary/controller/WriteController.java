@@ -1,7 +1,6 @@
 package com.tripdiary.controller;
 
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +37,9 @@ public class WriteController {
 	
     @RequestMapping(value="/write", method=RequestMethod.POST) 
     public String write(MultipartHttpServletRequest mpRequest, WriteCmd writeCmd,TagCmd tagCmd, Model model) throws Exception {
-    	System.out.println(mpRequest.getFiles("file"));
-    	System.out.println(mpRequest.getFile("thumbnail"));
     	//대표 사진이 없다면 재요청
     	if(mpRequest.getFile("thumbnail").getOriginalFilename().equals("")) {
     		model.addAttribute("msg", "대표 사진을 등록해주세요.");
-    		//model.addAttribute("url", "/write");
     		return "/return/historyback";
     	}
     	writeService.write(writeCmd,tagCmd, mpRequest);

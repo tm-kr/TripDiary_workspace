@@ -13,7 +13,7 @@
 			<img class="icon" alt="" src="resources/img/darkmode.png" style="width: 70px;margin-top: 12%; margin-bottom: 12%;">
 		</c:if>
 		<img class="icon" alt="" src="resources/img/darkmode2.png" style="width: 70px; margin-bottom: 12%;">
-		<a href="/write"><img class="icon" alt="" src="resources/img/write.png" style="width: 70px; margin-bottom: 12%;"></a>
+		<a href="/write"><img class="icon" alt="" src="resources/img/icon/write.png" style="width: 70px; margin-bottom: 12%;"></a>
 		<img class="icon" alt="" src="resources/img/chat.png" style="width: 70px;">
 	</div>
 	

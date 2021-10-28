@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,19 +37,18 @@
 				<div class="row">
 					<div class="col-4">
 						<a data-toggle="modal" href="#emblemModal"> <img class="icon"
-							src="resources/img/emblem_cnt.png" style="width: 100%;">
-						</a> <br> <br> 3
+							src="resources/img/icon/emblem_cnt.png" style="width: 100%;">
+						</a> <br><br><b>${fn:length(haveEmblem) }</b>
 					</div>
 					<div class="col-4">
 						<a data-toggle="modal" href="#boardModal"> <img class="icon"
-							src="resources/img/board_cnt.png" style="width: 100%;">
-						</a> <br> <br> 23
+							src="resources/img/icon/board_cnt.png" style="width: 100%;">
+						</a> <br><br><b>${actCnt.boardWriteCnt }</b>
 					</div>
 					<div class="col-4">
 						<a href="/pick"> <img class="icon"
-							src="resources/img/pick_cnt.png" style="width: 100%;"><br>
-							<br>
-						</a> 12
+							src="resources/img/icon/pick_cnt.png" style="width: 100%;">
+						</a> <br><br><b>${actCnt.pickPressCnt }</b>
 					</div>
 				</div>
 			</div>
@@ -260,46 +260,6 @@
 
 
 	<!-- 모달 jsp -->
-	<div class="modal fade" id="profileUpdateModal" tabindex="-1"
-		role="dialog" aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modal">프로필 수정</h5>
-					<button type="button" class="btn-close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true"></span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="./reportAction.jsp" method="post">
-						<div style="text-align: center;">
-							<img alt="" src="resources/img/sample.png"
-								class="border border-secondary rounded-circle"
-								style="width: 80%;">
-						</div>
-						<div class="form-group">
-							<label>프로필 사진 수정</label> <input class="form-control" type="file"
-								id="formFile" name="file">
-						</div>
-						<br>
-						<div class="form-group">
-							<label>상태메세지 수정</label> <input type="text" name="reportTitle"
-								class="form-control" maxlength="30">
-						</div>
-						<br>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">닫기</button>
-							<button type="submit" class="btn btn-primary">수정</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
 	<!-- 엠블럼 모달 -->
 	<div class="modal fade" id="emblemModal" tabindex="-1" role="dialog"
 		aria-labelledby="modal" aria-hidden="true">
@@ -315,10 +275,24 @@
 
 				<div class="modal-body row" style="text-align: center">
 					<c:forEach var="emblem" items="${emblem}" varStatus="loop">
-						<div class="col-4">
-							<a data-toggle="modal" href="#Emblem${emblem.emblemNum }"> <img
-								alt="" src="resources/img/none.png" style="width: 100%">
-							</a> ${emblem.emblemName }
+						<div class="col-4 p-3">
+							<c:forEach var="haveEmblem" items="${haveEmblem}" varStatus="loop">
+								<c:if test="${emblem.emblemNum eq haveEmblem.emblemNum }">
+									<c:set var="get" value="${haveEmblem.emblemNum}"></c:set>
+								</c:if>
+							</c:forEach>
+							
+							<c:if test="${empty get}">
+								<a data-toggle="modal" href="#Emblem${emblem.emblemNum }"> <img
+									alt="" src="resources/img/emblem/none.png" style="width: 100%">
+								</a>
+							</c:if>
+							<c:if test="${not empty get}">
+								<a data-toggle="modal" href="#getEmblem${emblem.emblemNum }"> <img
+									alt="" src="resources/img/emblem/emblem${emblem.emblemNum}.png" style="width: 100%">
+								</a>
+							</c:if>${emblem.emblemName }
+							<c:remove var="get"/>
 						</div>
 					</c:forEach>
 				</div>
@@ -332,6 +306,45 @@
 	</div>
 
 	<c:if test="${sessionScope.memberNum eq memberNum }">
+		<!-- 프로필 수정 모달 -->
+		<div class="modal fade" id="profileUpdateModal" tabindex="-1"
+			role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">프로필 수정</h5>
+						<button type="button" class="btn-close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form action="./reportAction.jsp" method="post">
+							<div style="text-align: center;">
+								<img alt="" src="resources/img/sample.png"
+									class="border border-secondary rounded-circle"
+									style="width: 80%;">
+							</div>
+							<div class="form-group">
+								<label>프로필 사진 수정</label> <input class="form-control" type="file"
+									id="formFile" name="file">
+							</div>
+							<br>
+							<div class="form-group">
+								<label>상태메세지 수정</label> <input type="text" name="reportTitle"
+									class="form-control" maxlength="30">
+							</div>
+							<br>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">닫기</button>
+								<button type="submit" class="btn btn-primary">수정</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- 획득한 엠블럼 모달 -->
 		<c:forEach var="emblem" items="${emblem}" varStatus="loop">
 			<div class="modal fade" id="getEmblem${emblem.emblemNum }"

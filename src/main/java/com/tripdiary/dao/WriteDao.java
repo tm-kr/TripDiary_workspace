@@ -32,4 +32,8 @@ public class WriteDao {
 	public void insertTag(Map<String,Object> tag) {
 		sqlSessionTemplate.insert("insertTag",tag);
 	}
+	
+	public void cntUp(int memberNum) {
+		sqlSessionTemplate.update("cntUp", memberNum);
+	}
 }

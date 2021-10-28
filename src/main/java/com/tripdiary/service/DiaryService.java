@@ -5,28 +5,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tripdiary.dao.EmblemDao;
+import com.tripdiary.dao.DiaryDao;
 import com.tripdiary.vo.EmblemCmd;
-import com.tripdiary.vo.EmblemGetCmd;
+import com.tripdiary.vo.HaveEmblemCmd;
 import com.tripdiary.vo.GetEmblem;
 import com.tripdiary.vo.MemberActCmd;
 
 @Service
-public class EmblemService {
+public class DiaryService {
 
-	private EmblemDao emblemDao;
+	private DiaryDao emblemDao;
 	
 	@Autowired
-	public EmblemService(EmblemDao emblemDao) {
+	public DiaryService(DiaryDao emblemDao) {
 		this.emblemDao = emblemDao;
 	}
 	
-	public List<EmblemCmd> emblemSelect(){	
-		return emblemDao.emblemSelect();
+	public List<EmblemCmd> selectEmblem(){	
+		emblemDao.selectEmblem();
+		return emblemDao.selectEmblem();
 	}
 	
-	public List<EmblemGetCmd> emblemGet(int memberNum){
-		return emblemDao.emblemGet(memberNum);
+	public List<HaveEmblemCmd> haveEmblem(int memberNum){
+		return emblemDao.haveEmblem(memberNum);
 	}
 	
 	public MemberActCmd getActCnt(int memberNum) {

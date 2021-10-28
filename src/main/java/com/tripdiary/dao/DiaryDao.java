@@ -7,26 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tripdiary.vo.EmblemCmd;
-import com.tripdiary.vo.EmblemGetCmd;
+import com.tripdiary.vo.HaveEmblemCmd;
 import com.tripdiary.vo.GetEmblem;
 import com.tripdiary.vo.MemberActCmd;
 
 @Repository
-public class EmblemDao {
+public class DiaryDao {
 	
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Autowired
-	public EmblemDao(SqlSessionTemplate sqlSessionTemplate) {
+	public DiaryDao(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 	
-	public List<EmblemCmd> emblemSelect() {
-		return sqlSessionTemplate.selectList("emblemSelect");
+	public List<EmblemCmd> selectEmblem() {
+		return sqlSessionTemplate.selectList("selectEmblem");
 	}
 	
-	public List<EmblemGetCmd> emblemGet(int memberNum){
-		return sqlSessionTemplate.selectList("emblemGet", memberNum);
+	public List<HaveEmblemCmd> haveEmblem(int memberNum){
+		return sqlSessionTemplate.selectList("haveEmblem", memberNum);
 	}
 	
 	public MemberActCmd getActCnt(int memberNum) {
@@ -36,5 +36,6 @@ public class EmblemDao {
 	public void getEmblem(GetEmblem getEmblem) {
 		sqlSessionTemplate.insert("getEmblem",getEmblem);
 	}
+
 
 }
