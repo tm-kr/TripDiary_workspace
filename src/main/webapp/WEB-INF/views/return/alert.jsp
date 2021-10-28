@@ -9,8 +9,10 @@
 <body>
 	<script type="text/javascript">
 		var message = "${msg}";
+		var url = "${url}";
+		document.location.href = url+${sessionScope.memberNum};
 		alert(message);
-		window.history.back();
 	</script>
 </body>
 </html>
+<!-- alert 띄워준 후 페이지 이동 -->

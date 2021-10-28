@@ -1,5 +1,7 @@
 package com.tripdiary.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.tripdiary.service.EmblemService;
+import com.tripdiary.vo.GetEmblem;
 
 /**
  * Handles requests for the application home page.
@@ -33,11 +36,12 @@ public class DiaryController {
 		return "/diary";
 	}
 	
-	@RequestMapping(value = "/getEmblem", method = RequestMethod.GET)
-	public String getEmblem(HttpSession session, int emblemNum) {
-		int memberNum = (int) session.getAttribute("memberNum");
-		System.out.println(memberNum);
-		return "/diary";
+	
+	@RequestMapping(value = "/getEmblem", method = RequestMethod.POST)
+	public String getEmblem(GetEmblem getEmblem, Model model) {
+		emblemService.getEmblem(getEmblem);
+		model.addAttribute("url", "/diary?memberNum=");
+		return "/return/forward";
 	}
 	
 	

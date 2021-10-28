@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.tripdiary.dao.EmblemDao;
 import com.tripdiary.vo.EmblemCmd;
 import com.tripdiary.vo.EmblemGetCmd;
+import com.tripdiary.vo.GetEmblem;
 import com.tripdiary.vo.MemberActCmd;
 
 @Service
@@ -30,6 +31,10 @@ public class EmblemService {
 	
 	public MemberActCmd getActCnt(int memberNum) {
 		return emblemDao.getActCnt(memberNum);
+	}
+	
+	public void getEmblem(GetEmblem getEmblem) {
+		emblemDao.getEmblem(getEmblem);
 	}
 		
 }

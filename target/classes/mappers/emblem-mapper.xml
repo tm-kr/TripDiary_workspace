@@ -27,4 +27,16 @@
          from member_act_cnt where member_num = #{memberNum}
 	</select>
 	
+	<insert id="getEmblem" parameterType="getEmblem">
+		insert into emblem_get (
+		emblem_get_num,
+		member_num,
+		emblem_num
+		)
+		values (
+		emblem_get_seq.nextval,
+		#{memberNum},
+		#{emblemNum}
+		)
+	</insert>
  </mapper>

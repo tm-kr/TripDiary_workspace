@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tripdiary.vo.EmblemCmd;
 import com.tripdiary.vo.EmblemGetCmd;
+import com.tripdiary.vo.GetEmblem;
 import com.tripdiary.vo.MemberActCmd;
 
 @Repository
@@ -30,6 +31,10 @@ public class EmblemDao {
 	
 	public MemberActCmd getActCnt(int memberNum) {
 		return sqlSessionTemplate.selectOne("getActCnt", memberNum);
+	}
+	
+	public void getEmblem(GetEmblem getEmblem) {
+		sqlSessionTemplate.insert("getEmblem",getEmblem);
 	}
 
 }

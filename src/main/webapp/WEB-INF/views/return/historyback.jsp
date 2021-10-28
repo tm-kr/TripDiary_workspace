@@ -9,9 +9,9 @@
 <body>
 	<script type="text/javascript">
 		var message = "${msg}";
-		var url = "${url}";
-		document.location.href = url;
 		alert(message);
+		window.history.back();
 	</script>
 </body>
 </html>
+<!-- 이전에 작성한 내용을 그대로 보관함 -->

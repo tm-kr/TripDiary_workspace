@@ -44,12 +44,12 @@ public class WriteController {
     	if(mpRequest.getFile("thumbnail").getOriginalFilename().equals("")) {
     		model.addAttribute("msg", "대표 사진을 등록해주세요.");
     		//model.addAttribute("url", "/write");
-    		return "/common/historyback";
+    		return "/return/historyback";
     	}
     	writeService.write(writeCmd,tagCmd, mpRequest);
     	model.addAttribute("msg", "새로운 일기를 작성하였습니다.");
-		model.addAttribute("url", "/diary");
-		return "/common/alert";
+		model.addAttribute("url", "/diary?memberNum=");
+		return "/return/alert";
     }
     
 }
