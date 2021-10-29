@@ -30,7 +30,7 @@ public class WriteController {
 		if(session.getAttribute("id") == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요.");
 			model.addAttribute("url", "/signIn");
-			return "/common/alert";
+			return "/return/alert";
 		}
 		return "/write";
 	}
@@ -45,7 +45,7 @@ public class WriteController {
     	writeService.write(writeCmd,tagCmd, mpRequest);
     	model.addAttribute("msg", "새로운 일기를 작성하였습니다.");
 		model.addAttribute("url", "/diary?memberNum=");
-		return "/return/alert";
+		return "/return/writeAlert";
     }
     
 }

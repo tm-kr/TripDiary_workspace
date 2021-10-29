@@ -10,7 +10,7 @@
 	<script type="text/javascript">
 		var message = "${msg}";
 		var url = "${url}";
-		document.location.href = url;
+		document.location.href = url+${sessionScope.memberNum};
 		alert(message);
 	</script>
 </body>

@@ -320,14 +320,12 @@
 					</div>
 					<div class="modal-body">
 						<form action="./reportAction.jsp" method="post">
-							<div style="text-align: center;">
-								<img alt="" src="resources/img/sample.png"
-									class="border border-secondary rounded-circle"
-									style="width: 80%;">
-							</div>
-							<div class="form-group">
-								<label>프로필 사진 수정</label> <input class="form-control" type="file"
-									id="formFile" name="file">
+							<div class="form-group" style="text-align: center;">
+								<label for="thumbnail" class="btn btn-outline-secondary mt-3" id="image_container">
+									<span class="imgText">프로필 사진 수정</span>
+								</label>
+								<input name="thumbnail" type="file" id="thumbnail" accept="image/*" onchange="setThumbnail(event);" style="display:none"/>
+								 <div class="mt-3" id="image_container"></div>
 							</div>
 							<br>
 							<div class="form-group">
@@ -345,6 +343,22 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+		// 대표사진 미리보기
+		function setThumbnail(event) {
+			for (var image of event.target.files) {
+				var reader = new FileReader(); 
+				reader.onload = function(event) {
+					var img = document.createElement("img"); 
+					img.setAttribute("src", event.target.result);
+					img.setAttribute("class", "board-thumbnail border border-secondary"); 
+					document.querySelector("div#image_container").appendChild(img); 
+				}; 
+			console.log(image); reader.readAsDataURL(image); 
+			} 
+		}
+		</script>
+		
 		<!-- 획득한 엠블럼 모달 -->
 		<c:forEach var="emblem" items="${emblem}" varStatus="loop">
 			<div class="modal fade" id="getEmblem${emblem.emblemNum }"
