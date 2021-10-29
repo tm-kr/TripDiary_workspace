@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,38 +12,6 @@
 <script src='/resources/fullcalendar/main.min.js'></script>
 <script src="resources/js/jquery.min.js"></script>
 
-<script type="text/javascript">
-	
-	var test = '<c:out value="${calendar}"/>';
-	
-	var all_events = null;
-	
-	all_events = [
-  	    {
-  	      title  : test,
-  	      start  : '20211003'
-  	    },
-  	 	 {
-  	      title  : '여행일',
-  	      start  : '2021-10-12'
-  	    },
-  	  ]
-	
-	$(document).ready(function() {
-	    var calendarEl = document.getElementById('calendar');
-	    var calendar = new FullCalendar.Calendar(calendarEl, {
-	      initialView: 'dayGridMonth',
-	      locales: 'ko',
-	      events: all_events
-      
-    });
-   
-
-
-    calendar.render();
-  });
-      
-</script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -67,7 +35,8 @@
 					</a>
 				</div>
 				<h2 class="mt-3">닉네임</h2>
-				<h6 class="mb-5" style="width: 240px; margin: auto;">프로필 사진을 클릭하여 상태메세지를 입력하세요!</h6>
+				<h6 class="mb-5" style="width: 240px; margin: auto;">프로필 사진을
+					클릭하여 상태메세지를 입력하세요!</h6>
 
 			</div>
 			<div class="col-sm-3 mt-5 mb-5">
@@ -75,24 +44,28 @@
 					<div class="col-4">
 						<a data-toggle="modal" href="#emblemModal"> <img class="icon"
 							src="resources/img/icon/emblem_cnt.png" style="width: 100%;">
-						</a> <br><br><b>${fn:length(haveEmblem) }</b>
+						</a> <br>
+						<br>
+						<b>${fn:length(haveEmblem) }</b>
 					</div>
 					<div class="col-4">
 						<a data-toggle="modal" href="#boardModal"> <img class="icon"
 							src="resources/img/icon/board_cnt.png" style="width: 100%;">
-						</a> <br><br><b>${actCnt.boardWriteCnt }</b>
+						</a> <br>
+						<br>
+						<b>${actCnt.boardWriteCnt }</b>
 					</div>
 					<div class="col-4">
 						<a href="/pick"> <img class="icon"
 							src="resources/img/icon/pick_cnt.png" style="width: 100%;">
-						</a> <br><br><b>${actCnt.pickPressCnt }</b>
+						</a> <br>
+						<br>
+						<b>${actCnt.pickPressCnt }</b>
 					</div>
 				</div>
 			</div>
 			<div class="diary_calendar col-sm-5 mb-5">
-				<div id='calendar' style="width: 72%; margin: auto;">
-					
-				</div>
+				<div id='calendar' style="width: 72%; margin: auto;"></div>
 			</div>
 		</div>
 
@@ -110,7 +83,8 @@
 						</div>
 						<!-- pick 이미지 -->
 						<div style="float: right; display: inline-block;" class="">
-							<img alt="" src="resources/img/icon/pick_cnt.png" class="pick-img"
+							<img alt="" src="resources/img/icon/pick_cnt.png"
+								class="pick-img"
 								style="width: 40px; height: 40px; object-fit: cover;">
 						</div>
 					</div>
@@ -154,23 +128,27 @@
 				<div class="modal-body row" style="text-align: center">
 					<c:forEach var="emblem" items="${emblem}" varStatus="loop">
 						<div class="col-4 p-3">
-							<c:forEach var="haveEmblem" items="${haveEmblem}" varStatus="loop">
+							<c:forEach var="haveEmblem" items="${haveEmblem}"
+								varStatus="loop">
 								<c:if test="${emblem.emblemNum eq haveEmblem.emblemNum }">
 									<c:set var="get" value="${haveEmblem.emblemNum}"></c:set>
 								</c:if>
 							</c:forEach>
-							
+
 							<c:if test="${empty get}">
 								<a data-toggle="modal" href="#Emblem${emblem.emblemNum }"> <img
-									alt="" src="resources/img/emblem/none.png" class="icon2" style="width: 100%">
+									alt="" src="resources/img/emblem/none.png" class="icon2"
+									style="width: 100%">
 								</a>
 							</c:if>
 							<c:if test="${not empty get}">
-								<a data-toggle="modal" href="#getEmblem${emblem.emblemNum }"> <img
-									alt="" src="resources/img/emblem/emblem${emblem.emblemNum}.png" class="icon2" style="width: 100%">
+								<a data-toggle="modal" href="#getEmblem${emblem.emblemNum }">
+									<img alt=""
+									src="resources/img/emblem/emblem${emblem.emblemNum}.png"
+									class="icon2" style="width: 100%">
 								</a>
 							</c:if>${emblem.emblemName }
-							<c:remove var="get"/>
+							<c:remove var="get" />
 						</div>
 					</c:forEach>
 				</div>
@@ -199,11 +177,13 @@
 					<div class="modal-body">
 						<form action="./reportAction.jsp" method="post">
 							<div class="form-group" style="text-align: center;">
-								<label for="thumbnail" class="btn btn-outline-secondary mt-3" id="image_container">
-									<span class="imgText">프로필 사진 수정</span>
-								</label>
-								<input name="thumbnail" type="file" id="thumbnail" accept="image/*" onchange="setThumbnail(event);" style="display:none"/>
-								 <div class="mt-3" id="image_container"></div>
+								<label for="thumbnail" class="btn btn-outline-secondary mt-3"
+									id="image_container"> <span class="imgText">프로필
+										사진 수정</span>
+								</label> <input name="thumbnail" type="file" id="thumbnail"
+									accept="image/*" onchange="setThumbnail(event);"
+									style="display: none" />
+								<div class="mt-3" id="image_container"></div>
 							</div>
 							<br>
 							<div class="form-group">
@@ -221,22 +201,7 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript">
-		// 대표사진 미리보기
-		function setThumbnail(event) {
-			for (var image of event.target.files) {
-				var reader = new FileReader(); 
-				reader.onload = function(event) {
-					var img = document.createElement("img"); 
-					img.setAttribute("src", event.target.result);
-					img.setAttribute("class", "board-thumbnail border border-secondary"); 
-					document.querySelector("div#image_container").appendChild(img); 
-				}; 
-			console.log(image); reader.readAsDataURL(image); 
-			} 
-		}
-		</script>
-		
+
 		<!-- 획득한 엠블럼 모달 -->
 		<c:forEach var="emblem" items="${emblem}" varStatus="loop">
 			<div class="modal fade" id="getEmblem${emblem.emblemNum }"
@@ -332,7 +297,8 @@
 							<div style="margin: auto;">
 
 								<form action="/getEmblem" method="POST">
-									<input type="hidden" name="memberNum" value="${sessionScope.memberNum }">
+									<input type="hidden" name="memberNum"
+										value="${sessionScope.memberNum }">
 									<button type="button" class="btn btn-primary"
 										data-dismiss="modal">닫기</button>
 
@@ -341,91 +307,106 @@
 									<c:choose>
 										<c:when test="${emblem.emblemNum eq 1 }">
 											<c:if test="${actCnt.tdLikePressCnt gt 0}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 2 }">
 											<c:if test="${actCnt.tdLikePressCnt gt 9}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 3 }">
 											<c:if test="${actCnt.tdLikePressCnt gt 99}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 4 }">
 											<c:if test="${actCnt.pickPressCnt gt 0}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 5 }">
 											<c:if test="${actCnt.pickPressCnt gt 9}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 6 }">
 											<c:if test="${actCnt.pickPressCnt gt 99}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 7 }">
 											<c:if test="${actCnt.boardWriteCnt gt 0}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 8 }">
 											<c:if test="${actCnt.boardWriteCnt gt 9}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 9 }">
 											<c:if test="${actCnt.boardWriteCnt gt 99}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 10 }">
 											<c:if test="${actCnt.replyWriteCnt gt 0}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 11 }">
 											<c:if test="${actCnt.replyWriteCnt gt 9}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 12 }">
 											<c:if test="${actCnt.replyWriteCnt gt 99}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 13 }">
 											<c:if test="${actCnt.tdLikeReceiveCnt gt 0}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 14 }">
 											<c:if test="${actCnt.tdLikeReceiveCnt gt 9}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
 										<c:when test="${emblem.emblemNum eq 15 }">
 											<c:if test="${actCnt.tdLikeReceiveCnt gt 99}">
-												<input type="hidden" name="emblemNum" value="${emblem.emblemNum }">
+												<input type="hidden" name="emblemNum"
+													value="${emblem.emblemNum }">
 												<button type="submit" class="btn btn-warning">획득하기</button>
 											</c:if>
 										</c:when>
@@ -475,6 +456,40 @@
 
 	<jsp:include page="common/sidebar.jsp" flush="false" />
 
-
+	<script type="text/javascript">
+		// 풀캘린더 스크립트 부분
+		var all_events = null;
+		all_events = [
+			<c:forEach var="calendar" items="${calendar}" varStatus="loop">
+				{
+		  	      title  : '여행일',
+		  	      start  : '${calendar }'
+		  	    },
+		  	</c:forEach>
+	  	  ]
+		$(document).ready(function() {
+		    var calendarEl = document.getElementById('calendar');
+		    var calendar = new FullCalendar.Calendar(calendarEl, {
+		      initialView: 'dayGridMonth',
+		      locales: 'ko',
+		      events: all_events
+	    });
+	    calendar.render();
+	  });    
+		
+		// 대표사진 미리보기
+		function setThumbnail(event) {
+			for (var image of event.target.files) {
+				var reader = new FileReader(); 
+				reader.onload = function(event) {
+					var img = document.createElement("img"); 
+					img.setAttribute("src", event.target.result);
+					img.setAttribute("class", "board-thumbnail border border-secondary"); 
+					document.querySelector("div#image_container").appendChild(img); 
+				}; 
+			console.log(image); reader.readAsDataURL(image); 
+			} 
+		}
+		</script>
 </body>
 </html>

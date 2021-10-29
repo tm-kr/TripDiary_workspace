@@ -14,28 +14,33 @@ import com.tripdiary.vo.MemberActCmd;
 @Service
 public class DiaryService {
 
-	private DiaryDao emblemDao;
+	private DiaryDao diaryDao;
 	
 	@Autowired
 	public DiaryService(DiaryDao emblemDao) {
-		this.emblemDao = emblemDao;
+		this.diaryDao = emblemDao;
 	}
 	
 	public List<EmblemCmd> selectEmblem(){	
-		emblemDao.selectEmblem();
-		return emblemDao.selectEmblem();
+		diaryDao.selectEmblem();
+		return diaryDao.selectEmblem();
 	}
 	
 	public List<HaveEmblemCmd> haveEmblem(int memberNum){
-		return emblemDao.haveEmblem(memberNum);
+		return diaryDao.haveEmblem(memberNum);
 	}
 	
 	public MemberActCmd getActCnt(int memberNum) {
-		return emblemDao.getActCnt(memberNum);
+		return diaryDao.getActCnt(memberNum);
 	}
 	
 	public void getEmblem(GetEmblem getEmblem) {
-		emblemDao.getEmblem(getEmblem);
+		diaryDao.getEmblem(getEmblem);
+	}
+	
+	//나중에 날짜 정보를 모아오는 다른 서비스가 있다면 삭제
+	public List<String> getDate(int memberNum){
+		return diaryDao.getDate(memberNum);
 	}
 		
 }

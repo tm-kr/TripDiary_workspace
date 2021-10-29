@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="emblemDao">
+ <mapper namespace="diaryDao">
  
  	<select id="selectEmblem" resultType="emblemCmd">
          select 
@@ -39,4 +39,12 @@
 		#{emblemNum}
 		)
 	</insert>
+	
+	<!-- 나중에 날짜 정보를 가진 데이터가 있다면 삭제 -->
+	<select id="getDate" parameterType="int" resultType="String">
+        select 
+        TO_CHAR(tripdate, 'YYYY-MM-DD')
+        from board where member_num = #{memberNum}
+	</select>
+	
  </mapper>

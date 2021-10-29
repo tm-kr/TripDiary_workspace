@@ -36,6 +36,11 @@ public class DiaryDao {
 	public void getEmblem(GetEmblem getEmblem) {
 		sqlSessionTemplate.insert("getEmblem",getEmblem);
 	}
+	
+	//나중에 날짜 정보를 모아오는 다른 서비스가 있다면 삭제
+	public List<String> getDate(int memberNum){
+		return sqlSessionTemplate.selectList("getDate", memberNum);
+	}
 
 
 }
