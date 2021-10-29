@@ -20,6 +20,13 @@
 	margin: auto;
 	width: 1044px;
 }
+a { 
+	text-decoration:none;
+	color: #737373;
+}
+a:hover { 
+	color: #737373;
+}
 
 .logo {
 	margin-right: 2%;

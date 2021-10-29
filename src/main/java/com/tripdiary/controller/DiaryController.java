@@ -1,5 +1,7 @@
 package com.tripdiary.controller;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,26 @@ public class DiaryController {
 	@RequestMapping(value = "/diary", method = RequestMethod.GET)
 	public String diary(Model model, int memberNum) {
 		// 나중에 memblemNum 값을 포함한 나른 cmd 를 보낸다면 지우고 모달 jsp 수정하기!
+		
+/*		[
+	  	    {
+	  	      title  : test,
+	  	      start  : '20211003'
+	  	    },
+	  	 	 {
+	  	      title  : '여행일',
+	  	      start  : '2021-10-12'
+	  	    },
+	  	  ]*/
+		String calendar = "["
+				+ "{ "
+				+ "title : '여행일',"
+				+ " start : '20211006'"
+				+ " }"
+				+ "]";
+				
+		
+		model.addAttribute("calendar", calendar);
 		model.addAttribute("memberNum", memberNum);
 		model.addAttribute("haveEmblem", emblemService.haveEmblem(memberNum));
 		model.addAttribute("emblem", emblemService.selectEmblem());

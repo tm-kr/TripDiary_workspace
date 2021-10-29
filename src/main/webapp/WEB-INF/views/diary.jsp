@@ -7,6 +7,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 풀캘린더 오픈소스 -->
+<link href='/resources/fullcalendar/main.min.css' rel='stylesheet' />
+<script src='/resources/fullcalendar/main.min.js'></script>
+<script src="resources/js/jquery.min.js"></script>
+
+<script type="text/javascript">
+	
+	var test = '<c:out value="${calendar}"/>';
+	
+	var all_events = null;
+	
+	all_events = [
+  	    {
+  	      title  : test,
+  	      start  : '20211003'
+  	    },
+  	 	 {
+  	      title  : '여행일',
+  	      start  : '2021-10-12'
+  	    },
+  	  ]
+	
+	$(document).ready(function() {
+	    var calendarEl = document.getElementById('calendar');
+	    var calendar = new FullCalendar.Calendar(calendarEl, {
+	      initialView: 'dayGridMonth',
+	      locales: 'ko',
+	      events: all_events
+      
+    });
+   
+
+
+    calendar.render();
+  });
+      
+</script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -30,10 +67,10 @@
 					</a>
 				</div>
 				<h2 class="mt-3">닉네임</h2>
-				<h6 class="mb-5">프로필 사진을 클릭하여 상태메세지를 입력하세요!</h6>
+				<h6 class="mb-5" style="width: 240px; margin: auto;">프로필 사진을 클릭하여 상태메세지를 입력하세요!</h6>
 
 			</div>
-			<div class="col-sm-4 mt-5 mb-5">
+			<div class="col-sm-3 mt-5 mb-5">
 				<div class="row">
 					<div class="col-4">
 						<a data-toggle="modal" href="#emblemModal"> <img class="icon"
@@ -52,10 +89,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="diary_calendar col-sm-4 mb-5">
-				<div
-					style="border: solid; height: 400px; width: 70%; height: 300px; margin: auto;">
-					<h3>달력</h3>
+			<div class="diary_calendar col-sm-5 mb-5">
+				<div id='calendar' style="width: 72%; margin: auto;">
+					
 				</div>
 			</div>
 		</div>
@@ -74,7 +110,7 @@
 						</div>
 						<!-- pick 이미지 -->
 						<div style="float: right; display: inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="pick-img"
+							<img alt="" src="resources/img/icon/pick_cnt.png" class="pick-img"
 								style="width: 40px; height: 40px; object-fit: cover;">
 						</div>
 					</div>
@@ -94,164 +130,6 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="col-lg-4 diary-board-container">
-				<div class="border border-secondary p-3 icon2">
-					<div class="board-top">
-						<div style="float: left;">
-							<!-- 프로필 이미지와 닉네임 -->
-							<img alt="" src="resources/img/sample.png"
-								class="border rounded-circle"
-								style="width: 50px; height: 50px; object-fit: cover;"> 닉네임
-						</div>
-						<!-- pick 이미지 -->
-						<div style="float: right; display: inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="pick-img"
-								style="width: 40px; height: 40px; object-fit: cover;">
-						</div>
-					</div>
-					<!-- 썸네일 이미지 -->
-					<div class="board-mid">
-						<img class="image-thumbnail border border-secondary mt-3"
-							src="resources/img/sample2.jpg" style="width: 100%;">
-					</div>
-
-					<!-- 하단 정보부분 -->
-					<div class="board-bottom mt-5 mb-3">
-						<div>여행날짜 : 2021년 8월 4일</div>
-						<div>좋아요 8개</div>
-						<div>#첫게시물 #여행가기좋은날 #시작!</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 diary-board-container">
-				<div class="border border-secondary p-3 icon2">
-					<div class="board-top">
-						<div style="float: left;">
-							<!-- 프로필 이미지와 닉네임 -->
-							<img alt="" src="resources/img/sample.png"
-								class="border rounded-circle"
-								style="width: 50px; height: 50px; object-fit: cover;"> 닉네임
-						</div>
-						<!-- pick 이미지 -->
-						<div style="float: right; display: inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="pick-img"
-								style="width: 40px; height: 40px; object-fit: cover;">
-						</div>
-					</div>
-					<!-- 썸네일 이미지 -->
-					<div class="board-mid">
-						<img class="image-thumbnail border border-secondary mt-3"
-							src="resources/img/sample3.jpg" style="width: 100%;">
-					</div>
-
-					<!-- 하단 정보부분 -->
-					<div class="board-bottom mt-5 mb-3">
-						<div>여행날짜 : 2021년 8월 4일</div>
-						<div>좋아요 8개</div>
-						<div>#첫게시물 #여행가기좋은날 #시작!</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 diary-board-container">
-				<div class="border border-secondary p-3 icon2">
-					<div class="board-top">
-						<div style="float: left;">
-							<!-- 프로필 이미지와 닉네임 -->
-							<img alt="" src="resources/img/sample.png"
-								class="border rounded-circle"
-								style="width: 50px; height: 50px; object-fit: cover;"> 닉네임
-						</div>
-						<!-- pick 이미지 -->
-						<div style="float: right; display: inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="pick-img"
-								style="width: 40px; height: 40px; object-fit: cover;">
-						</div>
-					</div>
-					<!-- 썸네일 이미지 -->
-					<div class="board-mid">
-						<img class="image-thumbnail border border-secondary mt-3"
-							src="resources/img/sample4.jpg" style="width: 100%;">
-					</div>
-
-					<!-- 하단 정보부분 -->
-					<div class="board-bottom mt-5 mb-3">
-						<div>여행날짜 : 2021년 8월 4일</div>
-						<div>좋아요 8개</div>
-						<div>#첫게시물 #여행가기좋은날 #시작!</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 diary-board-container">
-				<div class="border border-secondary p-3 icon2">
-					<div class="board-top">
-						<div style="float: left;">
-							<!-- 프로필 이미지와 닉네임 -->
-							<img alt="" src="/resources/img/sample.png"
-								class="border rounded-circle"
-								style="width: 50px; height: 50px; object-fit: cover;"> 닉네임
-						</div>
-						<!-- pick 이미지 -->
-						<div style="float: right; display: inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="pick-img"
-								style="width: 40px; height: 40px; object-fit: cover;">
-						</div>
-					</div>
-					<!-- 썸네일 이미지 -->
-					<div class="board-mid">
-						<img class="image-thumbnail border border-secondary mt-3"
-							src="resources/img/sample5.jpg" style="width: 100%;">
-					</div>
-
-					<!-- 하단 정보부분 -->
-					<div class="board-bottom mt-5 mb-3">
-						<div>여행날짜 : 2021년 8월 4일</div>
-						<div>좋아요 8개</div>
-						<div>#첫게시물 #여행가기좋은날 #시작!</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 diary-board-container">
-				<div class="border border-secondary p-3 icon2">
-					<div class="board-top">
-						<div style="float: left;">
-							<!-- 프로필 이미지와 닉네임 -->
-							<img alt="" src="resources/img/sample.png"
-								class="border rounded-circle"
-								style="width: 50px; height: 50px; object-fit: cover;"> 닉네임
-						</div>
-						<!-- pick 이미지 -->
-						<div style="float: right; display: inline-block;" class="">
-							<img alt="" src="resources/img/pick_cnt.png" class="pick-img"
-								style="width: 40px; height: 40px; object-fit: cover;">
-						</div>
-					</div>
-					<!-- 썸네일 이미지 -->
-					<div class="board-mid">
-						<img class="image-thumbnail border border-secondary mt-3"
-							src="resources/img/sample6.jpg" style="width: 100%;">
-					</div>
-
-					<!-- 하단 정보부분 -->
-					<div class="board-bottom mt-5 mb-3">
-						<div>여행날짜 : 2021년 8월 4일</div>
-						<div>좋아요 8개</div>
-						<div>#첫게시물 #여행가기좋은날 #시작!</div>
-					</div>
-				</div>
-			</div>
-
-
-
-
-
-
-
-
 		</div>
 
 
@@ -284,12 +162,12 @@
 							
 							<c:if test="${empty get}">
 								<a data-toggle="modal" href="#Emblem${emblem.emblemNum }"> <img
-									alt="" src="resources/img/emblem/none.png" style="width: 100%">
+									alt="" src="resources/img/emblem/none.png" class="icon2" style="width: 100%">
 								</a>
 							</c:if>
 							<c:if test="${not empty get}">
 								<a data-toggle="modal" href="#getEmblem${emblem.emblemNum }"> <img
-									alt="" src="resources/img/emblem/emblem${emblem.emblemNum}.png" style="width: 100%">
+									alt="" src="resources/img/emblem/emblem${emblem.emblemNum}.png" class="icon2" style="width: 100%">
 								</a>
 							</c:if>${emblem.emblemName }
 							<c:remove var="get"/>
