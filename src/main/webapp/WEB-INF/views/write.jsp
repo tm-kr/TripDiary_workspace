@@ -6,15 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
-	<link rel="stylesheet"
-	href="/resources/css/style.css" />
-	<link rel="stylesheet"
-	href="/resources/css/writeStyle.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"rel="stylesheet"integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"crossorigin="anonymous">
+<link rel="stylesheet" href="/resources/css/style.css" />
+<link rel="stylesheet" href="/resources/css/writeStyle.css" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -79,17 +73,7 @@
 					<option value="jeju">제주도특별자치도</option>
 				</select>
 				</div>
-<!-- 				<div class="imgUpload mt-5">
-						<label for="input-file" class="btn btn-outline-secondary imgBtn2" id="image_container">
-							<span class="imgText">대표사진 등록하기</span>
-						</label>
-						<input type="file" id="input-file" style="display:none" name="file1" accept="image/*" onchange="setThumbnail(event);" />
-						
-						<label for="input-file2" class="btn btn-outline-secondary imgBtn2">
-							<span class="imgText">추가사진 등록하기</span>
-						</label>
-						<input type="file" id="input-file2" style="display:none" name="file2" multiple />
-				</div> -->
+
 				<label for="thumbnail" class="btn btn-outline-secondary mt-5" id="image_container">
 							<span class="imgText">대표사진 업로드 (최대 1장)</span>
 				</label>
@@ -103,11 +87,7 @@
 				 <div class="mt-5" id="image_container2"></div>
 				 <h6 class="mt-5" style="color: red;">* 등록할 사진을 한번에 클릭해 업로드 해주십시오.<br>* 버튼을 재클릭시 이전에 업로드한 사진은 등록되지 않습니다.</h6>
 				<!-- 수정사항 업로드시 이미지 관련해서 좀 더 편하게 할 수 있도록 하자! -->
-
-
-
-
-
+				
 				<!-- 내용 입력란 -->
 				<textarea class="form-control mt-5 " placeholder="내용을 입력해주세요.  (1000자 이내)" name="content" id="writeContent"></textarea>
 				<!-- 태그 리스트 나오는 곳 -->
@@ -124,6 +104,13 @@
 			<input type="hidden" name="member_num" value="${memberNum}">
 		</form>
 	</div>
+
+
+
+
+
+
+
 
 	<script>
 		// 국내 선택시 지역선택 설정 가능

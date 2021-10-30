@@ -2,32 +2,34 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="diaryDao">
- 
- 	<select id="selectEmblem" resultType="emblemCmd">
-         select 
-         *
-         from emblem
+<mapper namespace="diaryDao">
+
+	<select id="selectEmblem" resultType="emblemCmd">
+		select
+		*
+		from emblem
 	</select>
-	
-	<select id="haveEmblem" parameterType="int" resultType="haveEmblemCmd">
-         select 
-         member_num,
-         emblem_num
-         from emblem_get where member_num = #{memberNum}
+
+	<select id="haveEmblem" parameterType="int"
+		resultType="haveEmblemCmd">
+		select
+		member_num,
+		emblem_num
+		from emblem_get where member_num = #{memberNum}
 	</select>
-	
-	<select id="getActCnt" parameterType="int" resultType="memberActCmd">
-         select 
-        td_like_press_cnt,
-        pick_press_cnt,
-        board_write_cnt,
-        reply_write_cnt,
-        td_like_receive_cnt
-         from member_act_cnt where member_num = #{memberNum}
+
+	<select id="getActCnt" parameterType="int"
+		resultType="memberActCmd">
+		select
+		td_like_press_cnt,
+		pick_press_cnt,
+		board_write_cnt,
+		reply_write_cnt,
+		td_like_receive_cnt
+		from member_act_cnt where member_num = #{memberNum}
 	</select>
-	
-	<insert id="getEmblem" parameterType="getEmblem">
+
+	<insert id="getEmblem" parameterType="getEmblemCmd">
 		insert into emblem_get (
 		emblem_get_num,
 		member_num,
@@ -39,12 +41,30 @@
 		#{emblemNum}
 		)
 	</insert>
-	
+
 	<!-- 나중에 날짜 정보를 가진 데이터가 있다면 삭제 -->
 	<select id="getDate" parameterType="int" resultType="String">
-        select 
-        TO_CHAR(tripdate, 'YYYY-MM-DD')
-        from board where member_num = #{memberNum}
+		select
+		TO_CHAR(tripdate, 'YYYY-MM-DD')
+		from board where member_num = #{memberNum}
 	</select>
-	
- </mapper>
+
+	<!-- 나중에 날짜 정보를 가진 데이터가 있다면 삭제 -->
+	<select id="getProfile" parameterType="int"
+		resultType="profileCmd">
+		SELECT
+			A.MEMBER_NUM,
+			A.NICKNAME,
+			B.MESSAGE,
+			C.STORE_FILE_NAME,
+			C.FILE_TYPE
+		FROM MEMBER A
+		INNER JOIN PROFILE B
+			ON A.MEMBER_NUM = B.MEMBER_NUM
+		INNER JOIN PROFILE_IMG C
+			ON B.MEMBER_NUM = C.MEMBER_NUM
+		WHERE A.MEMBER_NUM = #{memberNum}
+
+	</select>
+
+</mapper>

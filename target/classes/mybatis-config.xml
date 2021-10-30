@@ -19,7 +19,8 @@
 		<typeAlias alias="emblemCmd" type="com.tripdiary.vo.EmblemCmd"/>
 		<typeAlias alias="haveEmblemCmd" type="com.tripdiary.vo.HaveEmblemCmd"/>
 		<typeAlias alias="memberActCmd" type="com.tripdiary.vo.MemberActCmd"/>
-		<typeAlias alias="getEmblem" type="com.tripdiary.vo.GetEmblem"/>
+		<typeAlias alias="getEmblemCmd" type="com.tripdiary.vo.GetEmblemCmd"/>
+		<typeAlias alias="profileCmd" type="com.tripdiary.vo.ProfileCmd"/>
 	</typeAliases>
  	
 </configuration>

@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.tripdiary.dao.DiaryDao;
 import com.tripdiary.vo.EmblemCmd;
+import com.tripdiary.vo.GetEmblemCmd;
 import com.tripdiary.vo.HaveEmblemCmd;
-import com.tripdiary.vo.GetEmblem;
 import com.tripdiary.vo.MemberActCmd;
+import com.tripdiary.vo.ProfileCmd;
 
 @Service
 public class DiaryService {
@@ -34,13 +35,17 @@ public class DiaryService {
 		return diaryDao.getActCnt(memberNum);
 	}
 	
-	public void getEmblem(GetEmblem getEmblem) {
+	public void getEmblem(GetEmblemCmd getEmblem) {
 		diaryDao.getEmblem(getEmblem);
 	}
 	
 	//나중에 날짜 정보를 모아오는 다른 서비스가 있다면 삭제
 	public List<String> getDate(int memberNum){
 		return diaryDao.getDate(memberNum);
+	}
+	
+	public ProfileCmd getProfile(int memberNum) {
+		return diaryDao.getProfile(memberNum);
 	}
 		
 }

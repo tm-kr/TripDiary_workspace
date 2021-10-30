@@ -18,6 +18,11 @@ public class PageController {
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main(Model model) {
+		/*container.put("LNG", "126.974884");
+		container.put("ADDRESS", "서울특별시 종로구 청운동 효자로 12");
+		container.put("ID", "1234");
+		container.put("LAT", "37.576693");
+		container.put("NAME", "국립고궁박물관");*/
 		return "main";
 	}
 	

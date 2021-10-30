@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,6 @@
 <!-- 풀캘린더 오픈소스 -->
 <link href='/resources/fullcalendar/main.min.css' rel='stylesheet' />
 <script src='/resources/fullcalendar/main.min.js'></script>
-<script src="resources/js/jquery.min.js"></script>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -29,14 +29,13 @@
 			<div class="diary_profile_img col-sm-4">
 				<div style="width: 240px; height: 240px; margin: auto;">
 					<a data-toggle="modal" href="#profileUpdateModal"> <img
-						src="resources/img/sample.png"
+						src="<spring:url value='/image/${profile.storeFileName }${profile.fileType }'/> "
 						class="border border-secondary rounded-circle image-profile icon2"
 						style="width: 100%;">
 					</a>
 				</div>
-				<h2 class="mt-3">닉네임</h2>
-				<h6 class="mb-5" style="width: 240px; margin: auto;">프로필 사진을
-					클릭하여 상태메세지를 입력하세요!</h6>
+				<h2 class="mt-3">${profile.nickname }</h2>
+				<h6 class="mb-5" style="width: 240px; margin: auto;">${profile.message }</h6>
 
 			</div>
 			<div class="col-sm-3 mt-5 mb-5">
@@ -56,7 +55,7 @@
 						<b>${actCnt.boardWriteCnt }</b>
 					</div>
 					<div class="col-4">
-						<a href="/pick"> <img class="icon"
+						<a data-toggle="modal" href="#pickModal"> <img class="icon"
 							src="resources/img/icon/pick_cnt.png" style="width: 100%;">
 						</a> <br>
 						<br>
@@ -161,7 +160,7 @@
 		</div>
 	</div>
 
-	<c:if test="${sessionScope.memberNum eq memberNum }">
+	<c:if test="${sessionScope.memberNum eq profile.memberNum }">
 		<!-- 프로필 수정 모달 -->
 		<div class="modal fade" id="profileUpdateModal" tabindex="-1"
 			role="dialog" aria-labelledby="modal" aria-hidden="true">
@@ -180,14 +179,14 @@
 								<label for="thumbnail" class="btn btn-outline-secondary mt-3"
 									id="image_container"> <span class="imgText">프로필
 										사진 수정</span>
-								</label> <input name="thumbnail" type="file" id="thumbnail"
+								</label> <input name="profile_img" type="file" id="thumbnail"
 									accept="image/*" onchange="setThumbnail(event);"
 									style="display: none" />
 								<div class="mt-3" id="image_container"></div>
 							</div>
 							<br>
 							<div class="form-group">
-								<label>상태메세지 수정</label> <input type="text" name="reportTitle"
+								<label>상태메세지 수정</label> <input type="text" name="message" value="${profile.message}"
 									class="form-control" maxlength="30">
 							</div>
 							<br>
@@ -426,7 +425,29 @@
 
 
 
-
+	<div class="modal fade" id="pickModal" tabindex="-1" role="dialog"
+		aria-labelledby="modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal">PICK!</h5>
+					<button type="button" class="btn-close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true"></span>
+					</button>
+				</div>
+				<div class="modal-body" style="text-align: center;">
+					여행가고 싶은곳을 "PICK" 해보세요!<br>
+					그리고 자신이 여행간 일을 공유해주세요.<br>
+					여행일기를 작성하면 달력에 여행 날짜가 표시됩니다.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"
+						data-dismiss="modal" style="margin: auto;">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -459,14 +480,16 @@
 	<script type="text/javascript">
 		// 풀캘린더 스크립트 부분
 		var all_events = null;
+		<c:if test="${not empty calendar}">
 		all_events = [
-			<c:forEach var="calendar" items="${calendar}" varStatus="loop">
+			<c:forEach var="calendarList" items="${calendar}" varStatus="loop">
 				{
 		  	      title  : '여행일',
-		  	      start  : '${calendar }'
+		  	      start  : '${calendarList }'
 		  	    },
 		  	</c:forEach>
 	  	  ]
+		</c:if>
 		$(document).ready(function() {
 		    var calendarEl = document.getElementById('calendar');
 		    var calendar = new FullCalendar.Calendar(calendarEl, {

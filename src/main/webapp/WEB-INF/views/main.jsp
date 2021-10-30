@@ -1,108 +1,78 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/css/style.css" />
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d21da3744ebeea9a10c9a6f6aa2244c4"></script>
+<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+	mapOption = {
+		center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		level : 3
+	// 지도의 확대 레벨
+	};
+
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+	// 마커를 표시할 위치와 title 객체 배열입니다 
+	var positions = [ {
+		title : '카카오',
+		latlng : new kakao.maps.LatLng(33.450705, 126.570677)
+	}, {
+		title : '생태연못',
+		latlng : new kakao.maps.LatLng(33.450936, 126.569477)
+	}, {
+		title : '텃밭',
+		latlng : new kakao.maps.LatLng(33.450879, 126.569940)
+	}, {
+		title : '근린공원',
+		latlng : new kakao.maps.LatLng(33.451393, 126.570738)
+	} ];
+
+	// 마커 이미지의 이미지 주소입니다
+	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+	for (var i = 0; i < positions.length; i++) {
+
+		// 마커 이미지의 이미지 크기 입니다
+		var imageSize = new kakao.maps.Size(24, 35);
+
+		// 마커 이미지를 생성합니다    
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+			map : map, // 마커를 표시할 지도
+			position : positions[i].latlng, // 마커를 표시할 위치
+			title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			image : markerImage
+		// 마커 이미지 
+		});
+	}
+</script>
 <title>Insert title here</title>
 
 </head>
 <body>
 	<jsp:include page="common/header.jsp" flush="false" />
-	
+
 	<div class="container">
 		<h1>메인 페이지</h1>
 	</div>
-	<!-- <div class="container">
-		<img alt="" src="resources/img/1.jpg" style="width: 80%;">
-		<img alt="" src="resources/img/2.jpg" style="width: 80%;">
-		<img alt="" src="resources/img/2.jpg" style="width: 80%;">
-		<img alt="" src="resources/img/2.jpg" style="width: 80%;">
-		<img alt="" src="resources/img/2.jpg" style="width: 80%;">
-	</div>
-	
-	
-	
-	Modal
-	<a id="fixedbtn2" class="btn btn-primary mx-1 mt-2 mb-5" data-toggle="modal" href="#reportModal">모달 예시</a>
-	<a id="fixedbtn3" class="btn btn-primary mx-1 mt-2 mb-5" data-toggle="modal" href="#reportModal2">모달 예시2</a>
-	
-	<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog modal-xl">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modal">게시글 상세 보기</h5>
-					<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true"></span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action ="./reportAction.jsp" method="post">
-						<div class="form-group">
-							<label>게시글 사진</label>
-							<textarea name="reportContent" class="form-control" maxlength="2048" style="height: 380px;"></textarea>
-						</div>
-						<div class="form-group">
-							<label>게시글 내용</label>
-							<input type="text" name="reportTitle" class="form-control" maxlength="30">
-						</div>
-						<div class="form-group">
-							<label>#태그</label>
-							<input type="text" name="reportTitle" class="form-control" maxlength="30">
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">수정</button>
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">삭제</button>
-							<button type="submit" class="btn btn-danger">신고</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-		<div class="modal fade" id="reportModal2" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modal">게시글 상세 보기</h5>
-					<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true"></span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action ="./reportAction.jsp" method="post">
-						<div class="form-group">
-							<label>게시글 사진</label>
-							<textarea name="reportContent" class="form-control" maxlength="2048" style="height: 380px;"></textarea>
-						</div>
-						<div class="form-group">
-							<label>게시글 내용</label>
-							<input type="text" name="reportTitle" class="form-control" maxlength="30">
-						</div>
-						<div class="form-group">
-							<label>#태그</label>
-							<input type="text" name="reportTitle" class="form-control" maxlength="30">
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">수정</button>
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">삭제</button>
-							<button type="submit" class="btn btn-danger">신고</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	
-	
-	
+
+	<div id="map" style="width: 500px; height: 400px;"></div>
+
 	<jsp:include page="common/sidebar.jsp" flush="false" />
-	
-	
+
+
 </body>
 </html>
