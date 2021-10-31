@@ -54,5 +54,13 @@ public class WriteDao {
 		sqlSessionTemplate.delete("deleteTag", boardNum);
 	}
 	
+	public void deleteThumbnail(int boardNum) {
+		sqlSessionTemplate.delete("deleteThumbnail", boardNum);
+	}
+	
+	public void deleteFile(int boardNum) {
+		sqlSessionTemplate.delete("deleteFile", boardNum);
+	}
+	
 
 }

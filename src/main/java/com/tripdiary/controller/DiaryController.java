@@ -46,6 +46,13 @@ public class DiaryController {
 	
 	@RequestMapping(value = "/profileUpdate", method = RequestMethod.POST)
 	public String profileUpdate(MultipartHttpServletRequest mpRequest, Model model, int memberNum, String message) throws Exception {
+		
+    	// 상태메세지가 비어있다면 반환
+    	if(message.equals("")) {
+    		model.addAttribute("msg", "상태메세지를 입력해주세요!");
+    		model.addAttribute("url", "/diary?memberNum=");
+    		return "/return/diaryAlert";
+    	}
 		diaryService.profileUpdate(mpRequest, memberNum, message);
 		
 		model.addAttribute("url", "/diary?memberNum=");

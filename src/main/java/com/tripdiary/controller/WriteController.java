@@ -45,7 +45,7 @@ public class WriteController {
     	writeService.write(writeCmd,tagCmd, mpRequest);
     	model.addAttribute("msg", "새로운 일기를 작성하였습니다.");
 		model.addAttribute("url", "/diary?memberNum=");
-		return "/return/writeAlert";
+		return "/return/diaryAlert";
     }
     
 	@RequestMapping(value = "/writeUpdate", method = RequestMethod.GET)
@@ -61,7 +61,7 @@ public class WriteController {
     	writeService.writeUpdate(writeCmd,tagCmd, mpRequest);
     	model.addAttribute("msg", "일기를 수정하였습니다.");
 		model.addAttribute("url", "/diary?memberNum=");
-		return "/return/writeAlert";
+		return "/return/diaryAlert";
     }
     
 }

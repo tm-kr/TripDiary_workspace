@@ -55,6 +55,6 @@ public class DiaryDao {
 	public void profileImgUpdate(Map<String,Object> profileImg) {
 		sqlSessionTemplate.update("profileImgUpdate", profileImg);
 	}
-
+	
 
 }

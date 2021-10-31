@@ -86,5 +86,12 @@
 		delete from tag where board_num = #{boardNum} 
 	</delete>
 
+	<delete id="deleteThumbnail" parameterType="int"> 
+		delete from board_img where board_num = #{boardNum} and main_img = 1
+	</delete>
+	
+	<delete id="deleteFile" parameterType="int"> 
+		delete from board_img where board_num = #{boardNum} and main_img = 0
+	</delete>
 	
  </mapper>

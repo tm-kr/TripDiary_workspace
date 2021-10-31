@@ -104,6 +104,8 @@ public class WriteService {
 		
     	//대표사진 업로드 (if 값이 들어있다면 실행 비어있다면 실행x)
 		if(!mpRequest.getFile("thumbnail").getOriginalFilename().equals("")) {
+		//기존 사진 삭제
+		writeDao.deleteThumbnail(writeCmd.getBoard_num());
 	   	Map<String, Object> thumbnail = null;
 	    thumbnail = thumbnailUtils.parseInsertFileInfo(writeCmd, mpRequest);
 	    writeDao.insertFile(thumbnail);	
@@ -112,6 +114,8 @@ public class WriteService {
     	
 		//추가 사진 업로드 (if 값이 들어있다면 실행 비어있다면 실행x)
 	    if(!mpRequest.getFiles("file").get(0).getOriginalFilename().equals("")) {
+	    	//기존 사진 삭제
+	    	writeDao.deleteFile(writeCmd.getBoard_num());
 			List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(writeCmd, mpRequest);
 			int size = list.size();
 			if(size > 10) {
