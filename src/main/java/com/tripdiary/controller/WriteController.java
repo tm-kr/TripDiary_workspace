@@ -48,4 +48,20 @@ public class WriteController {
 		return "/return/writeAlert";
     }
     
+	@RequestMapping(value = "/writeUpdate", method = RequestMethod.GET)
+	public String writeUpdate(Model model, int boardNum) {
+		model.addAttribute("boardNum", boardNum);
+		model.addAttribute("board", writeService.getBoard(boardNum));
+		model.addAttribute("tag", writeService.getTag(boardNum));
+		return "/writeUpdate";
+	}
+	
+    @RequestMapping(value="/writeUpdate", method=RequestMethod.POST) 
+    public String writeUpdate(MultipartHttpServletRequest mpRequest, WriteCmd writeCmd,TagCmd tagCmd, Model model) throws Exception {
+    	writeService.writeUpdate(writeCmd,tagCmd, mpRequest);
+    	model.addAttribute("msg", "일기를 수정하였습니다.");
+		model.addAttribute("url", "/diary?memberNum=");
+		return "/return/writeAlert";
+    }
+    
 }

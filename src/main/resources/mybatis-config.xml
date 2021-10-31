@@ -11,16 +11,13 @@
 	</settings>
 	
 	<typeAliases>
-<!-- 		<typeAlias alias="memberVO" type="com.board.dto.MemberVO"/>
-		<typeAlias alias="boardVO" type="com.board.dto.BoardVO"/>
-		<typeAlias alias="loginCommand" type="com.board.dto.LoginCommand"/>
-		<typeAlias alias="pageVO" type="com.board.dto.PageVO"/> -->
 		<typeAlias alias="writeCmd" type="com.tripdiary.vo.WriteCmd"/>
 		<typeAlias alias="emblemCmd" type="com.tripdiary.vo.EmblemCmd"/>
 		<typeAlias alias="haveEmblemCmd" type="com.tripdiary.vo.HaveEmblemCmd"/>
 		<typeAlias alias="memberActCmd" type="com.tripdiary.vo.MemberActCmd"/>
 		<typeAlias alias="getEmblemCmd" type="com.tripdiary.vo.GetEmblemCmd"/>
 		<typeAlias alias="profileCmd" type="com.tripdiary.vo.ProfileCmd"/>
+		<typeAlias alias="tagCmd" type="com.tripdiary.vo.TagCmd"/>
 	</typeAliases>
  	
 </configuration>

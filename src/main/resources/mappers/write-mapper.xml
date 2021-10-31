@@ -59,4 +59,32 @@
 		where member_num = #{memberNum}
 	</update>
 	
+	<!-- 게시글 정보 가져오기 -->
+	<select id="getBoard" parameterType="int" resultType="writeCmd">
+		select *
+		from board where board_num = #{boardNum}
+	</select>
+	
+	<!-- 태그 정보 가져오기 -->
+	<select id="getTag" parameterType="int" resultType="String">
+		select 
+		tag
+		from tag where board_num = #{boardNum}
+	</select>
+	
+	<!-- 글 수정하기 -->
+	<update id="writeUpdate" parameterType="writeCmd">
+		update board
+		set 
+			tripdate = #{tripdate},
+			place= #{place},
+			content= #{content}
+		where board_num = #{board_num}
+	</update>
+	
+	<delete id="deleteTag" parameterType="int"> 
+		delete from tag where board_num = #{boardNum} 
+	</delete>
+
+	
  </mapper>

@@ -1,13 +1,13 @@
 package com.tripdiary.dao;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.tripdiary.vo.TagCmd;
 import com.tripdiary.vo.WriteCmd;
 
 @Repository
@@ -36,4 +36,23 @@ public class WriteDao {
 	public void cntUp(int memberNum) {
 		sqlSessionTemplate.update("cntUp", memberNum);
 	}
+	
+	public WriteCmd getBoard(int boardNum) {
+		return sqlSessionTemplate.selectOne("getBoard", boardNum);
+	}
+	
+	public List<TagCmd> getTag(int boardNum){
+		return sqlSessionTemplate.selectList("getTag", boardNum);
+	}
+	
+	public void writeUpdate(WriteCmd writeCmd) {
+		writeCmd.setTripdate(writeCmd.getYear()+"-"+writeCmd.getMonth()+"-"+writeCmd.getDay());
+		sqlSessionTemplate.update("writeUpdate", writeCmd);
+	}
+	
+	public void deleteTag(int boardNum) {
+		sqlSessionTemplate.delete("deleteTag", boardNum);
+	}
+	
+
 }
