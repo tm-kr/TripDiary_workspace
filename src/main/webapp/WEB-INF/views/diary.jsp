@@ -29,7 +29,7 @@
 			<div class="diary_profile_img col-sm-4">
 				<div style="width: 240px; height: 240px; margin: auto;">
 					<a data-toggle="modal" href="#profileUpdateModal"> <img
-						src="<spring:url value='/image/${profile.storeFileName }${profile.fileType }'/> "
+						src="<spring:url value='/image/${profile.storeFileName }'/> "
 						class="border border-secondary rounded-circle image-profile icon2"
 						style="width: 100%;">
 					</a>
@@ -174,7 +174,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form action="./reportAction.jsp" method="post">
+						<form action="/profileUpdate" method="post" enctype="multipart/form-data">
 							<div class="form-group" style="text-align: center;">
 								<label for="thumbnail" class="btn btn-outline-secondary mt-3"
 									id="image_container"> <span class="imgText">프로필
@@ -188,6 +188,7 @@
 							<div class="form-group">
 								<label>상태메세지 수정</label> <input type="text" name="message" value="${profile.message}"
 									class="form-control" maxlength="30">
+								<input type="hidden" name="memberNum" value="${sessionScope.memberNum }"/>
 							</div>
 							<br>
 							<div class="modal-footer">

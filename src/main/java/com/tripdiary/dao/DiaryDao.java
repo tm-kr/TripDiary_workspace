@@ -1,6 +1,7 @@
 package com.tripdiary.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,14 @@ public class DiaryDao {
 	
 	public ProfileCmd getProfile(int memberNum) {
 		return sqlSessionTemplate.selectOne("getProfile", memberNum);
+	}
+	
+	public void profileMessageUpdate(Map<String,Object> profileMessage) {
+		sqlSessionTemplate.update("profileMessageUpdate", profileMessage);
+	}
+	
+	public void profileImgUpdate(Map<String,Object> profileImg) {
+		sqlSessionTemplate.update("profileImgUpdate", profileImg);
 	}
 
 

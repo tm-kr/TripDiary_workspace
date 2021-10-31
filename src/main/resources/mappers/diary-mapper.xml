@@ -49,7 +49,6 @@
 		from board where member_num = #{memberNum}
 	</select>
 
-	<!-- 나중에 날짜 정보를 가진 데이터가 있다면 삭제 -->
 	<select id="getProfile" parameterType="int"
 		resultType="profileCmd">
 		SELECT
@@ -64,7 +63,25 @@
 		INNER JOIN PROFILE_IMG C
 			ON B.MEMBER_NUM = C.MEMBER_NUM
 		WHERE A.MEMBER_NUM = #{memberNum}
-
 	</select>
+	
+	<!-- 프로필 사진 업데이트 -->
+	<update id="profileImgUpdate" parameterType="hashMap">
+		update profile_img
+		set 
+			org_file_name = #{org_file_name},
+			store_file_name= #{store_file_name},
+			file_size= #{file_size},
+			file_type= #{file_type}
+		where member_num = #{member_num}
+	</update>
+	
+	<!-- 프로필 상태메세지 업데이트 -->
+	<update id="profileMessageUpdate" parameterType="hashMap">
+		update profile
+		set 
+			message = #{message}
+		where member_num = #{member_num}
+	</update>
 
 </mapper>
