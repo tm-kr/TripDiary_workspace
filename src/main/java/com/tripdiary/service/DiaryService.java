@@ -13,6 +13,7 @@ import com.tripdiary.util.ProfileUtils;
 import com.tripdiary.vo.EmblemCmd;
 import com.tripdiary.vo.GetEmblemCmd;
 import com.tripdiary.vo.HaveEmblemCmd;
+import com.tripdiary.vo.MapCmd;
 import com.tripdiary.vo.MemberActCmd;
 import com.tripdiary.vo.ProfileCmd;
 
@@ -67,6 +68,10 @@ public class DiaryService {
 		    profileImg = profileUtils.parseInsertFileInfo(memberNum, mpRequest);
 		    diaryDao.profileImgUpdate(profileImg);	
 		}
+	}
+	
+	public List<MapCmd> getMap (int memberNum){
+		return diaryDao.getMap(memberNum);
 	}
 		
 }

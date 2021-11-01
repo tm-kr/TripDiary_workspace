@@ -27,6 +27,7 @@ public class DiaryController {
 	public String diary(Model model, int memberNum) {
 		
 		// 나중에 memblemNum 값을 포함한 다른 cmd 를 보낸다면 지우고 모달 jsp 수정하기!
+		model.addAttribute("mapCmd", diaryService.getMap(memberNum));
 		model.addAttribute("calendar", diaryService.getDate(memberNum));
 		model.addAttribute("profile", diaryService.getProfile(memberNum));
 		model.addAttribute("memberNum", memberNum);

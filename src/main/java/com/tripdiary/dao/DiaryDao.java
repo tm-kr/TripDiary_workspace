@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.tripdiary.vo.EmblemCmd;
 import com.tripdiary.vo.GetEmblemCmd;
 import com.tripdiary.vo.HaveEmblemCmd;
+import com.tripdiary.vo.MapCmd;
 import com.tripdiary.vo.MemberActCmd;
 import com.tripdiary.vo.ProfileCmd;
 
@@ -54,6 +55,10 @@ public class DiaryDao {
 	
 	public void profileImgUpdate(Map<String,Object> profileImg) {
 		sqlSessionTemplate.update("profileImgUpdate", profileImg);
+	}
+	
+	public List<MapCmd> getMap (int memeberNum){
+		return sqlSessionTemplate.selectList("getMap", memeberNum);
 	}
 	
 

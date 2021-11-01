@@ -48,7 +48,7 @@
 						<b>${fn:length(haveEmblem) }</b>
 					</div>
 					<div class="col-4">
-						<a data-toggle="modal" href="#boardModal" onclick="relayout()" > <img class="icon"
+						<a data-toggle="modal" href="#boardModal" onclick="openModal();"> <img class="icon"
 							src="resources/img/icon/board_cnt.png" style="width: 100%;">
 						</a> <br>
 						<br>
@@ -64,7 +64,7 @@
 				</div>
 			</div>
 			<div class="diary_calendar col-sm-5 mb-5">
-				<div id='calendar' style="width: 72%; margin: auto;"></div>
+				<div id='calendar' class="diaryCalendar"></div>
 			</div>
 		</div>
 
@@ -124,11 +124,13 @@
 				</div>
 				<div class="modal-body">
 						<div id="map" style="width: 100%; height: 600px; margin: auto;" ></div>
-						<button onclick="relayout()">relayout 호출하기</button>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal" style="margin: auto;">닫기</button>
+					<div style="margin: auto;">
+						<button type="button" class="btn btn-primary" onclick="relayout()">지도 재호출</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -136,64 +138,62 @@
 
 	<jsp:include page="common/sidebar.jsp" flush="false" />
 	
+	
+	
+	
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d21da3744ebeea9a10c9a6f6aa2244c4"></script>
 	<script>
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-	mapOption = {
-		center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
-		level : 13
-	// 지도의 확대 레벨
-	};
-	// 지도를 생성한다 
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
 	
-	// 마커를 표시할 위치와 title 객체 배열입니다 
-	var positions = [ {
-		latlng : new kakao.maps.LatLng('33.450705', '126.570677')
-	}, {
-		latlng : new kakao.maps.LatLng(33.450936, 126.569477)
-	}, {
-		latlng : new kakao.maps.LatLng(33.450879, 126.569940)
-	}, {
-		latlng : new kakao.maps.LatLng(33.451393, 126.570738)
-	}, {
-		latlng : new kakao.maps.LatLng(36.751393, 127.770738)
-	}, {
-		latlng : new kakao.maps.LatLng(35.951393, 128.870738)
-	}, {
-		latlng : new kakao.maps.LatLng(37.151393, 128.970738)
-	}, ];
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+		mapOption = {
+			center : new kakao.maps.LatLng(38.7083, 124.9358), // 지도의 중심좌표
+			level : 13
+		// 지도의 확대 레벨
+		};
+		// 지도를 생성한다 
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 마커를 표시할 위치와 title 객체 배열입니다 
+		var positions = [
+			<c:forEach var="mapCmd" items="${mapCmd}" varStatus="loop">
+				{
+		  	      latlng : new kakao.maps.LatLng(${mapCmd.markerLat} , ${mapCmd.markerLng})
+		  	    },
+		  	</c:forEach>
+		];
 
-	// 마커 이미지의 이미지 주소입니다
-	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+		// 마커 이미지의 이미지 주소입니다
+		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
-	for (var i = 0; i < positions.length; i++) {
+		for (var i = 0; i < positions.length; i++) {
 
-		// 마커 이미지의 이미지 크기 입니다
-		var imageSize = new kakao.maps.Size(24, 35);
+			// 마커 이미지의 이미지 크기 입니다
+			var imageSize = new kakao.maps.Size(24, 35);
 
-		// 마커 이미지를 생성합니다    
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+			// 마커 이미지를 생성합니다    
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-		// 마커를 생성합니다
-		var marker = new kakao.maps.Marker({
-			map : map, // 마커를 표시할 지도
-			position : positions[i].latlng, // 마커를 표시할 위치
-			title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-			image : markerImage
-		// 마커 이미지 
-		});
+			// 마커를 생성합니다
+			var marker = new kakao.maps.Marker({
+				map : map, // 마커를 표시할 지도
+				position : positions[i].latlng, // 마커를 표시할 위치
+				title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+				image : markerImage
+			// 마커 이미지 
+			});
+		}
+	
+	function openModal(){
+		setTimeout(function (){
+			map.relayout(); 
+			}, 300);
 	}
-	
 	function relayout() {    
-	    
 	    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
 	    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
 	    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-	    map.relayout();
+		map.relayout(); 
 	}
-	
-   
 
 	</script>
 

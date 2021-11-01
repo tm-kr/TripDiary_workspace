@@ -71,7 +71,7 @@
 								id="image_container"> <span class="imgText">프로필
 									사진 수정</span>
 							</label> <input name="profile_img" type="file" id="thumbnail"
-								accept="image/*" onchange="setThumbnail(event);"
+								accept="image/*" onchange="thumbnailHide(); setThumbnail(event);"
 								style="display: none" />
 							<div class="mt-3" id="image_container"></div>
 						</div>
@@ -358,14 +358,19 @@
 	    calendar.render();
 	  });    
 		
-		// 대표사진 미리보기
+		// 프로필 사진 클릭시 이전 이미지 hide
+	    function thumbnailHide() {
+	        $(".board-thumbnail").hide();
+	    }
+		
+		// 프로필 사진 미리보기
 		function setThumbnail(event) {
 			for (var image of event.target.files) {
 				var reader = new FileReader(); 
 				reader.onload = function(event) {
 					var img = document.createElement("img"); 
 					img.setAttribute("src", event.target.result);
-					img.setAttribute("class", "board-thumbnail border border-secondary"); 
+					img.setAttribute("class", "board-thumbnail border border-secondary rounded-circle"); 
 					document.querySelector("div#image_container").appendChild(img); 
 				}; 
 			console.log(image); reader.readAsDataURL(image); 

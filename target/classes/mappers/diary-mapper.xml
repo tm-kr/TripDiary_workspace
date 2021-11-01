@@ -83,5 +83,13 @@
 			message = #{message}
 		where member_num = #{member_num}
 	</update>
+	
+	<select id="getMap" parameterType="int" resultType="mapCmd" >
+		select 
+		marker_lat,
+		marker_lng
+		from map
+		where member_num = #{memberNum}
+	</select>
 
 </mapper>

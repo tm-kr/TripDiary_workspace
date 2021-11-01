@@ -45,8 +45,8 @@
 		<form action="/write" method="post" enctype="multipart/form-data"
 			class="mt-5 mb-5">
 			<div id="clickLatlng" style="display: none"></div>
-				<input type="text" id="lat" name="markerLat" value="0"> 
-				<input type="text" id="lng" name="markerLng" value="0"> 
+				<input type="hidden" id="lat" name="markerLat" value="0"> 
+				<input type="hidden" id="lng" name="markerLng" value="0"> 
 			<div class="writeForm mt-5">
 				<div class="writeSelect row ">	
 					<div class="col-auto mb-5">
@@ -114,14 +114,14 @@
 					id="image_container"> <span class="imgText">대표사진 업로드
 						(최대 1장)</span>
 				</label> <input name="thumbnail" type="file" id="thumbnail" accept="image/*"
-					onchange="setThumbnail(event);" style="display: none" />
+					onchange="thumbnailHide(); setThumbnail(event);" style="display: none" />
 				<div class="mt-3" id="image_container"></div>
 
 				<label for="input-file" class="btn btn-outline-secondary mt-3"
 					id="image_container"> <span class="imgText">추가사진 업로드
 						(최대 10장)</span>
 				</label> <input name="file" type="file" id="input-file" accept="image/*"
-					onchange="setFile(event);" style="display: none"
+					onchange="fileHide(); setFile(event);" style="display: none"
 					multiple="multiple" />
 				<div class="mt-5" id="image_container2"></div>
 				<h6 class="mt-5" style="color: red;">
@@ -414,14 +414,10 @@
 		//지도에 마커를 표시합니다
 		marker.setMap(map);
 		
-	      function check(){
-	    	  document.getElementById("lat").value= lat;
-	       }
+	    function check(){
+	    	document.getElementById("lat").value= lat;
+	    }
 
-	      
-	</script>
-
-	<script>
 		// 국내 선택시 지역선택 설정 가능
 		function disable_select() {
 			$("#select_place").attr("disabled", "disabled");
@@ -430,8 +426,17 @@
 			$("#select_place").removeAttr("disabled", "disabled");
 		}
 		
+		//대표 사진 클릭시 이전 이미지 hide
+	    function thumbnailHide() {
+	        $(".board-thumbnail").hide();
+	    }
+	    function fileHide() {
+	        $(".board-file").hide();
+	    }
+		
 		// 대표사진 미리보기
 		function setThumbnail(event) {
+			  
 			for (var image of event.target.files) {
 				var reader = new FileReader(); 
 				reader.onload = function(event) {
@@ -445,6 +450,10 @@
 		}
 		// 추가사진 미리보기
 		function setFile(event) {
+		     function test() {
+		          $(".board-thumbnail").hide();
+		          $(".board-file").hide();
+		      }
 			for (var image of event.target.files) {
 				var reader = new FileReader(); 
 				reader.onload = function(event) {

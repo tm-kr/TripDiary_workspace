@@ -182,10 +182,11 @@ a:hover {
 	margin-top: 4px;
 }
 /* 여기 까지 */
-.kakaoMap{
-	text-align:left;
+
+
+.diaryCalendar{
+	width: 72%; 
 	margin: auto;
-	width: 55%;
 }
 @media screen and (max-width: 1400px) {
 	.writeForm {
@@ -195,7 +196,10 @@ a:hover {
 	.diary-board-container{
 		padding: 5%;
 	}
-	.kakaoMap{
+	.writeForm{
 		width: 100%;
+	}
+	.diaryCalendar{
+	width: 100%; 
 	}
 }
