@@ -110,4 +110,18 @@
 		delete from board_img where board_num = #{boardNum} and main_img = 0
 	</delete>
 	
+	<select id="getMainImg" parameterType="int" resultType="String">
+		select
+		store_file_name
+		from board_img
+		where board_num = #{boardNum} and main_img = 1
+	</select>
+	
+	<select id="getSubImg" parameterType="int" resultType="String">
+		select
+		store_file_name
+		from board_img
+		where board_num = #{boardNum} and main_img = 0
+	</select>
+	
  </mapper>

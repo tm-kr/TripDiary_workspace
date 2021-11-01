@@ -21,7 +21,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<!-- 상단바 -->
 	<jsp:include page="common/header.jsp" flush="false" />
 
 	<div class="container">
@@ -29,13 +29,13 @@
 			<div class="diary_profile_img col-sm-4">
 				<div style="width: 240px; height: 240px; margin: auto;">
 					<a data-toggle="modal" href="#profileUpdateModal"> <img
-						src="<spring:url value='/image/${profile.storeFileName }'/> "
+						src="<spring:url value='/profile/${profile.storeFileName}'/>"
 						class="border border-secondary rounded-circle image-profile icon2"
 						style="width: 100%;">
 					</a>
 				</div>
-				<h2 class="mt-3">${profile.nickname }</h2>
-				<h6 class="mb-5" style="width: 240px; margin: auto;">${profile.message }</h6>
+				<h2 class="mt-3"><c:out value="${profile.nickname}" /></h2>
+				<h6 class="mb-5" style="width: 240px; margin: auto;"><c:out value="${profile.message}" /></h6>
 
 			</div>
 			<div class="col-sm-3 mt-5 mb-5">
@@ -110,92 +110,9 @@
 
 	<!-- 모달 jsp -->
 	<jsp:include page="common/modal.jsp" flush="false" />
-
-	<div class="modal fade" id="boardModal" tabindex="-1" role="dialog"
-		aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modal">나만의 여행지도</h5>
-					<button type="button" class="btn-close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true"></span>
-					</button>
-				</div>
-				<div class="modal-body">
-						<div id="map" style="width: 100%; height: 600px; margin: auto;" ></div>
-				</div>
-				<div class="modal-footer">
-					<div style="margin: auto;">
-						<button type="button" class="btn btn-primary" onclick="relayout()">지도 재호출</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-
+	
+	<!-- 사이드 바 -->
 	<jsp:include page="common/sidebar.jsp" flush="false" />
-	
-	
-	
-	
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d21da3744ebeea9a10c9a6f6aa2244c4"></script>
-	<script>
-	
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-		mapOption = {
-			center : new kakao.maps.LatLng(38.7083, 124.9358), // 지도의 중심좌표
-			level : 13
-		// 지도의 확대 레벨
-		};
-		// 지도를 생성한다 
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-		
-		// 마커를 표시할 위치와 title 객체 배열입니다 
-		var positions = [
-			<c:forEach var="mapCmd" items="${mapCmd}" varStatus="loop">
-				{
-		  	      latlng : new kakao.maps.LatLng(${mapCmd.markerLat} , ${mapCmd.markerLng})
-		  	    },
-		  	</c:forEach>
-		];
-
-		// 마커 이미지의 이미지 주소입니다
-		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-
-		for (var i = 0; i < positions.length; i++) {
-
-			// 마커 이미지의 이미지 크기 입니다
-			var imageSize = new kakao.maps.Size(24, 35);
-
-			// 마커 이미지를 생성합니다    
-			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-			// 마커를 생성합니다
-			var marker = new kakao.maps.Marker({
-				map : map, // 마커를 표시할 지도
-				position : positions[i].latlng, // 마커를 표시할 위치
-				title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-				image : markerImage
-			// 마커 이미지 
-			});
-		}
-	
-	function openModal(){
-		setTimeout(function (){
-			map.relayout(); 
-			}, 300);
-	}
-	function relayout() {    
-	    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-	    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
-	    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-		map.relayout(); 
-	}
-
-	</script>
 
 </body>
 </html>

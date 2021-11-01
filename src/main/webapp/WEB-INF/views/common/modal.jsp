@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- 엠블럼 모달 -->
+<!-- 첫번째 엠블럼 모달 -->
 <div class="modal fade" id="emblemModal" tabindex="-1" role="dialog"
 	aria-labelledby="modal" aria-hidden="true">
 	<div class="modal-dialog">
@@ -71,14 +71,15 @@
 								id="image_container"> <span class="imgText">프로필
 									사진 수정</span>
 							</label> <input name="profile_img" type="file" id="thumbnail"
-								accept="image/*" onchange="thumbnailHide(); setThumbnail(event);"
+								accept="image/*"
+								onchange="thumbnailHide(); setThumbnail(event);"
 								style="display: none" />
 							<div class="mt-3" id="image_container"></div>
 						</div>
 						<br>
 						<div class="form-group">
 							<label>상태메세지 수정</label> <input type="text" name="message"
-								value="${profile.message}" class="form-control" maxlength="30">
+								value="<c:out value="${profile.message}" />" class="form-control" maxlength="30">
 							<input type="hidden" name="memberNum"
 								value="${sessionScope.memberNum }" />
 						</div>
@@ -120,7 +121,8 @@
 			</div>
 		</div>
 	</c:forEach>
-
+	
+	<!-- 획득하지 못한 엠블럼 모달 -->
 	<c:forEach var="emblem" items="${emblem}" varStatus="loop">
 		<div class="modal fade" id="Emblem${emblem.emblemNum }" tabindex="-1"
 			role="dialog" aria-labelledby="modal" aria-hidden="true">
@@ -313,6 +315,35 @@
 	</c:forEach>
 </c:if>
 
+<!-- 지도 모달 -->
+<div class="modal fade" id="boardModal" tabindex="-1" role="dialog"
+	aria-labelledby="modal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal">나만의 여행지도</h5>
+				<button type="button" class="btn-close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div id="map" style="width: 100%; height: 600px; margin: auto;"></div>
+			</div>
+			<div class="modal-footer">
+				<div style="margin: auto;">
+					<button type="button" class="btn btn-primary" onclick="relayout()">지도
+						재호출</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">닫기</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- pick 모달 -->
 <div class="modal fade" id="pickModal" tabindex="-1" role="dialog"
 	aria-labelledby="modal" aria-hidden="true">
 	<div class="modal-dialog">
@@ -335,7 +366,64 @@
 		</div>
 	</div>
 </div>
-	<script type="text/javascript">
+
+
+<script
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d21da3744ebeea9a10c9a6f6aa2244c4"></script>
+<script type="text/javascript">
+
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+	mapOption = {
+		center : new kakao.maps.LatLng(38.7083, 124.9358), // 지도의 중심좌표
+		level : 13
+	// 지도의 확대 레벨
+	};
+	// 지도를 생성한다 
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	// 마커를 표시할 위치와 title 객체 배열입니다 
+	var positions = [
+		<c:forEach var="mapCmd" items="${mapCmd}" varStatus="loop">
+			{
+	  	      latlng : new kakao.maps.LatLng(${mapCmd.markerLat} , ${mapCmd.markerLng})
+	  	    },
+	  	</c:forEach>
+	];
+
+	// 마커 이미지의 이미지 주소입니다
+	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+	for (var i = 0; i < positions.length; i++) {
+
+		// 마커 이미지의 이미지 크기 입니다
+		var imageSize = new kakao.maps.Size(24, 35);
+
+		// 마커 이미지를 생성합니다    
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+			map : map, // 마커를 표시할 지도
+			position : positions[i].latlng, // 마커를 표시할 위치
+			title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			image : markerImage
+		// 마커 이미지 
+		});
+	}
+
+	function openModal(){
+		setTimeout(function (){
+			map.relayout(); 
+			}, 300);
+	}
+	function relayout() {    
+	    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+	    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+	    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+		map.relayout(); 
+	}
+
+	
 		// 풀캘린더 스크립트 부분
 		var all_events = null;
 		<c:if test="${not empty calendar}">

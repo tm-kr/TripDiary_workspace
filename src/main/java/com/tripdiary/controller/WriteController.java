@@ -60,7 +60,9 @@ public class WriteController {
     		model.addAttribute("msg", "작성자만 수정이 가능합니다.");
     		return "/return/historyback";
     	}
-		
+    	
+		model.addAttribute("mainImg", writeService.getMainImg(boardNum));
+		model.addAttribute("subImg", writeService.getSubImg(boardNum));
 		model.addAttribute("boardNum", boardNum);
 		model.addAttribute("board", board);
 		model.addAttribute("tag", writeService.getTag(boardNum));

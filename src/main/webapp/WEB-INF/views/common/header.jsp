@@ -41,7 +41,7 @@
 					<div>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle " id="dropdown" data-toggle="dropdown">
-								<img alt="" src="<spring:url value='/image/${profile.storeFileName }'/>" class="border rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
+								<img alt="" src="<spring:url value='/profile/${profile.storeFileName }'/>" class="border rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
 							</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown">
 								<a class="dropdown-item" href="myPage">MyPage</a>

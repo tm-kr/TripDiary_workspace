@@ -132,5 +132,12 @@ public class WriteService {
 	    } 
 	}
 	
+	public String getMainImg(int boardNum) {
+		return writeDao.getMainImg(boardNum);
+	}
+	
+	public List<String> getSubImg(int boardNum) {
+		return writeDao.getSubImg(boardNum);
+	}
 	
 }

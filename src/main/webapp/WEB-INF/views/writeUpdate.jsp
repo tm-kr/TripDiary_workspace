@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <html>
 <head>
 <meta charset="UTF-8">
@@ -79,27 +80,35 @@
 				</div>
 				 <h6 class="mt-5" style="color: red;">* 사진 재업로드시 기존 사진들은 삭제됩니다.<br>* 내용 변경만 원한다면 사진 재업로드 버튼을 클릭하지 마세요!</h6>
 				<label for="thumbnail" class="btn btn-outline-secondary mt-3" id="image_container">
-							<span class="imgText">대표사진 재업로드 (최대 1장)</span>
+						<span class="imgText">대표사진 재업로드 (최대 1장)</span>
 				</label>
-				<input name="thumbnail" type="file" id="thumbnail" accept="image/*" onchange="setThumbnail(event);" style="display:none"/>
-				 <div class="mt-3" id="image_container"></div>
+				<input name="thumbnail" type="file" id="thumbnail" accept="image/*" onchange="thumbnailHide(); setThumbnail(event);" style="display:none"/>
+				 <div class="mt-3" id="image_container">
+				 	<img class="board-thumbnail border border-secondary" src="<spring:url value='/thumbnail/${mainImg }'/>">
+				 </div>
 				 
 				<label for="input-file" class="btn btn-outline-secondary mt-3" id="image_container">
-							<span class="imgText">추가사진 재업로드 (최대 10장)</span>
+						<span class="imgText">추가사진 재업로드 (최대 10장)</span>
 				</label>
-				<input name="file" type="file" id="input-file" accept="image/*" onchange="setFile(event);" style="display:none" multiple="multiple"/>
-				 <div class="mt-5" id="image_container2"></div>
+				<input name="file" type="file" id="input-file" accept="image/*" onchange="fileHide(); setFile(event);" style="display:none" multiple="multiple"/>
+				 <div class="mt-5" id="image_container2">
+				 	<c:if test="${not empty subImg }">
+					 	<c:forEach var="subImg" items="${subImg}" varStatus="loop">
+					 		<img src="<spring:url value='/boardImg/${subImg }'/>" class="board-file border border-secondary">
+					 	</c:forEach>
+				 	</c:if>
+				 </div>
 				
 				<!-- 수정사항 업로드시 이미지 관련해서 좀 더 편하게 할 수 있도록 하자! -->
 				
 				<!-- 내용 입력란 -->
-				<textarea class="form-control mt-5 " name="content" id="writeContent">${ board.content}</textarea>
+				<textarea class="form-control mt-5 " name="content" id="writeContent"><c:out value="${board.content}" /></textarea>
 				<!-- 태그 리스트 나오는 곳 -->
 				<ul id="tag-list" class='ulWrite'>
         		</ul>
         		<!-- 태그 입력란 -->
         		<c:forEach var="tag" items="${tag}" varStatus="loop">
-        			<div style="display: inline;">#<input type="text" class="form-control col-auto" name="tag" value="${tag}" style="width: 100px; display: inline; margin: 0.5%;"></div>
+        			<div style="display: inline;">#<input type="text" class="form-control col-auto" name="tag" value="<c:out value="${tag}" />" style="width: 100px; display: inline; margin: 0.5%;"></div>
         		</c:forEach>
         		
 			</div>
@@ -128,6 +137,14 @@
 			$("#select_place").removeAttr("disabled", "disabled");
 		}
 		
+		//대표 사진 클릭시 이전 이미지 hide
+	    function thumbnailHide() {
+	        $(".board-thumbnail").hide();
+	    }
+	    function fileHide() {
+	        $(".board-file").hide();
+	    }
+		
 		// 대표사진 미리보기
 		function setThumbnail(event) {
 			for (var image of event.target.files) {
@@ -135,7 +152,7 @@
 				reader.onload = function(event) {
 					var img = document.createElement("img"); 
 					img.setAttribute("src", event.target.result);
-					img.setAttribute("class", "board-thumbnail border border-secondary"); 
+					img.setAttribute("class", "board-thumbnail border border-secondary");
 					document.querySelector("div#image_container").appendChild(img); 
 				}; 
 			console.log(image); reader.readAsDataURL(image); 

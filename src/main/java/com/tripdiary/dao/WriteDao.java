@@ -67,6 +67,12 @@ public class WriteDao {
 		sqlSessionTemplate.delete("deleteFile", boardNum);
 	}
 	
-
+	public String getMainImg(int boardNum) {
+		return sqlSessionTemplate.selectOne("getMainImg", boardNum);
+	}
+	
+	public List<String> getSubImg(int boardNum) {
+		return sqlSessionTemplate.selectList("getSubImg", boardNum);
+	}
 
 }
