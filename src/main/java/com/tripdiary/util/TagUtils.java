@@ -19,11 +19,11 @@ public class TagUtils {
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null;
 		
-		int num = writeCmd.getBoard_num();
+		int num = writeCmd.getBoardNum();
 		
 		for(int i=0; i<tagCmd.getTag().size(); i++) {
 			listMap = new HashMap<String, Object>();
-			listMap.put("board_num", num);
+			listMap.put("boardNum", num);
 			listMap.put("tag", tagCmd.getTag().get(i));
 			list.add(listMap);
 		}

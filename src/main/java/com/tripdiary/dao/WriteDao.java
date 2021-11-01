@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.tripdiary.vo.MapCmd;
 import com.tripdiary.vo.TagCmd;
 import com.tripdiary.vo.WriteCmd;
 
@@ -33,6 +34,9 @@ public class WriteDao {
 		sqlSessionTemplate.insert("insertTag",tag);
 	}
 	
+	public void insertMap (MapCmd mapCmd) {
+		sqlSessionTemplate.insert("insertMap", mapCmd);
+	}
 	public void cntUp(int memberNum) {
 		sqlSessionTemplate.update("cntUp", memberNum);
 	}
@@ -53,6 +57,7 @@ public class WriteDao {
 	public void deleteTag(int boardNum) {
 		sqlSessionTemplate.delete("deleteTag", boardNum);
 	}
+
 	
 	public void deleteThumbnail(int boardNum) {
 		sqlSessionTemplate.delete("deleteThumbnail", boardNum);
@@ -62,5 +67,6 @@ public class WriteDao {
 		sqlSessionTemplate.delete("deleteFile", boardNum);
 	}
 	
+
 
 }

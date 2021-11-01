@@ -48,7 +48,7 @@
 				</select>
 
 				<h4 class="mt-5">여행 지역</h4>
-				<div class="form-check form-check-inline">
+				<div class="form-check form-check-inline mb-5">
 					<input class="form-check-input" type="radio" name="placeCheck" value="abroad" onclick="disable_select()" <c:if test="${board.place eq 'abroad' }">checked </c:if> >
 					<label class="form-check-label" >해외</label>
 				</div>
@@ -106,9 +106,9 @@
 				
 			<div class="writeButton mt-5">
 				<button type="button" class="btn btn-outline-primary" onclick="history.go(-1)">돌아가기</button>
-				<button type="submit" class="btn btn-primary">작성하기</button>
+				<button type="submit" class="btn btn-primary">수정하기</button>
 			</div>
-			<input type="hidden" name="board_num" value="${boardNum}">
+			<input type="hidden" name="boardNum" value="${boardNum}">
 		</form>
 	</div>
 

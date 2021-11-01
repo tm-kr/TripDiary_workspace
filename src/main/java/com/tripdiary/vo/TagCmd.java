@@ -6,16 +6,16 @@ import org.springframework.stereotype.Component;
 
 public class TagCmd {
 	private List<String> tag;
-	private int board_num;
+	private int boardNum;
 	
 	public TagCmd() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TagCmd(List<String> tag, int board_num) {
+	public TagCmd(List<String> tag, int boardNum) {
 		super();
 		this.tag = tag;
-		this.board_num = board_num;
+		this.boardNum = boardNum;
 	}
 
 	public List<String> getTag() {
@@ -26,12 +26,12 @@ public class TagCmd {
 		this.tag = tag;
 	}
 
-	public int getBoard_num() {
-		return board_num;
+	public int getBoardNum() {
+		return boardNum;
 	}
 
-	public void setBoard_num(int board_num) {
-		this.board_num = board_num;
+	public void setBoardNum(int boardNum) {
+		this.boardNum = boardNum;
 	}
 
 	

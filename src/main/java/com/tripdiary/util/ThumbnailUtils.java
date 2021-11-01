@@ -32,7 +32,7 @@ public class ThumbnailUtils {
 
 		Map<String, Object> listMap = null;
 
-		int num = writeCmd.getBoard_num();
+		int num = writeCmd.getBoardNum();
 
 		File file = new File(filePath);
 		if (file.exists() == false) {

@@ -5,15 +5,15 @@
  <mapper namespace="writeDao">
  	<!-- 게시글 DB 저장 -->
  	<insert id="write" parameterType="writeCmd"
-		useGeneratedKeys="true" keyProperty="board_num">
-		<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
+		useGeneratedKeys="true" keyProperty="boardNum">
+		<selectKey keyProperty="boardNum" resultType="int" order="BEFORE">
 			select
 			board_seq.nextval from dual
 		</selectKey>
 		insert into "BOARD"
 		(board_num, member_num, place, content, regdate, tripdate, td_like_cnt)
 		values
-		(#{board_num}, #{member_num}, #{place}, #{content}, SYSDATE, #{tripdate}, 0)
+		(#{boardNum}, #{memberNum}, #{place}, #{content}, SYSDATE, #{tripdate}, 0)
 	</insert>
 	
 	<!-- 첨부파일 DB 저장 -->
@@ -47,8 +47,24 @@
 		)
 		values(
 		tag_seq.nextval,
-		#{board_num},
+		#{boardNum},
 		#{tag}
+		)
+	</insert>
+	
+	<!-- 맵 위도 경도 DB저장 -->
+	<insert id="insertMap" parameterType="mapCmd">
+		insert into map(
+		map_num,
+		member_num,
+		marker_lat,
+		marker_lng
+		)
+		values(
+		map_seq.nextval,
+		#{memberNum},
+		#{markerLat},
+		#{markerLng}
 		)
 	</insert>
 	
@@ -79,7 +95,7 @@
 			tripdate = #{tripdate},
 			place= #{place},
 			content= #{content}
-		where board_num = #{board_num}
+		where board_num = #{boardNum}
 	</update>
 	
 	<delete id="deleteTag" parameterType="int"> 

@@ -18,6 +18,7 @@
 		<typeAlias alias="getEmblemCmd" type="com.tripdiary.vo.GetEmblemCmd"/>
 		<typeAlias alias="profileCmd" type="com.tripdiary.vo.ProfileCmd"/>
 		<typeAlias alias="tagCmd" type="com.tripdiary.vo.TagCmd"/>
+		<typeAlias alias="mapCmd" type="com.tripdiary.vo.MapCmd"/>
 	</typeAliases>
  	
 </configuration>

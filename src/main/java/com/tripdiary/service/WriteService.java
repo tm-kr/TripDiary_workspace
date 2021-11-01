@@ -11,6 +11,7 @@ import com.tripdiary.dao.WriteDao;
 import com.tripdiary.util.FileUtils;
 import com.tripdiary.util.TagUtils;
 import com.tripdiary.util.ThumbnailUtils;
+import com.tripdiary.vo.MapCmd;
 import com.tripdiary.vo.TagCmd;
 import com.tripdiary.vo.WriteCmd;
 
@@ -30,12 +31,16 @@ public class WriteService {
 		this.tagUtils = tagUtils;
 	}
 	
-	public void write(WriteCmd writeCmd,TagCmd tagCmd, MultipartHttpServletRequest mpRequest) throws Exception {
+	public void write(WriteCmd writeCmd,TagCmd tagCmd, MapCmd mapCmd, MultipartHttpServletRequest mpRequest) throws Exception {
 		//글작성
 		if(writeCmd.getPlaceCheck().equals("abroad")) {
 			writeCmd.setPlace("abroad");
 		}
 		writeDao.write(writeCmd);
+		
+		if(mapCmd.getMarkerLat() != 0) {
+			writeDao.insertMap(mapCmd);
+		}
 		
 		//태그등록
 		if(tagCmd.getTag() != null) {
@@ -70,7 +75,7 @@ public class WriteService {
 	    }
 	    
 	    //회원 활동 글작성 카운트 +1
-	    writeDao.cntUp(writeCmd.getMember_num());
+	    writeDao.cntUp(writeCmd.getMemberNum());
 	}
 	
 	public WriteCmd getBoard(int boardNum) {
@@ -89,7 +94,7 @@ public class WriteService {
 		writeDao.writeUpdate(writeCmd);
 		
 		//기존 태그 삭제
-		writeDao.deleteTag(writeCmd.getBoard_num());
+		writeDao.deleteTag(writeCmd.getBoardNum());
 		//태그 재등록
 		if(tagCmd.getTag() != null) {
 		List<Map<String,Object>> tag = tagUtils.tagList(writeCmd, tagCmd);
@@ -105,7 +110,7 @@ public class WriteService {
     	//대표사진 업로드 (if 값이 들어있다면 실행 비어있다면 실행x)
 		if(!mpRequest.getFile("thumbnail").getOriginalFilename().equals("")) {
 		//기존 사진 삭제
-		writeDao.deleteThumbnail(writeCmd.getBoard_num());
+		writeDao.deleteThumbnail(writeCmd.getBoardNum());
 	   	Map<String, Object> thumbnail = null;
 	    thumbnail = thumbnailUtils.parseInsertFileInfo(writeCmd, mpRequest);
 	    writeDao.insertFile(thumbnail);	
@@ -115,7 +120,7 @@ public class WriteService {
 		//추가 사진 업로드 (if 값이 들어있다면 실행 비어있다면 실행x)
 	    if(!mpRequest.getFiles("file").get(0).getOriginalFilename().equals("")) {
 	    	//기존 사진 삭제
-	    	writeDao.deleteFile(writeCmd.getBoard_num());
+	    	writeDao.deleteFile(writeCmd.getBoardNum());
 			List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(writeCmd, mpRequest);
 			int size = list.size();
 			if(size > 10) {

@@ -94,10 +94,11 @@ a:hover {
 
 .writeForm {
 	margin: auto;
-	width: 50%;
+	width: 55%;
 }
 
 .writeSelect {
+	border-bottom: 1px solid #ced4da;
 	text-align: left;
 }
 
@@ -181,7 +182,11 @@ a:hover {
 	margin-top: 4px;
 }
 /* 여기 까지 */
-
+.kakaoMap{
+	text-align:left;
+	margin: auto;
+	width: 55%;
+}
 @media screen and (max-width: 1400px) {
 	.writeForm {
 		margin: auto;
@@ -189,5 +194,8 @@ a:hover {
 	}
 	.diary-board-container{
 		padding: 5%;
+	}
+	.kakaoMap{
+		width: 100%;
 	}
 }

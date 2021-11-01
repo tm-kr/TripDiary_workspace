@@ -3,8 +3,8 @@ package com.tripdiary.vo;
 import java.sql.Timestamp;
 
 public class WriteCmd {
-	private int board_num;
-	private int member_num;
+	private int boardNum;
+	private int memberNum;
 	private String placeCheck;
 	private String place;
 	private String content;
@@ -19,11 +19,11 @@ public class WriteCmd {
 		// TODO Auto-generated constructor stub
 	}
 
-	public WriteCmd(int board_num, int member_num,String placeCheck, String place, String content, Timestamp regdate, String year, String month,
-			String day, String tripdate, int td_like_cnt) {
+	public WriteCmd(int boardNum, int memberNum, String placeCheck, String place, String content, Timestamp regdate,
+			String year, String month, String day, String tripdate, int td_like_cnt) {
 		super();
-		this.board_num = board_num;
-		this.member_num = member_num;
+		this.boardNum = boardNum;
+		this.memberNum = memberNum;
 		this.placeCheck = placeCheck;
 		this.place = place;
 		this.content = content;
@@ -35,6 +35,24 @@ public class WriteCmd {
 		this.td_like_cnt = td_like_cnt;
 	}
 
+	public int getBoardNum() {
+		return boardNum;
+	}
+
+	public void setBoardNum(int boardNum) {
+		this.boardNum = boardNum;
+	}
+
+	public int getMemberNum() {
+		return memberNum;
+	}
+
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
+	}
+
+
+
 
 
 	public String getPlaceCheck() {
@@ -43,22 +61,6 @@ public class WriteCmd {
 
 	public void setPlaceCheck(String placeCheck) {
 		this.placeCheck = placeCheck;
-	}
-
-	public int getBoard_num() {
-		return board_num;
-	}
-
-	public void setBoard_num(int board_num) {
-		this.board_num = board_num;
-	}
-
-	public int getMember_num() {
-		return member_num;
-	}
-
-	public void setMember_num(int member_num) {
-		this.member_num = member_num;
 	}
 
 	public String getPlace() {

@@ -35,7 +35,7 @@ public class FileUtils {
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null;
 		
-		int num = writeCmd.getBoard_num();
+		int num = writeCmd.getBoardNum();
 		
 		File file = new File(filePath);
 		if(file.exists() == false) {
