@@ -48,7 +48,7 @@ public class FileUtils {
 				// 원본 이름
 				originalFileName = multipartFile.getOriginalFilename();
 				// 파일 확장자
-				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf(".")+1);
 				// 저장될 파일 이름
 				storedFileName = getRandomString() + originalFileExtension;
 				file = new File(filePath + storedFileName);

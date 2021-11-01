@@ -82,7 +82,7 @@
 				<label for="thumbnail" class="btn btn-outline-secondary mt-3" id="image_container">
 						<span class="imgText">대표사진 재업로드 (최대 1장)</span>
 				</label>
-				<input name="thumbnail" type="file" id="thumbnail" accept="image/*" onchange="thumbnailHide(); setThumbnail(event);" style="display:none"/>
+				<input name="thumbnail" type="file" id="thumbnail" accept="image/*" onchange="checkImg(); thumbnailHide(); setThumbnail(event);" style="display:none"/>
 				 <div class="mt-3" id="image_container">
 				 	<img class="board-thumbnail border border-secondary" src="<spring:url value='/thumbnail/${mainImg }'/>">
 				 </div>
@@ -90,7 +90,7 @@
 				<label for="input-file" class="btn btn-outline-secondary mt-3" id="image_container">
 						<span class="imgText">추가사진 재업로드 (최대 10장)</span>
 				</label>
-				<input name="file" type="file" id="input-file" accept="image/*" onchange="fileHide(); setFile(event);" style="display:none" multiple="multiple"/>
+				<input name="file" type="file" id="input-file" accept="image/*" onchange="checkImg2(); fileHide(); setFile(event);" style="display:none" multiple="multiple"/>
 				 <div class="mt-5" id="image_container2">
 				 	<c:if test="${not empty subImg }">
 					 	<c:forEach var="subImg" items="${subImg}" varStatus="loop">
@@ -143,6 +143,45 @@
 	    }
 	    function fileHide() {
 	        $(".board-file").hide();
+	    }
+	    
+	    // 썸네일 이미지 파일 체크
+	    function checkImg(){
+	    	var imgFile = $('#thumbnail').val();
+	    	var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf|JPG|JPEG|PNG|GIF|BMP|PDF)$/;
+	    	var maxSize = 5 * 1024 * 1024 * 8;
+	    	var fileSize;
+
+	    	if(imgFile != "" && imgFile != null) {
+	    		fileSize = document.getElementById("thumbnail").files[0].size;
+	    	    
+	    	    if(!imgFile.match(fileForm)) {
+	    	    	alert("이미지 파일만 업로드 가능");
+	    	        return false;
+	    	    } else if(fileSize > maxSize) {
+	    	    	alert("파일 사이즈는 5MB까지 가능");
+	    	        return false;
+	    	    }
+	    	}
+	    }
+	    // 이미지 파일 체크
+	    function checkImg2(){
+	    	var imgFile = $('#input-file').val();
+	    	var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf|JPG|JPEG|PNG|GIF|BMP|PDF)$/;
+	    	var maxSize = 5 * 1024 * 1024 * 8;
+	    	var fileSize;
+
+	    	if(imgFile != "" && imgFile != null) {
+	    		fileSize = document.getElementById("input-file").files[0].size;
+	    	    
+	    	    if(!imgFile.match(fileForm)) {
+	    	    	alert("이미지 파일만 업로드 가능");
+	    	        return false;
+	    	    } else if(fileSize > maxSize) {
+	    	    	alert("파일 사이즈는 5MB까지 가능");
+	    	        return false;
+	    	    }
+	    	}
 	    }
 		
 		// 대표사진 미리보기

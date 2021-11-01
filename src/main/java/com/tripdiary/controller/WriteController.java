@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tripdiary.service.WriteService;
+import com.tripdiary.util.CheckUtils;
 import com.tripdiary.vo.MapCmd;
 import com.tripdiary.vo.TagCmd;
 import com.tripdiary.vo.WriteCmd;
@@ -20,10 +21,12 @@ import com.tripdiary.vo.WriteCmd;
 public class WriteController {
 	
 	private WriteService writeService;
+	private CheckUtils checkUtils;
 	
 	@Autowired
-	public WriteController(WriteService writeService) {
+	public WriteController(WriteService writeService, CheckUtils checkUtils) {
 		this.writeService = writeService;
+		this.checkUtils = checkUtils;
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
@@ -38,7 +41,12 @@ public class WriteController {
 	
     @RequestMapping(value="/write", method=RequestMethod.POST) 
     public String write(WriteCmd writeCmd,TagCmd tagCmd, MapCmd mapCmd, Model model, MultipartHttpServletRequest mpRequest) throws Exception {
-    	System.out.println(mapCmd.getMemberNum());
+    	// 이미지파일 확장자 및 용량검사
+       	if(checkUtils.check(mpRequest)) {
+    		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
+    		model.addAttribute("url", "/diary?memberNum=");
+    		return "/return/diaryAlert";
+    	}
     	//대표 사진이 없다면 재요청
     	if(mpRequest.getFile("thumbnail").getOriginalFilename().equals("")) {
     		model.addAttribute("msg", "대표 사진을 등록해주세요.");
@@ -71,6 +79,12 @@ public class WriteController {
 	
     @RequestMapping(value="/writeUpdate", method=RequestMethod.POST) 
     public String writeUpdate(MultipartHttpServletRequest mpRequest, WriteCmd writeCmd,TagCmd tagCmd, Model model) throws Exception {
+    	// 이미지파일 확장자 및 용량검사
+    	if(checkUtils.check(mpRequest)) {
+    		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
+    		model.addAttribute("url", "/diary?memberNum=");
+    		return "/return/diaryAlert";
+    	}
     	writeService.writeUpdate(writeCmd,tagCmd, mpRequest);
     	model.addAttribute("msg", "일기를 수정하였습니다.");
 		model.addAttribute("url", "/diary?memberNum=");

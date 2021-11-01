@@ -114,21 +114,22 @@
 					id="image_container"> <span class="imgText">대표사진 업로드
 						(최대 1장)</span>
 				</label> <input name="thumbnail" type="file" id="thumbnail" accept="image/*"
-					onchange="thumbnailHide(); setThumbnail(event);" style="display: none" />
-				<div class="mt-3" id="image_container"></div>
+					onchange="checkImg(); thumbnailHide(); setThumbnail(event);" style="display: none" />
+				<div class="mt-3" id="image_container"></div> 
 
 				<label for="input-file" class="btn btn-outline-secondary mt-3"
 					id="image_container"> <span class="imgText">추가사진 업로드
 						(최대 10장)</span>
 				</label> <input name="file" type="file" id="input-file" accept="image/*"
-					onchange="fileHide(); setFile(event);" style="display: none"
+					onchange="checkImg2(); fileHide(); setFile(event);" style="display: none"
 					multiple="multiple" />
 				<div class="mt-5" id="image_container2"></div>
 				<h6 class="mt-5" style="color: red;">
 					* 등록할 사진을 한번에 클릭해 업로드 해주십시오.<br>* 버튼을 재클릭시 이전에 업로드한 사진은 등록되지
 					않습니다.
 				</h6>
-				<!-- 수정사항 업로드시 이미지 관련해서 좀 더 편하게 할 수 있도록 하자! -->
+				
+				
 
 				<!-- 내용 입력란 -->
 				<textarea class="form-control mt-5 "
@@ -145,7 +146,7 @@
 			<div class="writeButton">
 				<button type="button" class="btn btn-outline-primary"
 					onclick="history.go(-1)">돌아가기</button>
-				<button type="submit" class="btn btn-primary">작성하기</button>
+				<button type="submit" class="btn btn-primary" onsubmit="checkImg();">작성하기</button>
 			</div>
 			<input type="hidden" name="memberNum" value="${memberNum}">
 		</form>
@@ -427,13 +428,52 @@
 		}
 		
 		//대표 사진 클릭시 이전 이미지 hide
-	    function thumbnailHide() {
+ 	    function thumbnailHide() {
 	        $(".board-thumbnail").hide();
-	    }
+	    } 
 	    function fileHide() {
 	        $(".board-file").hide();
 	    }
 		
+	    // 썸네일 이미지 파일 체크
+	    function checkImg(){
+	    	var imgFile = $('#thumbnail').val();
+	    	var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf|JPG|JPEG|PNG|GIF|BMP|PDF)$/;
+	    	var maxSize = 5 * 1024 * 1024 * 8;
+	    	var fileSize;
+
+	    	if(imgFile != "" && imgFile != null) {
+	    		fileSize = document.getElementById("thumbnail").files[0].size;
+	    	    
+	    	    if(!imgFile.match(fileForm)) {
+	    	    	alert("이미지 파일만 업로드 가능");
+	    	        return false;
+	    	    } else if(fileSize > maxSize) {
+	    	    	alert("파일 사이즈는 5MB까지 가능");
+	    	        return false;
+	    	    }
+	    	}
+	    }
+	    // 이미지 파일 체크
+	    function checkImg2(){
+	    	var imgFile = $('#input-file').val();
+	    	var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf|JPG|JPEG|PNG|GIF|BMP|PDF)$/;
+	    	var maxSize = 5 * 1024 * 1024 * 8;
+	    	var fileSize;
+
+	    	if(imgFile != "" && imgFile != null) {
+	    		fileSize = document.getElementById("input-file").files[0].size;
+	    	    
+	    	    if(!imgFile.match(fileForm)) {
+	    	    	alert("이미지 파일만 업로드 가능");
+	    	        return false;
+	    	    } else if(fileSize > maxSize) {
+	    	    	alert("파일 사이즈는 5MB까지 가능");
+	    	        return false;
+	    	    }
+	    	}
+	    }
+	    
 		// 대표사진 미리보기
 		function setThumbnail(event) {
 			  
@@ -447,7 +487,7 @@
 				}; 
 			console.log(image); reader.readAsDataURL(image); 
 			} 
-		}
+		} 
 		// 추가사진 미리보기
 		function setFile(event) {
 		     function test() {

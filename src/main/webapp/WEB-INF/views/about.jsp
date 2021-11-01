@@ -222,8 +222,6 @@
 		</div>
 	</div>
 	<div id="clickLatlng" style="display: none"></div>
-			<input type="text" id="lat" name="lat" value="">
-			<input type="text" id="lng" name="lng" value="">	
 	
 
 	<script type="text/javascript"
