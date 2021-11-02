@@ -18,6 +18,7 @@ import com.tripdiary.vo.MapCmd;
 import com.tripdiary.vo.MemberActCmd;
 import com.tripdiary.vo.PageVO;
 import com.tripdiary.vo.ProfileCmd;
+import com.tripdiary.vo.TagCmd;
 
 @Service
 public class DiaryService {
@@ -80,8 +81,13 @@ public class DiaryService {
 		return diaryDao.getArticleCount(memberNum);
 	}
 	
-	public List<BoardListVO> getBoardList(PageVO pageVO){
-		return diaryDao.getBoardList(pageVO);
+	public List<BoardListVO> getBoardList(PageVO pageVO) throws Exception{
+		List<BoardListVO> boardList = diaryDao.getBoardList(pageVO);
+		for(int i=0; i<boardList.size(); i++) {
+			boardList.get(i).setTag(diaryDao.getTag(boardList.get(i).getBoardNum()));
+		}
+		
+		return boardList;
 	}
 	
 	

@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/writeStyle.css" />
 <link rel="stylesheet" href="/resources/css/mapStyle.css" />
-<title>Insert title here</title>
+<title>TripDiary</title>
 </head>
 <body>
 	<jsp:include page="common/header.jsp" flush="false" />

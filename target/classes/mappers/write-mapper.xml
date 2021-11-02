@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="writeDao">
+ <mapper namespace="com.tripdiary.dao.writeDao">
  	<!-- 게시글 DB 저장 -->
  	<insert id="write" parameterType="writeCmd"
 		useGeneratedKeys="true" keyProperty="boardNum">
@@ -56,12 +56,14 @@
 	<insert id="insertMap" parameterType="mapCmd">
 		insert into map(
 		map_num,
+		board_num,
 		member_num,
 		marker_lat,
 		marker_lng
 		)
 		values(
 		map_seq.nextval,
+		#{boardNum},
 		#{memberNum},
 		#{markerLat},
 		#{markerLng}
@@ -85,7 +87,7 @@
 	<select id="getTag" parameterType="int" resultType="String">
 		select 
 		tag
-		from tag where board_num = #{boardNum}
+		from tag where board_num = #{boardNum} order by tag_num asc
 	</select>
 	
 	<!-- 글 수정하기 -->

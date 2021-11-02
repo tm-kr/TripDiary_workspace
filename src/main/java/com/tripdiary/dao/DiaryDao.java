@@ -15,6 +15,7 @@ import com.tripdiary.vo.MapCmd;
 import com.tripdiary.vo.MemberActCmd;
 import com.tripdiary.vo.PageVO;
 import com.tripdiary.vo.ProfileCmd;
+import com.tripdiary.vo.TagCmd;
 
 @Repository
 public class DiaryDao {
@@ -63,6 +64,10 @@ public class DiaryDao {
 		return sqlSessionTemplate.selectList("getMap", memeberNum);
 	}
 	
+	public List<String> getTag(int boardNum){
+		return sqlSessionTemplate.selectList("getTag", boardNum);
+	}
+	
 	public int getArticleCount(int memberNum) {
 		return sqlSessionTemplate.selectOne("getArticleCount", memberNum);
 	}
@@ -70,6 +75,7 @@ public class DiaryDao {
 	public List<BoardListVO> getBoardList(PageVO pageVO){
 		return sqlSessionTemplate.selectList("getBoardList", pageVO);
 	}
+
 	
 
 }

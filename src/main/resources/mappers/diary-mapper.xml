@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="diaryDao">
+<mapper namespace="com.tripdiary.dao.diaryDao">
 
 	<select id="selectEmblem" resultType="emblemCmd">
 		select
@@ -104,6 +104,7 @@
 	<![CDATA[
 		select * from (select rownum rnum, board.* from
 		(select
+			A.board_num,
 			A.tripdate,
 			A.td_like_cnt,
 			B.store_file_name AS board_file_name,
@@ -119,6 +120,11 @@
 		where A.member_num = #{memberNum} order by tripdate desc) board)
 		where rnum >= #{first} and rnum <= #{second}
 	]]>
+	</select>
+	
+	<select id="getTagList" parameterType="int" resultType="String">
+		select tag
+		from tag where board_num = #{boardNum} order by tag_num asc
 	</select>
 	
 </mapper>

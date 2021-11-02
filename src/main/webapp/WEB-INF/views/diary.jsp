@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/css/style.css" />
-<title>Insert title here</title>
+<title>TripDiary</title>
 </head>
 <body>
 	<!-- 상단바 -->
@@ -95,15 +96,45 @@
 
 					<!-- 하단 정보부분 -->
 					<div class="board-bottom mt-5 mb-3">
-						<div>여행날짜 : ${board.tripdate }</div>
+						<div>여행날짜 : ${fn:substring(board.tripdate,0,10) }</div>
 						<div>좋아요 ${board.tdLikeCnt }개</div>
-						<div>#첫게시물 #여행가기좋은날 #시작!
+						<div>
+							<c:forEach items="${board.tag }" var="tag" varStatus="loop">
+								<a href="#" style="color: #2883f3">#${tag }&nbsp;</a>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 			</div>
 		</c:forEach>
 		</div>
+		
+		<c:if test="${empty diaryBoardList}">
+			<img class="mb-5" alt=""src="resources/img/icon/nosearch.png">
+		</c:if>
+		<c:if test="${not empty diaryBoardList}">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination pagination-lg mb-5" style="justify-content: center;">
+					<li class="page-item"><a class="page-link"
+						href="diary?memberNum=${profile.memberNum }&pageNum=${page.startPage + 2 - page.countPage}"
+						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+					</a></li>
+
+					<c:forEach var="i" begin="${page.startPage }"
+						end="${page.endPage }">
+						<li class="page-item <c:if test="${ page.currentPage eq i}">active</c:if> "><a class="page-link"
+							href="diary?memberNum=${profile.memberNum }&pageNum=${i}">${i}</a></li>
+					</c:forEach>
+
+					<c:if test="${page.block > page.endPage}">
+						<li class="page-item"><a class="page-link"
+							href="diary?memberNum=${profile.memberNum }&pageNum=${page.startPage + page.countPage}"
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:if>
+				</ul>
+			</nav>
+		</c:if>
 	</div>
 		
 		

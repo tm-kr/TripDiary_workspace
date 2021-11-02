@@ -78,16 +78,16 @@ public class WriteController {
 	
     @RequestMapping(value="/writeUpdate", method=RequestMethod.POST) 
     public String writeUpdate(MultipartHttpServletRequest mpRequest, WriteCmd writeCmd,TagCmd tagCmd, Model model) throws Exception {
-    	//대표 사진이 없다면 재요청
-    	if(mpRequest.getFile("thumbnail").getOriginalFilename().equals("")) {
-    		model.addAttribute("msg", "대표 사진을 등록해주세요.");
-    		return "/return/historyback";
+    	
+    	// 업로드시 이미지 업로드 유무 검사
+    	if(!mpRequest.getFiles("file").get(0).getOriginalFilename().equals("") && mpRequest.getFile("thumbnail").getOriginalFilename().equals("")) {
+	    	// 이미지파일 확장자 및 용량검사
+	       	if(checkUtils.check(mpRequest) == false) {
+	    		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
+	    		return "/return/historyback";
+	    	}
     	}
-    	// 이미지파일 확장자 및 용량검사
-       	if(checkUtils.check(mpRequest) == false) {
-    		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
-    		return "/return/historyback";
-    	}
+    	
     	writeService.writeUpdate(writeCmd,tagCmd, mpRequest);
     	model.addAttribute("msg", "일기를 수정하였습니다.");
 		model.addAttribute("url", "/diary?memberNum=");

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>키워드로 장소검색하고 목록으로 표출하기</title>
+<title>TripDiary</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"

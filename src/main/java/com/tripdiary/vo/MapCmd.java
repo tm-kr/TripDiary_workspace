@@ -2,18 +2,28 @@ package com.tripdiary.vo;
 
 public class MapCmd {
 	private int memberNum;
+	private int boardNum;
 	private double markerLng;
 	private double markerLat;
 	
 	public MapCmd() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public MapCmd(int memberNum, double markerLng, double markerLat) {
+
+	public MapCmd(int memberNum, int boardNum, double markerLng, double markerLat) {
 		super();
 		this.memberNum = memberNum;
+		this.boardNum = boardNum;
 		this.markerLng = markerLng;
 		this.markerLat = markerLat;
+	}
+
+	public int getBoardNum() {
+		return boardNum;
+	}
+
+	public void setBoardNum(int boardNum) {
+		this.boardNum = boardNum;
 	}
 
 	public int getMemberNum() {

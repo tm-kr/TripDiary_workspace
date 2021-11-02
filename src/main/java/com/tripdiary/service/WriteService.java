@@ -38,7 +38,9 @@ public class WriteService {
 		}
 		writeDao.write(writeCmd);
 		
+		//¸Ê ÁÂÇ¥ µî·Ï
 		if(mapCmd.getMarkerLat() != 0) {
+			mapCmd.setBoardNum(writeCmd.getBoardNum());
 			writeDao.insertMap(mapCmd);
 		}
 		

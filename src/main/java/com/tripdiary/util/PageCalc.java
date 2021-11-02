@@ -30,18 +30,18 @@ public class PageCalc {
 		if(articleCount % countList != 0) {
 			block++;
 		}
-		if(currentPage <=0 ) {
+		if(currentPage <= 0 ) {
 			currentPage = 1;
 		}
 		if(currentPage > block) {
-			currentPage -= 3;
+			currentPage -= countPage;
 		}
 		int startPage = (currentPage-1) / countPage * countPage + 1; // 시작 페이지
 		int endPage = startPage + countPage - 1; // 끝 페이지
 		if (endPage > block) {
 			endPage = block;
 		}
-		int first = currentPage*countList - 8; //fist 부터 second 까지의 게시물을 보여준다
+		int first = currentPage*countList - countList + 1; //fist 부터 second 까지의 게시물을 보여준다
 		int second = currentPage*countList; //	ex) 1~5 번 게시물 보이기
 		
 		

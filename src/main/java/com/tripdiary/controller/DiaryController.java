@@ -28,7 +28,7 @@ public class DiaryController {
 
 	
 	@RequestMapping(value = "/diary", method = RequestMethod.GET)
-	public String diary(Model model, int memberNum, String pageNum) {
+	public String diary(Model model, int memberNum, String pageNum) throws Exception {
 		int currentPage = 1;
 		int articleCount = diaryService.getArticleCount(memberNum);
 		if (pageNum != null) {
@@ -37,7 +37,6 @@ public class DiaryController {
 	    pageVO = pageCalc.pageCalc(currentPage, articleCount);
 	    pageVO.setMemberNum(memberNum);
 		
-		// 나중에 memblemNum 값을 포함한 다른 cmd 를 보낸다면 지우고 모달 jsp 수정하기!
 		model.addAttribute("diaryBoardList", diaryService.getBoardList(pageVO));
 		model.addAttribute("page",pageVO);
 		model.addAttribute("mapCmd", diaryService.getMap(memberNum));
