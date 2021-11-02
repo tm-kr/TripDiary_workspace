@@ -70,15 +70,15 @@
 
 		<!-- 전체 게시물 부분  -->
 		<div class="diary-mid row mt-5 mb-5">
-			<!-- 게시물 1개 부분 이 주석 밑부분 부터 반복문 실행-->
+		<c:forEach var="board" items="${diaryBoardList }" varStatus="loop">
 			<div class="col-lg-4 diary-board-container">
 				<div class="border border-secondary p-3 icon2">
 					<div class="board-top">
 						<div style="float: left;">
 							<!-- 프로필 이미지와 닉네임 -->
-							<img alt="" src="resources/img/sample.png"
+							<img alt="" src="<spring:url value='/profile/${board.profileFileName}'/>"
 								class="border rounded-circle"
-								style="width: 50px; height: 50px; object-fit: cover;"> 닉네임2
+								style="width: 50px; height: 50px; object-fit: cover;"> ${board.nickname }
 						</div>
 						<!-- pick 이미지 -->
 						<div style="float: right; display: inline-block;" class="">
@@ -90,21 +90,23 @@
 					<!-- 썸네일 이미지 -->
 					<div class="board-mid">
 						<img class="image-thumbnail border border-secondary mt-3"
-							src="resources/img/sample1.png" style="width: 100%;">
+							src="<spring:url value='/thumbnail/${board.boardFileName}'/>" style="width: 100%;">
 					</div>
 
 					<!-- 하단 정보부분 -->
 					<div class="board-bottom mt-5 mb-3">
-						<div>여행날짜 : 2021년 8월 4일</div>
-						<div>좋아요 8개</div>
-						<div>#첫게시물 #여행가기좋은날 #시작! #첫게시물 #여행가기좋은날 #시작! #첫게시물 #여행가기좋은날
-							#시작! #첫게시물 #여행가기좋은날 #시작! #첫게시물 #여행가기좋은날 #시작! #첫게시물 #여행가기좋은날 #시작!
+						<div>여행날짜 : ${board.tripdate }</div>
+						<div>좋아요 ${board.tdLikeCnt }개</div>
+						<div>#첫게시물 #여행가기좋은날 #시작!
 						</div>
 					</div>
 				</div>
 			</div>
+		</c:forEach>
 		</div>
 	</div>
+		
+		
 
 
 

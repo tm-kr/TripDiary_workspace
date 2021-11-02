@@ -19,6 +19,9 @@
 		<typeAlias alias="profileCmd" type="com.tripdiary.vo.ProfileCmd"/>
 		<typeAlias alias="tagCmd" type="com.tripdiary.vo.TagCmd"/>
 		<typeAlias alias="mapCmd" type="com.tripdiary.vo.MapCmd"/>
+		<typeAlias alias="pageVO" type="com.tripdiary.vo.PageVO"/>
+		<typeAlias alias="boardListVO" type="com.tripdiary.vo.BoardListVO"/>
+
 	</typeAliases>
  	
 </configuration>

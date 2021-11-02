@@ -10,11 +10,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tripdiary.dao.DiaryDao;
 import com.tripdiary.util.ProfileUtils;
+import com.tripdiary.vo.BoardListVO;
 import com.tripdiary.vo.EmblemCmd;
 import com.tripdiary.vo.GetEmblemCmd;
 import com.tripdiary.vo.HaveEmblemCmd;
 import com.tripdiary.vo.MapCmd;
 import com.tripdiary.vo.MemberActCmd;
+import com.tripdiary.vo.PageVO;
 import com.tripdiary.vo.ProfileCmd;
 
 @Service
@@ -73,5 +75,15 @@ public class DiaryService {
 	public List<MapCmd> getMap (int memberNum){
 		return diaryDao.getMap(memberNum);
 	}
+	
+	public int getArticleCount(int memberNum) {
+		return diaryDao.getArticleCount(memberNum);
+	}
+	
+	public List<BoardListVO> getBoardList(PageVO pageVO){
+		return diaryDao.getBoardList(pageVO);
+	}
+	
+	
 		
 }

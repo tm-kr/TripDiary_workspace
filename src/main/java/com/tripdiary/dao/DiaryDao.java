@@ -7,11 +7,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.tripdiary.vo.BoardListVO;
 import com.tripdiary.vo.EmblemCmd;
 import com.tripdiary.vo.GetEmblemCmd;
 import com.tripdiary.vo.HaveEmblemCmd;
 import com.tripdiary.vo.MapCmd;
 import com.tripdiary.vo.MemberActCmd;
+import com.tripdiary.vo.PageVO;
 import com.tripdiary.vo.ProfileCmd;
 
 @Repository
@@ -59,6 +61,14 @@ public class DiaryDao {
 	
 	public List<MapCmd> getMap (int memeberNum){
 		return sqlSessionTemplate.selectList("getMap", memeberNum);
+	}
+	
+	public int getArticleCount(int memberNum) {
+		return sqlSessionTemplate.selectOne("getArticleCount", memberNum);
+	}
+	
+	public List<BoardListVO> getBoardList(PageVO pageVO){
+		return sqlSessionTemplate.selectList("getBoardList", pageVO);
 	}
 	
 

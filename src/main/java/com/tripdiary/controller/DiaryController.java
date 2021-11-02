@@ -1,7 +1,5 @@
 package com.tripdiary.controller;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,27 +8,41 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tripdiary.service.DiaryService;
+import com.tripdiary.util.PageCalc;
 import com.tripdiary.vo.GetEmblemCmd;
+import com.tripdiary.vo.PageVO;
 
 @Controller
 public class DiaryController {
 	
 	private DiaryService diaryService;
+	private PageCalc pageCalc;
+	private PageVO pageVO;
 	
 	@Autowired
-	public DiaryController(DiaryService diaryService) {
+	public DiaryController(DiaryService diaryService, PageCalc pageCalc, PageVO pageVO) {
 		this.diaryService = diaryService;
+		this.pageCalc = pageCalc;
+	    this.pageVO = pageVO;
 	}
 
 	
 	@RequestMapping(value = "/diary", method = RequestMethod.GET)
-	public String diary(Model model, int memberNum) {
+	public String diary(Model model, int memberNum, String pageNum) {
+		int currentPage = 1;
+		int articleCount = diaryService.getArticleCount(memberNum);
+		if (pageNum != null) {
+	         currentPage = Integer.parseInt(pageNum);
+	    }
+	    pageVO = pageCalc.pageCalc(currentPage, articleCount);
+	    pageVO.setMemberNum(memberNum);
 		
-		// ³ªÁß¿¡ memblemNum °ªÀ» Æ÷ÇÔÇÑ ´Ù¸¥ cmd ¸¦ º¸³½´Ù¸é Áö¿ì°í ¸ğ´Ş jsp ¼öÁ¤ÇÏ±â!
+		// ë‚˜ì¤‘ì— memblemNum ê°’ì„ í¬í•¨í•œ ë‹¤ë¥¸ cmd ë¥¼ ë³´ë‚¸ë‹¤ë©´ ì§€ìš°ê³  ëª¨ë‹¬ jsp ìˆ˜ì •í•˜ê¸°!
+		model.addAttribute("diaryBoardList", diaryService.getBoardList(pageVO));
+		model.addAttribute("page",pageVO);
 		model.addAttribute("mapCmd", diaryService.getMap(memberNum));
 		model.addAttribute("calendar", diaryService.getDate(memberNum));
 		model.addAttribute("profile", diaryService.getProfile(memberNum));
-		model.addAttribute("memberNum", memberNum);
 		model.addAttribute("haveEmblem", diaryService.haveEmblem(memberNum));
 		model.addAttribute("emblem", diaryService.selectEmblem());
 		model.addAttribute("actCnt", diaryService.getActCnt(memberNum));
@@ -47,15 +59,13 @@ public class DiaryController {
 	
 	@RequestMapping(value = "/profileUpdate", method = RequestMethod.POST)
 	public String profileUpdate(MultipartHttpServletRequest mpRequest, Model model, int memberNum, String message) throws Exception {
-		
-    	// »óÅÂ¸Ş¼¼Áö°¡ ºñ¾îÀÖ´Ù¸é ¹İÈ¯
+    	// ìƒíƒœë©”ì„¸ì§€ê°€ ë¹„ì–´ìˆë‹¤ë©´ ë°˜í™˜
     	if(message.equals("")) {
-    		model.addAttribute("msg", "»óÅÂ¸Ş¼¼Áö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!");
+    		model.addAttribute("msg", "ìƒíƒœë©”ì„¸ì§€ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”!");
     		model.addAttribute("url", "/diary?memberNum=");
     		return "/return/diaryAlert";
     	}
 		diaryService.profileUpdate(mpRequest, memberNum, message);
-		
 		model.addAttribute("url", "/diary?memberNum=");
 		return "/return/forward";
 	}

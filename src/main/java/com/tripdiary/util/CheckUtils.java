@@ -1,16 +1,9 @@
 package com.tripdiary.util;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import com.tripdiary.vo.WriteCmd;
 
 @Component
 public class CheckUtils {
@@ -18,6 +11,9 @@ public class CheckUtils {
 	public boolean check(MultipartHttpServletRequest mpRequest) throws Exception{
 		MultipartFile file = mpRequest.getFile("thumbnail");
 		List<MultipartFile> fileList = mpRequest.getFiles("file");
+		if(mpRequest.getFiles("file").get(0).getOriginalFilename().equals("")) {
+			fileList.clear();
+		}
 		fileList.add(file);
 		
 		MultipartFile multipartFile = null;
@@ -37,7 +33,7 @@ public class CheckUtils {
 				size = multipartFile.getSize();
 				if(type.equals("jpg") || type.equals("jpeg") || type.equals("png") || type.equals("gif") || type.equals("bmp") || type.equals("pdf") || 
 						type.equals("JPG") || type.equals("JPEG") || type.equals("PNG") || type.equals("GIF") || type.equals("BMP") || type.equals("PDF")) {
-					
+				
 				}else {
 					check = false;
 				}
