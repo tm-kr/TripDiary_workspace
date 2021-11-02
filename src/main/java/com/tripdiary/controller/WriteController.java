@@ -80,8 +80,15 @@ public class WriteController {
     public String writeUpdate(MultipartHttpServletRequest mpRequest, WriteCmd writeCmd,TagCmd tagCmd, Model model) throws Exception {
     	
     	// 업로드시 이미지 업로드 유무 검사
-    	if(!mpRequest.getFiles("file").get(0).getOriginalFilename().equals("") && mpRequest.getFile("thumbnail").getOriginalFilename().equals("")) {
+    	if(!mpRequest.getFiles("file").get(0).getOriginalFilename().equals("")) {
 	    	// 이미지파일 확장자 및 용량검사
+	       	if(checkUtils.check(mpRequest) == false) {
+	    		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
+	    		return "/return/historyback";
+	    	}
+    	}
+    	if(!mpRequest.getFile("thumbnail").getOriginalFilename().equals("")){
+    		// 이미지파일 확장자 및 용량검사
 	       	if(checkUtils.check(mpRequest) == false) {
 	    		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
 	    		return "/return/historyback";
