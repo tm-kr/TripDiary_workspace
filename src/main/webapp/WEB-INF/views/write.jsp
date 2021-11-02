@@ -146,7 +146,7 @@
 			<div class="writeButton">
 				<button type="button" class="btn btn-outline-primary"
 					onclick="history.go(-1)">돌아가기</button>
-				<button type="submit" class="btn btn-primary" onsubmit="checkImg();">작성하기</button>
+				<button type="submit" class="btn btn-primary">작성하기</button>
 			</div>
 			<input type="hidden" name="memberNum" value="${memberNum}">
 		</form>
