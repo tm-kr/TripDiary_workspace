@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="fixedicon2" class="mb-5">
-		<a href="/writeUpdate?boardNum=160"><img class="icon" alt="" src="resources/img/icon/write.png" style="width: 70px; margin-bottom: 12%;"></a>
+		<a href="/writeUpdate?boardNum=213"><img class="icon" alt="" src="resources/img/icon/write.png" style="width: 70px; margin-bottom: 12%;"></a>
 		<c:if test="${not empty sessionScope.darkmode}">
 			<a href="/darkmode"><img class="icon" alt="" src="resources/img/icon/darkmode.png" style="width: 70px; margin-bottom: 12%;"></a>
 		</c:if>

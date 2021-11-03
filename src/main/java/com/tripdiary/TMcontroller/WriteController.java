@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tripdiary.TMservice.WriteService;
-import com.tripdiary.TMutil.CheckUtils;
+import com.tripdiary.TMutil.FileCheck;
+import com.tripdiary.TMutil.ThumbnailCheck;
 import com.tripdiary.TMvo.MapCmd;
 import com.tripdiary.TMvo.TagCmd;
 import com.tripdiary.TMvo.WriteCmd;
@@ -21,12 +22,13 @@ import com.tripdiary.TMvo.WriteCmd;
 public class WriteController {
 	
 	private WriteService writeService;
-	private CheckUtils checkUtils;
-	
+	private FileCheck fileCheck;
+	private ThumbnailCheck thumbnailCheck;
 	@Autowired
-	public WriteController(WriteService writeService, CheckUtils checkUtils) {
+	public WriteController(WriteService writeService, FileCheck fileCheck,ThumbnailCheck thumbnailCheck) {
 		this.writeService = writeService;
-		this.checkUtils = checkUtils;
+		this.fileCheck = fileCheck;
+		this.thumbnailCheck = thumbnailCheck;
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
@@ -46,10 +48,20 @@ public class WriteController {
     		model.addAttribute("msg", "대표 사진을 등록해주세요.");
     		return "/return/historyback";
     	}
-    	// 이미지파일 확장자 및 용량검사
-       	if(checkUtils.check(mpRequest) == false) {
-    		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
-    		return "/return/historyback";
+    	// 업로드시 이미지 업로드 유무 검사
+    	if(!mpRequest.getFile("thumbnail").getOriginalFilename().equals("")) {
+        	// 썸네일 확장자 및 용량 검사
+        	if(thumbnailCheck.check(mpRequest) == false) {
+        		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
+        		return "/return/historyback";
+        	}
+    	}
+    	if(!mpRequest.getFiles("file").get(0).getOriginalFilename().equals("")){
+        	// 추가 이미지파일 확장자 및 용량검사
+           	if(fileCheck.check(mpRequest) == false) {
+        		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
+        		return "/return/historyback";
+        	}
     	}
     	writeService.write(writeCmd,tagCmd,mapCmd, mpRequest);
     	model.addAttribute("msg", "새로운 일기를 작성하였습니다.");
@@ -80,19 +92,19 @@ public class WriteController {
     public String writeUpdate(MultipartHttpServletRequest mpRequest, WriteCmd writeCmd,TagCmd tagCmd, Model model) throws Exception {
     	
     	// 업로드시 이미지 업로드 유무 검사
-    	if(!mpRequest.getFiles("file").get(0).getOriginalFilename().equals("")) {
-	    	// 이미지파일 확장자 및 용량검사
-	       	if(checkUtils.check(mpRequest) == false) {
-	    		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
-	    		return "/return/historyback";
-	    	}
+    	if(!mpRequest.getFile("thumbnail").getOriginalFilename().equals("")) {
+        	// 썸네일 확장자 및 용량 검사
+        	if(thumbnailCheck.check(mpRequest) == false) {
+        		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
+        		return "/return/historyback";
+        	}
     	}
-    	if(!mpRequest.getFile("thumbnail").getOriginalFilename().equals("")){
-    		// 이미지파일 확장자 및 용량검사
-	       	if(checkUtils.check(mpRequest) == false) {
-	    		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
-	    		return "/return/historyback";
-	    	}
+    	if(!mpRequest.getFiles("file").get(0).getOriginalFilename().equals("")){
+        	// 추가 이미지파일 확장자 및 용량검사
+           	if(fileCheck.check(mpRequest) == false) {
+        		model.addAttribute("msg", "이미지파일만 업로드 가능합니다. (최대 5MB)");
+        		return "/return/historyback";
+        	}
     	}
     	
     	writeService.writeUpdate(writeCmd,tagCmd, mpRequest);

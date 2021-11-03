@@ -6,22 +6,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Component
-public class CheckUtils {
+public class FileCheck {
 	
 	public boolean check(MultipartHttpServletRequest mpRequest) throws Exception{
-		MultipartFile file = mpRequest.getFile("thumbnail");
 		List<MultipartFile> fileList = mpRequest.getFiles("file");
-		if(mpRequest.getFiles("file").get(0).getOriginalFilename().equals("")) {
-			fileList.clear();
-		}
-		fileList.add(file);
-		
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String type = null;
 		double size = 0;
 		boolean check = true;
-		
 		if(fileList != null) {
 			for(int i=0; i<fileList.size(); i++) {
 				multipartFile = fileList.get(i);
@@ -29,7 +22,7 @@ public class CheckUtils {
 				originalFileName = multipartFile.getOriginalFilename();
 				// 파일 확장자
 				type = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
-				
+				// 파일 사이즈
 				size = multipartFile.getSize();
 				if(type.equals("jpg") || type.equals("jpeg") || type.equals("png") || type.equals("gif") || type.equals("bmp") || type.equals("pdf") || 
 						type.equals("JPG") || type.equals("JPEG") || type.equals("PNG") || type.equals("GIF") || type.equals("BMP") || type.equals("PDF")) {
@@ -42,6 +35,7 @@ public class CheckUtils {
 				}
 			}
 		}
+		
 		return check;
 	}
 }
