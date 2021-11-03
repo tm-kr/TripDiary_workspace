@@ -77,7 +77,7 @@
 		<c:if test="${mainBoardList eq null}">
 			<div class="container">
 				<div class="container">
-					<img alt="" src="resources/img/error.png" style="width: 30%;">
+					<img alt="" src="resources/img/icon/nosearch.png">
 				</div>
 				<div class="container">
 					<h1>등록된 글이 없습니다.</h1>

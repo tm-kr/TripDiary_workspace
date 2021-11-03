@@ -18,7 +18,12 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="/resources/css/style.css" />
+<c:if test="${empty darkmode}">
+	<link rel="stylesheet" href="/resources/css/style.css" />
+</c:if>
+<c:if test="${not empty darkmode}">
+	<link rel="stylesheet" href="/resources/css/darkstyle.css" />
+</c:if>
 <title>TripDiary</title>
 </head>
 <body>
@@ -42,23 +47,44 @@
 			<div class="col-sm-3 mt-5 mb-5">
 				<div class="row">
 					<div class="col-4">
+					<c:if test="${empty sessionScope.darkmode}">
 						<a data-toggle="modal" href="#emblemModal"> <img class="icon"
-							src="resources/img/icon/emblem_cnt.png" style="width: 100%;">
+							src='<c:url value="${pageContext.request.contextPath }/resources/img/icon/emblem_cnt.png"/>' style="width: 100%;">
 						</a> <br>
+					</c:if>
+					<c:if test="${not empty sessionScope.darkmode}">
+						<a data-toggle="modal" href="#emblemModal"> <img class="icon"
+							src='<c:url value="${pageContext.request.contextPath }/resources/img/icon/darkemblem_cnt.png"/>' style="width: 100%;">
+						</a> <br>
+					</c:if>
 						<br>
 						<b>${fn:length(haveEmblem) }</b>
 					</div>
 					<div class="col-4">
+					<c:if test="${empty sessionScope.darkmode}">
 						<a data-toggle="modal" href="#boardModal" onclick="openModal();"> <img class="icon"
-							src="resources/img/icon/board_cnt.png" style="width: 100%;">
+							src="<c:url value="${pageContext.request.contextPath }/resources/img/icon/board_cnt.png"/>" style="width: 100%;">
 						</a> <br>
+					</c:if>
+					<c:if test="${not empty sessionScope.darkmode}">
+						<a data-toggle="modal" href="#boardModal" onclick="openModal();"> <img class="icon"
+							src="<c:url value="${pageContext.request.contextPath }/resources/img/icon/darkboard_cnt.png"/>" style="width: 100%;">
+						</a> <br>
+					</c:if>
 						<br>
 						<b>${actCnt.boardWriteCnt }</b>
 					</div>
 					<div class="col-4">
+					<c:if test="${empty sessionScope.darkmode}">
 						<a data-toggle="modal" href="#pickModal"> <img class="icon"
-							src="resources/img/icon/pick_cnt.png" style="width: 100%;">
+							src="<c:url value="${pageContext.request.contextPath }/resources/img/icon/pick_cnt.png"/>" style="width: 100%;">
 						</a> <br>
+					</c:if>
+					<c:if test="${not empty sessionScope.darkmode}">
+						<a data-toggle="modal" href="#pickModal"> <img class="icon"
+							src="<c:url value="${pageContext.request.contextPath }/resources/img/icon/darkpick_cnt.png"/>" style="width: 100%;">
+						</a> <br>
+					</c:if>
 						<br>
 						<b>${actCnt.pickPressCnt }</b>
 					</div>
@@ -73,7 +99,7 @@
 		<div class="diary-mid row mt-5 mb-5">
 		<c:forEach var="board" items="${diaryBoardList }" varStatus="loop">
 			<div class="col-lg-4 diary-board-container">
-				<div class="border border-secondary p-3 icon2">
+				<div class="border border-secondary p-3 icon2 shadow">
 					<div class="board-top">
 						<div style="float: left;">
 							<!-- 프로필 이미지와 닉네임 -->
@@ -83,9 +109,16 @@
 						</div>
 						<!-- pick 이미지 -->
 						<div style="float: right; display: inline-block;" class="">
+						<c:if test="${not empty darkmode}">
+							<img alt="" src="resources/img/icon/pick_cnt2.png"
+								class="pick-img"
+								style="width: 40px; height: 40px; object-fit: cover;">
+						</c:if>
+						<c:if test="${empty darkmode}">
 							<img alt="" src="resources/img/icon/pick_cnt.png"
 								class="pick-img"
 								style="width: 40px; height: 40px; object-fit: cover;">
+						</c:if>
 						</div>
 					</div>
 					<!-- 썸네일 이미지 -->
@@ -110,7 +143,12 @@
 		</div>
 		
 		<c:if test="${empty diaryBoardList}">
-			<img class="mb-5" alt=""src="resources/img/icon/nosearch.png">
+			<c:if test="${empty darkmode}">
+				<img class="mb-5" alt=""src="resources/img/icon/nosearch.png">
+			</c:if>
+			<c:if test="${not empty darkmode}">
+				<img class="mb-5" alt=""src="resources/img/icon/darknosearch.png">
+			</c:if>
 		</c:if>
 		<c:if test="${not empty diaryBoardList}">
 			<nav aria-label="Page navigation example">

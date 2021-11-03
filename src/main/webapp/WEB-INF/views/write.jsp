@@ -11,7 +11,12 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="/resources/css/style.css" />
+<c:if test="${empty darkmode}">
+	<link rel="stylesheet" href="/resources/css/style.css" />
+</c:if>
+<c:if test="${not empty darkmode}">
+	<link rel="stylesheet" href="/resources/css/darkstyle.css" />
+</c:if>
 <link rel="stylesheet" href="/resources/css/writeStyle.css" />
 <link rel="stylesheet" href="/resources/css/mapStyle.css" />
 <title>TripDiary</title>

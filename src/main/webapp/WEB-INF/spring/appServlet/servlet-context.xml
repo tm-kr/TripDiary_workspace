@@ -25,10 +25,10 @@
 	</beans:bean>
 
 	
-	<context:component-scan base-package="com.tripdiary.controller" />
-	<context:component-scan base-package="com.tripdiary.dao" />
-	<context:component-scan base-package="com.tripdiary.service" />
-	<context:component-scan base-package="com.tripdiary.vo" />
-	<context:component-scan base-package="com.tripdiary.util" />
+	<context:component-scan base-package="com.tripdiary.TMcontroller" />
+	<context:component-scan base-package="com.tripdiary.TMdao" />
+	<context:component-scan base-package="com.tripdiary.TMservice" />
+	<context:component-scan base-package="com.tripdiary.TMvo" />
+	<context:component-scan base-package="com.tripdiary.TMutil" />
 	
 </beans:beans>

@@ -11,16 +11,16 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias alias="writeCmd" type="com.tripdiary.vo.WriteCmd"/>
-		<typeAlias alias="emblemCmd" type="com.tripdiary.vo.EmblemCmd"/>
-		<typeAlias alias="haveEmblemCmd" type="com.tripdiary.vo.HaveEmblemCmd"/>
-		<typeAlias alias="memberActCmd" type="com.tripdiary.vo.MemberActCmd"/>
-		<typeAlias alias="getEmblemCmd" type="com.tripdiary.vo.GetEmblemCmd"/>
-		<typeAlias alias="profileCmd" type="com.tripdiary.vo.ProfileCmd"/>
-		<typeAlias alias="tagCmd" type="com.tripdiary.vo.TagCmd"/>
-		<typeAlias alias="mapCmd" type="com.tripdiary.vo.MapCmd"/>
-		<typeAlias alias="pageVO" type="com.tripdiary.vo.PageVO"/>
-		<typeAlias alias="boardListVO" type="com.tripdiary.vo.BoardListVO"/>
+		<typeAlias alias="writeCmd" type="com.tripdiary.TMvo.WriteCmd"/>
+		<typeAlias alias="emblemCmd" type="com.tripdiary.TMvo.EmblemCmd"/>
+		<typeAlias alias="haveEmblemCmd" type="com.tripdiary.TMvo.HaveEmblemCmd"/>
+		<typeAlias alias="memberActCmd" type="com.tripdiary.TMvo.MemberActCmd"/>
+		<typeAlias alias="getEmblemCmd" type="com.tripdiary.TMvo.GetEmblemCmd"/>
+		<typeAlias alias="profileCmd" type="com.tripdiary.TMvo.ProfileCmd"/>
+		<typeAlias alias="tagCmd" type="com.tripdiary.TMvo.TagCmd"/>
+		<typeAlias alias="mapCmd" type="com.tripdiary.TMvo.MapCmd"/>
+		<typeAlias alias="pageVO" type="com.tripdiary.TMvo.PageVO"/>
+		<typeAlias alias="boardListVO" type="com.tripdiary.TMvo.BoardListVO"/>
 
 	</typeAliases>
  	

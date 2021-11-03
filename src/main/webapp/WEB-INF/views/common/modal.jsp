@@ -25,10 +25,18 @@
 						</c:forEach>
 
 						<c:if test="${empty get}">
-							<a data-toggle="modal" href="#Emblem${emblem.emblemNum }"> <img
-								alt="" src="resources/img/emblem/none.png" class="icon2"
-								style="width: 100%">
-							</a>
+							<c:if test="${empty sessionScope.darkmode}">
+								<a data-toggle="modal" href="#Emblem${emblem.emblemNum }"> <img
+									alt="" src="resources/img/emblem/none.png" class="icon2"
+									style="width: 100%">
+								</a>
+							</c:if>
+							<c:if test="${not empty sessionScope.darkmode}">
+								<a data-toggle="modal" href="#Emblem${emblem.emblemNum }"> <img
+									alt="" src="resources/img/emblem/darknone.png" class="icon2"
+									style="width: 100%">
+								</a>
+							</c:if>
 						</c:if>
 						<c:if test="${not empty get}">
 							<a data-toggle="modal" href="#getEmblem${emblem.emblemNum }">

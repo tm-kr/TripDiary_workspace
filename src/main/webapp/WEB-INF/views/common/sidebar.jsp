@@ -9,11 +9,13 @@
 </head>
 <body>
 	<div id="fixedicon2" class="mb-5">
-		<c:if test="${not empty drakMode}">
-			<img class="icon" alt="" src="resources/img/icon/darkmode.png" style="width: 70px;margin-top: 12%; margin-bottom: 12%;">
-		</c:if>
 		<a href="/writeUpdate?boardNum=160"><img class="icon" alt="" src="resources/img/icon/write.png" style="width: 70px; margin-bottom: 12%;"></a>
-		<img class="icon" alt="" src="resources/img/icon/darkmode2.png" style="width: 70px; margin-bottom: 12%;">
+		<c:if test="${not empty sessionScope.darkmode}">
+			<a href="/darkmode"><img class="icon" alt="" src="resources/img/icon/darkmode.png" style="width: 70px; margin-bottom: 12%;"></a>
+		</c:if>
+		<c:if test="${empty sessionScope.darkmode}">
+			<a href="/darkmode"><img class="icon" alt="" src="resources/img/icon/darkmode2.png" style="width: 70px; margin-bottom: 12%;"></a>
+		</c:if>
 		<a href="/write"><img class="icon" alt="" src="resources/img/icon/write.png" style="width: 70px; margin-bottom: 12%;"></a>
 		<img class="icon" alt="" src="resources/img/icon/chat.png" style="width: 70px;">
 	</div>

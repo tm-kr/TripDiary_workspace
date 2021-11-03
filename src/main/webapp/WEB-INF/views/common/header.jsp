@@ -2,7 +2,12 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light header shadow">
+	<c:if test="${empty sessionScope.darkmode }">
 		<a class="logo" href="/main"><img alt="" src="resources/img/icon/logo.png"></a>
+	</c:if>
+	<c:if test="${not empty sessionScope.darkmode }">
+		<a class="logo" href="/main"><img alt="" src="resources/img/icon/darklogo.png"></a>
+	</c:if>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
