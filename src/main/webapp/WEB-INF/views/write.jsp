@@ -29,7 +29,7 @@
 		
 		<div class="writeForm mt-5" style="text-align: left;">
 		<h4>키워드 검색 >> 여행간 곳 마커로 표시</h4>
-		<div class="map_wrap"style="margin: auto;">
+		<div class="map_wrap"style="margin: auto; color: black">
 			<div id="map"style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 				<div id="menu_wrap" class="bg_white">
 					<div class="option">
