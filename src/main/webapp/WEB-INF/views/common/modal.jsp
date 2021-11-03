@@ -337,7 +337,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<div id="map" style="width: 100%; height: 600px; margin: auto;"></div>
+				<div id="map" style="width: 100%; height: 600px; margin: auto; color: black;"></div>
 			</div>
 			<div class="modal-footer">
 				<div style="margin: auto;">
