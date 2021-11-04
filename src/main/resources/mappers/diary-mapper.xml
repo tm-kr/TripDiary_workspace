@@ -100,7 +100,7 @@
 		BOARD where member_num = #{memberNum}
 	</select>
 
-	<select id="getBoardList" parameterType="pageVO" resultType="boardListVO">
+	<select id="getBoardList" parameterType="pageCmd" resultType="boardListVO">
 	<![CDATA[
 		select * from (select rownum rnum, board.* from
 		(select

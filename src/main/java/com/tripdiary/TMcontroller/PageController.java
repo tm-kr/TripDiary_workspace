@@ -38,6 +38,7 @@ public class PageController {
 	
 	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
 	public String signIn(HttpSession session) {
+		
 		session.setAttribute("id", "tester");
 		session.setAttribute("memberNum", 10);
 		return "signIn";

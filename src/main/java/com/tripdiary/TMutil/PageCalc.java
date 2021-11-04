@@ -3,25 +3,25 @@ package com.tripdiary.TMutil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.tripdiary.TMvo.PageVO;
+import com.tripdiary.TMvo.PageCmd;
 
 @Component
 public class PageCalc {
-	private PageVO pageVO;
+	private PageCmd pageVO;
 	@Autowired
-	public PageCalc(PageVO pageVO) {
+	public PageCalc(PageCmd pageVO) {
 		this.pageVO = pageVO;
 	}
 	
-	public PageVO getPageVO() {
+	public PageCmd getPageVO() {
 		return pageVO;
 	}
 
-	public void setPageVO(PageVO pageVO) {
+	public void setPageVO(PageCmd pageVO) {
 		this.pageVO = pageVO;
 	}
 
-	public PageVO pageCalc(int currentPage, int articleCount) {
+	public PageCmd pageCalc(int currentPage, int articleCount) {
 		// currentPage = 현재페이지, articleCount = 글 총 갯수
 		int countList = 9;//한 페이지에 보여줄 글 갯수
 		int countPage = 3;// 페이지 갯수 ex ) [1] [2] [3] 다음
