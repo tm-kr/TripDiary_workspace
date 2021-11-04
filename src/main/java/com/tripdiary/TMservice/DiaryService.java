@@ -16,7 +16,7 @@ import com.tripdiary.TMvo.GetEmblemCmd;
 import com.tripdiary.TMvo.HaveEmblemCmd;
 import com.tripdiary.TMvo.MapCmd;
 import com.tripdiary.TMvo.MemberActCmd;
-import com.tripdiary.TMvo.PageVO;
+import com.tripdiary.TMvo.PageCmd;
 import com.tripdiary.TMvo.ProfileCmd;
 import com.tripdiary.TMvo.TagCmd;
 
@@ -81,7 +81,7 @@ public class DiaryService {
 		return diaryDao.getArticleCount(memberNum);
 	}
 	
-	public List<BoardListVO> getBoardList(PageVO pageVO) throws Exception{
+	public List<BoardListVO> getBoardList(PageCmd pageVO) throws Exception{
 		List<BoardListVO> boardList = diaryDao.getBoardList(pageVO);
 		for(int i=0; i<boardList.size(); i++) {
 			boardList.get(i).setTag(diaryDao.getTag(boardList.get(i).getBoardNum()));

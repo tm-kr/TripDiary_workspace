@@ -3,7 +3,7 @@ package com.tripdiary.TMvo;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PageVO {
+public class PageCmd {
 	private int startPage; // 시작페이지
 	private int endPage; // 끝 페이지
 	private int countPage; // 페이지 갯수 ex ) [1] [2] [3] 다음
@@ -15,11 +15,11 @@ public class PageVO {
 	
 	private int memberNum;
 	
-	public PageVO() {
+	public PageCmd() {
 		
 	}
 
-	public PageVO(int startPage, int endPage, int countPage, int currentPage, int first, int second, int block,
+	public PageCmd(int startPage, int endPage, int countPage, int currentPage, int first, int second, int block,
 			String search, int memberNum) {
 		super();
 		this.startPage = startPage;

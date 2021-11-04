@@ -19,7 +19,7 @@
 		<typeAlias alias="profileCmd" type="com.tripdiary.TMvo.ProfileCmd"/>
 		<typeAlias alias="tagCmd" type="com.tripdiary.TMvo.TagCmd"/>
 		<typeAlias alias="mapCmd" type="com.tripdiary.TMvo.MapCmd"/>
-		<typeAlias alias="pageVO" type="com.tripdiary.TMvo.PageVO"/>
+		<typeAlias alias="pageCmd" type="com.tripdiary.TMvo.PageCmd"/>
 		<typeAlias alias="boardListVO" type="com.tripdiary.TMvo.BoardListVO"/>
 
 	</typeAliases>
