@@ -1,0 +1,21 @@
+
+MEMBER테이블 비밀번호 VARCHAR2 크기 50 >> 100 으로 수정
+PROFILE테이블에서 대표엠블럼 칼럼 삭제
+MAP테이블에서 TEXT삭제 그리고 BOARD_NUM 칼럼 추가
+
+insert into emblem values (1, '좋아요 한 스푼', '좋아요 1번 누르기');
+insert into emblem values (2, '취향 존중!', '좋아요 10번 누르기');
+insert into emblem values (3, '만인의 연인', '좋아요 100번 누르기');
+insert into emblem values (4, '여기 가볼까?!', 'pick 1번 하기');
+insert into emblem values (5, '방구석 여행가', 'pick 10번 하기');
+insert into emblem values (6, '핫플 수집가', 'pick 100번 하기');
+insert into emblem values (7, '첫 여행지', '글 1번 작성하기');
+insert into emblem values (8, '베태랑 모험가', '글 10번 작성하기');
+insert into emblem values (9, '서바이벌 전문가', '글 100번 작성하기');
+insert into emblem values (10, '소통의 시작', '댓글 1번 작성하기');
+insert into emblem values (11, '분위기 메이커', '댓글 10번 작성하기');
+insert into emblem values (12, '프로 공감러', '댓글 100번 작성하기');
+insert into emblem values (13, '나 좋아하나봐!', '좋아요 1번 받기');
+insert into emblem values (14, '매력 발산중', '좋아요 10번 받기');
+insert into emblem values (15, '인플루언서!', '좋아요 100번 받기');
+
